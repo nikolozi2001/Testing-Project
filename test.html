@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Your Website Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS (Optional) -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Brand</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr class="table-active">
+                    <td class="text-center align-middle" style="width:6%; background: #0080be; color: #fff;"
+                        rowspan="3"><b>N</b></td>
+                    <td class="text-center align-middle" style="width:30%; background: #0080be; color: #fff;"
+                        rowspan="3"><b>კულტურის დასახელება</b></td>
+                    <td class="text-center" style="width:40%; background: #0080be; color: #fff;" colspan="6"><b>გაყიდული
+                            პროდუქცია</b></td>
+                    <td class="text-center" style="width:26%; background: #0080be; color: #fff;" colspan="2"><b>მათ
+                            შორის, გაყიდული უცხოურ ბაზარზე</b></td>
+                    <td class="text-center" style="width:8%; background: #0080be; color: #fff;" rowspan="3"><b>წაშლა</b>
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <td class="text-center align-middle" style="width:20%; background: #0080be; color: #fff;"
+                        colspan="2">იმპორტირებული</td>
+                    <td class="text-center align-middle" style="width:20%; background: #0080be; color: #fff;"
+                        colspan="2">ადგილობრივი (შესყიდული)</td>
+                    <td class="text-center align-middle" style="width:20%; background: #0080be; color: #fff;"
+                        colspan="2">ადგილობრივი (საკუთარი წარმოების)</td>
+                    <td class="text-center align-middle" style="width:13%; background: #0080be; color: #fff;"
+                        rowspan="2">რაოდენობა (ტონა)</td>
+                    <td class="text-center align-middle" style="width:13%; background: #0080be; color: #fff;"
+                        rowspan="2">ღირებულება (ლარი)</td>
+                </tr>
+                <tr class="table-active">
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">რაოდენობა
+                        (ტონა)</td>
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">ღირებულება
+                        (ლარი)</td>
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">რაოდენობა
+                        (ტონა)</td>
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">ღირებულება
+                        (ლარი)</td>
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">რაოდენობა
+                        (ტონა)</td>
+                    <td class="text-center align-middle" style="width:10%; background: #0080be; color: #fff;">ღირებულება
+                        (ლარი)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table id="fpft" class="table table-bordered text-center">
+            <thead>
+                <tr class="table-active">
+                    <th colspan="4" style="background: #0080be; color: #fff;">პარტნიორები</th>
+                    <th colspan="2" rowspan="2" style="background: #0080be; color: #fff;">
+                        პარტნიორთა წილი საწესდებო/სააქციო კაპიტალში(%)
+                    </th>
+                    <th rowspan="3" style="width:8%; background: #0080be; color: #fff;">წაშლა</th>
+                </tr>
+                <tr class="table-active">
+                    <th colspan="3" style="background: #0080be; color: #fff;">
+                        პარტნიორი კომპანიების (ორგანიზაციულ-სამართლებრივი ფორმისა და გადასახადის გადამხდელის
+                        საიდენტიფიკაციო ნომრის (გგსნ) მითითებით) ან ფიზიკური პირების სრული დასახელება
+                    </th>
+                    <th rowspan="2" style="background: #0080be; color: #fff;">პარტნიორთა რეზიდენტობის ქვეყანა</th>
+                </tr>
+                <tr class="table-active">
+                    <th style="background: #0080be; color: #fff; width: 178px;">საიდენტიფიკაციო კოდი</th>
+                    <th style="background: #0080be; color: #fff; width: 178px;">ორგანიზაციულ-<br>სამართლებრივი ფორმა
+                    </th>
+                    <th style="background: #0080be; color: #fff;">დასახელება</th>
+                    <th style="background: #0080be; color: #fff;">პერიოდის დასაწყისი</th>
+                    <th style="background: #0080be; color: #fff;">პერიოდის ბოლო</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-light">ა</td>
+                    <td class="table-light">ბ</td>
+                    <td class="table-light">გ</td>
+                    <td class="table-light">დ</td>
+                    <td class="table-light">1</td>
+                    <td class="table-light">2</td>
+                    <td class="table-light">
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <table id="fpst" class="table table-bordered text-center">
+        <thead>
+            <tr class="table-active">
+                <th colspan="3" style="background: #0080be; color: #fff;">არარეზიდენტი პარტნიორი</th>
+                <th rowspan="2" style="background: #0080be; color: #fff;">პარტნიორთა რეზიდენტობის ქვეყანა</th>
+                <th rowspan="2" style="background: #0080be; color: #fff;">წაშლა</th>
+            </tr>
+            <tr class="table-active">
+                <th style="width: 166px; background: #0080be; color: #fff;">საიდენტიფიკაციო კოდი</th>
+                <th style="width: 450px; background: #0080be; color: #fff;">დასახელება</th>
+                <th style="width: 350px; background: #0080be; color: #fff;">მიუთითეთ კავშირის სახე</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table-light" style="color: red;">ა</td>
+                <td class="table-light" style="color: red;">ბ</td>
+                <td class="table-light" style="color: red;">გ</td>
+                <td class="table-light" style="color: red;">დ</td>
+                <td class="table-light">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table style="font-size: 12px;" id="tblOrder">
+
+            <tbody>
+                <tr class="headers-style-test">
+                    <td align="center" valign="middle" style="width:6%" rowspan="3"><b>N</b></td>
+                    <td align="center" valign="middle" style="width:30%" rowspan="3"><b>კულტურის დასახელება</b></td>
+                    <td align="center" style="width:40%" colspan="6"><b>გაყიდული პროდუქცია</b></td>
+                    <td align="center" style="width:26%" colspan="2"><b>მათ შორის, გაყიდული უცხოურ ბაზარზე</b></td>
+                </tr>
+                <tr class="headers-style-test">
+                    <td align="center" valign="middle" style="width:20%" colspan="2">იმპორტირებული </td>
+                    <td align="center" valign="middle" style="width:20%" colspan="2">ადგილობრივი (შესყიდული)</td>
+                    <td align="center" valign="middle" style="width:20%" colspan="2">ადგილობრივი (საკუთარი წარმოების)
+                    </td>
+                    <td align="center" valign="middle" style="width:13%" rowspan="2">რაოდენობა (ტონა)</td>
+                    <td align="center" valign="middle" style="width:13%" rowspan="2">ღირებულება (ლარი)</td>
+                </tr>
+                <tr class="headers-style-test">
+                    <td align="center" valign="middle" style="width:10%">რაოდენობა (ტონა)</td>
+                    <td align="center" valign="middle" style="width:10%">ღირებულება (ლარი)</td>
+                    <td align="center" valign="middle" style="width:10%">რაოდენობა (ტონა)</td>
+                    <td align="center" valign="middle" style="width:10%">ღირებულება (ლარი)</td>
+                    <td align="center" valign="middle" style="width:10%">რაოდენობა (ტონა)</td>
+                    <td align="center" valign="middle" style="width:10%">ღირებულება (ლარი)</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm text-center" id="tblOrder">
+                <thead>
+                    <tr>
+                        <th scope="col" class="align-middle" rowspan="3" style="background-color: #0080be; color: #fff; width: 5%;"><b>N</b></th>
+                        <th scope="col" class="align-middle" rowspan="3" style="background-color: #0080be; color: #fff; width: 15%;"><b>კულტურის დასახელება</b></th>
+                        <th scope="col" colspan="6" style="background-color: #0080be; color: #fff;"><b>გაყიდული პროდუქცია</b></th>
+                        <th scope="col" colspan="2" style="background-color: #0080be; color: #fff;"><b>მათ შორის, გაყიდული უცხოურ ბაზარზე</b></th>
+                        <th scope="col" class="align-middle" rowspan="3" style="background-color: #0080be; color: #fff;"><b>წაშლა</b></th>
+                    </tr>
+                    <tr>
+                        <th scope="col" colspan="2" style="background-color: #0080be; color: #fff;">იმპორტირებული</th>
+                        <th scope="col" colspan="2" style="background-color: #0080be; color: #fff;">ადგილობრივი (შესყიდული)</th>
+                        <th scope="col" colspan="2" style="background-color: #0080be; color: #fff;">ადგილობრივი (საკუთარი წარმოების)</th>
+                        <th scope="col" class="align-middle" rowspan="2" style="background-color: #0080be; color: #fff; width: 9%;">რაოდენობა (ტონა)</th>
+                        <th scope="col" class="align-middle" rowspan="2" style="background-color: #0080be; color: #fff; width: 9%;">ღირებულება (ლარი)</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">რაოდენობა (ტონა)</th>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">ღირებულება (ლარი)</th>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">რაოდენობა (ტონა)</th>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">ღირებულება (ლარი)</th>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">რაოდენობა (ტონა)</th>
+                        <th scope="col" style="background-color: #0080be; color: #fff; width: 9%;">ღირებულება (ლარი)</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

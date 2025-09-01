@@ -1,0 +1,174 @@
+{
+    "display": "wizard",
+    "settings": {
+        "pdf": {
+            "id": "1ec0f8ee-6685-5d98-a847-26f67b67d6f0",
+            "src": "https://files.form.io/pdf/5692b91fd1028f01000407e3/file/1ec0f8ee-6685-5d98-a847-26f67b67d6f0"
+        }
+    },
+    "components": [
+        {
+            "title": "Page 1",
+            "label": "Page 1",
+            "type": "panel",
+            "key": "page1",
+            "components": [
+                {
+                    "label": "convert",
+                    "applyMaskOn": "change",
+                    "mask": false,
+                    "tableView": false,
+                    "delimiter": false,
+                    "requireDecimal": false,
+                    "inputFormat": "plain",
+                    "truncateMultipleSpaces": false,
+                    "validate": {
+                        "custom": "let result = false;\r\nlet isProcessing = false;\r\n\r\nconst reactive = (obj) => {\r\n  const listeners = new Set();\r\n\r\n  return new Proxy(obj, {\r\n    set(target, property, value) {\r\n      target[property] = value;\r\n      listeners.forEach((listener) => listener());\r\n      return true;\r\n    },\r\n    get(target, property) {\r\n      if (property === \"subscribe\") {\r\n        return (listener) => {\r\n          listeners.add(listener);\r\n          return () => listeners.delete(listener);\r\n        };\r\n      }\r\n      return target[property];\r\n    },\r\n  });\r\n};\r\n\r\nlet state = reactive({ sum: 0 });\r\n\r\nconst calculateSum = () => {\r\n  if (isProcessing) return;\r\n  isProcessing = true;\r\n\r\n  let country;\r\n  let sum = 0;\r\n\r\n  for (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n    country = data.partniorDataGrid[i][\"page37\"];\r\n\r\n    if (country) {\r\n      sum += country;\r\n    }\r\n  }\r\n\r\n  state.sum = sum;\r\n  console.log(sum, \"sum Country\");\r\n  console.log(country, \"last country value\");\r\n\r\n  isProcessing = false;\r\n};\r\n\r\nstate.subscribe(() => {\r\n  if (result) return;\r\n\r\n  console.log(`The sum has changed to: ${state.sum}`);\r\n  result = true;\r\n});\r\n\r\ncalculateSum();\r\n"
+                    },
+                    "key": "convert",
+                    "type": "number",
+                    "input": true
+                },
+                {
+                    "label": "Data Grid",
+                    "reorder": false,
+                    "addAnotherPosition": "bottom",
+                    "layoutFixed": false,
+                    "enableRowGroups": false,
+                    "initEmpty": false,
+                    "tableView": false,
+                    "defaultValue": [
+                        {}
+                    ],
+                    "key": "partniorDataGrid",
+                    "type": "datagrid",
+                    "input": true,
+                    "components": [
+                        {
+                            "label": "დამფუძნებელი",
+                            "applyMaskOn": "change",
+                            "tableView": true,
+                            "key": "partnior",
+                            "type": "textfield",
+                            "input": true
+                        },
+                        {
+                            "label": "ქვეყნები",
+                            "widget": "choicesjs",
+                            "tableView": true,
+                            "data": {
+                                "values": [
+                                    {
+                                        "label": "საქართველო",
+                                        "value": "1"
+                                    },
+                                    {
+                                        "label": "აშშ",
+                                        "value": "2"
+                                    },
+                                    {
+                                        "label": "აზერბაიჯანი",
+                                        "value": "3"
+                                    },
+                                    {
+                                        "label": "ალბანეთი",
+                                        "value": "ალბანეთი"
+                                    }
+                                ]
+                            },
+                            "key": "page37",
+                            "type": "select",
+                            "input": true
+                        },
+                        {
+                            "label": "პერიოდის დასაწყისი",
+                            "applyMaskOn": "change",
+                            "mask": false,
+                            "tableView": false,
+                            "delimiter": false,
+                            "requireDecimal": false,
+                            "inputFormat": "plain",
+                            "truncateMultipleSpaces": false,
+                            "key": "partniorDataGrid2",
+                            "type": "number",
+                            "input": true
+                        }
+                    ]
+                }
+            ],
+            "input": false,
+            "tableView": false
+        },
+        {
+            "title": "Page 2",
+            "label": "Page 2",
+            "type": "panel",
+            "key": "page2",
+            "components": [
+                {
+                    "label": "Data Grid",
+                    "reorder": false,
+                    "addAnotherPosition": "bottom",
+                    "layoutFixed": false,
+                    "enableRowGroups": false,
+                    "initEmpty": false,
+                    "tableView": false,
+                    "defaultValue": [
+                        {
+                            "page31": {},
+                            "textField": ""
+                        }
+                    ],
+                    "validate": {
+                        "custom": "function isEmpty(str) {\r\n    return !str;\r\n}\r\n\r\nlet concatFields = [];\r\nfor (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n    if (!isEmpty(data.partniorDataGrid[i]['partnior']) &&\r\n        (isEmpty(data.partniorDataGrid[i]['page37']) || (!isEmpty(data.partniorDataGrid[i]['page37'])\r\n            && data.partniorDataGrid[i]['page37'] !== 1))) {\r\n\r\n        concatFields.push(data.partniorDataGrid[i]['partnior']);\r\n    }\r\n}\r\n\r\nlet uniqSelectFillMap = new Map();\r\nfor (let i = 0; i < data.page13.length; i++) {\r\n\r\n    let dampudzvnebeli = data.page13[i][\"page31\"];\r\n    if (!isEmpty(dampudzvnebeli)) {\r\n        uniqSelectFillMap.set(dampudzvnebeli);\r\n    }\r\n}\r\n\r\nlet missingFounders = [];\r\nfor (let i = 0; i < concatFields.length; i++) {\r\n    if (!uniqSelectFillMap.has(concatFields[i])) {\r\n        missingFounders.push(concatFields[i])\r\n    }\r\n}\r\n\r\nif (missingFounders.length > 0) {\r\n\r\n    let validText = \"\";\r\n    for (let i = 0; i < missingFounders.length; i++) {\r\n        validText += missingFounders[i];\r\n        if (i + 1 < missingFounders.length) {\r\n            validText += \", \";\r\n        }\r\n    }\r\n\r\n    valid = \"გთხოვთ შეავსოთ მონაცემები 200_3 ში ყველა დამფუძნებელზე: \" + validText;\r\n}\r\n"
+                    },
+                    "key": "page13",
+                    "type": "datagrid",
+                    "input": true,
+                    "components": [
+                        {
+                            "label": "Select",
+                            "widget": "choicesjs",
+                            "tableView": true,
+                            "dataSrc": "custom",
+                            "data": {
+                                "custom": "function isEmpty(str) {\n    return !str;\n}\n\nlet concatFields = [];\n\nfor (let i = 0; i < data.partniorDataGrid.length; i++) {\n    if (!isEmpty(data.partniorDataGrid[i]['partnior']) &&\n        (isEmpty(data.partniorDataGrid[i]['page37']) || (!isEmpty(data.partniorDataGrid[i]['page37'])\n            && data.partniorDataGrid[i]['page37'] !== 1))) {\n\n        concatFields.push(data.partniorDataGrid[i]['partnior']);\n    }\n}\n\nvalues = concatFields;\n"
+                            },
+                            "refreshOn": "partniorDataGrid",
+                            "clearOnRefresh": true,
+                            "key": "page31",
+                            "logic": [
+                                {
+                                    "name": "founderClearLogic",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "result = false;\r\nlet isProcessing = false;\r\n\r\nconst reactive = (obj) => {\r\n  const listeners = new Set();\r\n\r\n  return new Proxy(obj, {\r\n    set(target, property, value) {\r\n      target[property] = value;\r\n      listeners.forEach((listener) => listener());\r\n      return true;\r\n    },\r\n    get(target, property) {\r\n      if (property === \"subscribe\") {\r\n        return (listener) => {\r\n          listeners.add(listener);\r\n          return () => listeners.delete(listener);\r\n        };\r\n      }\r\n      return target[property];\r\n    },\r\n  });\r\n};\r\n\r\nlet state = reactive({ sum: 0 });\r\n\r\nconst calculateSum = () => {\r\n  if (isProcessing) return;\r\n  isProcessing = true;\r\n\r\n  let country;\r\n  let sum = 0;\r\n\r\n  for (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n    country = data.partniorDataGrid[i][\"page37\"];\r\n\r\n    if (country) {\r\n      sum += country;\r\n    }\r\n  }\r\n\r\n  state.sum = sum;\r\n  console.log(sum, \"sum Country\");\r\n  console.log(country, \"last country value\");\r\n\r\n  isProcessing = false;\r\n};\r\n\r\nstate.subscribe(() => {\r\n  if (result) return;\r\n\r\n  console.log(`The sum has changed to: ${state.sum}`);\r\n  result = true;\r\n});\r\n\r\ncalculateSum();\r\n"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "founderClearAction",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { label: 'Updated' };"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "select",
+                            "input": true
+                        },
+                        {
+                            "label": "Text Field",
+                            "applyMaskOn": "change",
+                            "tableView": true,
+                            "key": "textField",
+                            "type": "textfield",
+                            "input": true
+                        }
+                    ]
+                }
+            ],
+            "input": false,
+            "tableView": false
+        }
+    ]
+}

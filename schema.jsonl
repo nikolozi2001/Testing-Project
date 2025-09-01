@@ -1,0 +1,122 @@
+{
+    "label": "Select",
+    "widget": "choicesjs",
+    "tableView": true,
+    "dataSrc": "custom",
+    "data": {
+      "custom": "function isEmpty(str) {\n    return !str;\n}\n\nlet concatFields = [];\n\nfor (let i = 0; i < data.partniorDataGrid.length; i++) {\n    if (!isEmpty(data.partniorDataGrid[i]['partnior']) &&\n        (isEmpty(data.partniorDataGrid[i]['page37']) || (!isEmpty(data.partniorDataGrid[i]['page37'])\n            && data.partniorDataGrid[i]['page37'] !== 1))) {\n\n        concatFields.push(data.partniorDataGrid[i]['partnior']);\n    }\n}\n\nvalues = concatFields;\n",
+      "values": [
+        {
+          "label": "",
+          "value": ""
+        }
+      ],
+      "json": "",
+      "url": "",
+      "resource": ""
+    },
+    "refreshOn": "partniorDataGrid",
+    "clearOnRefresh": true,
+    "key": "page31",
+    "logic": [
+      {
+        "name": "founderClearLogic",
+        "trigger": {
+          "type": "javascript",
+          "javascript": "result = false;\r\nlet isProcessing = false;\r\n\r\nconst reactive = (obj) => {\r\n  const listeners = new Set();\r\n\r\n  return new Proxy(obj, {\r\n    set(target, property, value) {\r\n      target[property] = value;\r\n      listeners.forEach((listener) => listener());\r\n      return true;\r\n    },\r\n    get(target, property) {\r\n      if (property === \"subscribe\") {\r\n        return (listener) => {\r\n          listeners.add(listener);\r\n          return () => listeners.delete(listener);\r\n        };\r\n      }\r\n      return target[property];\r\n    },\r\n  });\r\n};\r\n\r\nlet state = reactive({ sum: 0 });\r\n\r\nconst calculateSum = () => {\r\n  if (isProcessing) return;\r\n  isProcessing = true;\r\n\r\n  let country;\r\n  let sum = 0;\r\n\r\n  for (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n    country = data.partniorDataGrid[i][\"page37\"];\r\n\r\n    if (country) {\r\n      sum += country;\r\n    }\r\n  }\r\n\r\n  state.sum = sum;\r\n  console.log(sum, \"sum Country\");\r\n  console.log(country, \"last country value\");\r\n\r\n  isProcessing = false;\r\n};\r\n\r\nstate.subscribe(() => {\r\n  if (result) return;\r\n\r\n  console.log(`The sum has changed to: ${state.sum}`);\r\n  result = true;\r\n});\r\n\r\ncalculateSum();\r\n"
+        },
+        "actions": [
+          {
+            "name": "founderClearAction",
+            "type": "mergeComponentSchema",
+            "schemaDefinition": "schema = { label: 'Updated' };"
+          }
+        ]
+      }
+    ],
+    "type": "select",
+    "input": true,
+    "placeholder": "",
+    "prefix": "",
+    "customClass": "",
+    "suffix": "",
+    "multiple": false,
+    "defaultValue": null,
+    "protected": false,
+    "unique": false,
+    "persistent": true,
+    "hidden": false,
+    "clearOnHide": true,
+    "redrawOn": "",
+    "modalEdit": false,
+    "dataGridLabel": false,
+    "labelPosition": "top",
+    "description": "",
+    "errorLabel": "",
+    "tooltip": "",
+    "hideLabel": false,
+    "tabindex": "",
+    "disabled": false,
+    "autofocus": false,
+    "dbIndex": false,
+    "customDefaultValue": "",
+    "calculateValue": "",
+    "calculateServer": false,
+    "attributes": {},
+    "validateOn": "change",
+    "validate": {
+      "required": false,
+      "custom": "",
+      "customPrivate": false,
+      "strictDateValidation": false,
+      "multiple": false,
+      "unique": false,
+      "onlyAvailableItems": false
+    },
+    "conditional": {
+      "show": null,
+      "when": null,
+      "eq": ""
+    },
+    "overlay": {
+      "style": "",
+      "left": "",
+      "top": "",
+      "width": "",
+      "height": ""
+    },
+    "allowCalculateOverride": false,
+    "encrypted": false,
+    "showCharCount": false,
+    "showWordCount": false,
+    "properties": {},
+    "allowMultipleMasks": false,
+    "addons": [],
+    "authenticate": false,
+    "ignoreCache": false,
+    "template": "<span>{{ item.label }}</span>",
+    "idPath": "id",
+    "limit": 100,
+    "valueProperty": "",
+    "lazyLoad": true,
+    "filter": "",
+    "searchEnabled": true,
+    "searchDebounce": 0.3,
+    "searchField": "",
+    "minSearch": 0,
+    "readOnlyValue": false,
+    "selectFields": "",
+    "selectThreshold": 0.3,
+    "uniqueOptions": false,
+    "fuseOptions": {
+      "include": "score",
+      "threshold": 0.3
+    },
+    "indexeddb": {
+      "filter": {}
+    },
+    "customOptions": {},
+    "useExactSearch": false,
+    "id": "e7v491l",
+    "keyModified": true
+  }

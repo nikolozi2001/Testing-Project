@@ -1,0 +1,14 @@
+{
+    "name": "founderClearLogicCountry",
+    "trigger": {
+        "type": "javascript",
+        "javascript": "function isEmpty(str) {\r\n  return !str;\r\n}\r\n\r\nresult = false;\r\nlet countrySet = [];\r\n\r\n// TRIGGER\r\n\r\nif (Array.isArray(data.partniorDataGrid)) {\r\n  for (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n    if (\r\n      data.partniorDataGrid[i][\"page37\"] &&\r\n      !isEmpty(data.partniorDataGrid[i][\"page37\"])\r\n    ) {\r\n      countrySet.push(data.partniorDataGrid[i][\"page37\"].toString());\r\n    }\r\n  }\r\n}\r\n\r\n// Check data.page13 values against countrySet and update if necessary\r\nif (Array.isArray(data.page13)) {\r\n  for (let j = 0; j < data.page13.length; j++) {\r\n    if (data.page13[j][\"page31\"] && !isEmpty(data.page13[j][\"page31\"])) {\r\n      if (!countrySet.includes(data.page13[j][\"page31\"].toString())) {\r\n        data.page13[j][\"page31\"] = \"\";\r\n        result = true;\r\n      }\r\n    }\r\n  }\r\n}\r\n"
+    },
+    "actions": [
+        {
+            "name": "founderClearActionCountry",
+            "type": "customAction",
+            "customAction": "function isEmpty(str) {\r\n  return !str;\r\n}\r\n\r\nlet countrySet = [];\r\n\r\n//ACTION\r\n\r\nfor (let i = 0; i < data.partniorDataGrid.length; i++) {\r\n  if (\r\n    data.partniorDataGrid[i][\"page37\"] &&\r\n    !isEmpty(data.partniorDataGrid[i][\"page37\"])\r\n  ) {\r\n    countrySet.push(data.partniorDataGrid[i][\"page37\"].toString());\r\n  }\r\n}\r\n\r\nfor (let j = 0; j < data.page13.length; j++) {\r\n  if (\r\n    data.page13[j][\"page31\"] &&\r\n    !isEmpty(data.page13[j][\"page31\"]) &&\r\n    !countrySet.includes(data.page13[j][\"page31\"].toString())\r\n  ) {\r\n    data.page13[j][\"page31\"] = \"\";\r\n  }\r\n}\r\n"
+        }
+    ]
+}

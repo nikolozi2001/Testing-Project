@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Divs with CSS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-sm-2 {
+            width: 16.66%;
+            order: 6;
+            /* Default order to ensure items without explicit order go to the end */
+        }
+
+        .col-sm-2.order1 {
+            order: 1;
+        }
+
+        .col-sm-2.order2 {
+            order: 2;
+        }
+
+        .col-sm-2.order3 {
+            order: 3;
+        }
+
+        .col-sm-2.order4 {
+            order: 4;
+        }
+
+        .col-sm-2.order5 {
+            order: 5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row" id="rowContainer">
+        <div class="col-sm-2 order3">
+            <span>ვაკის რაიონი</span>
+        </div>
+        <div class="col-sm-2 order4">
+            <span>01.11.1 ხორბლის მოყვანა</span>
+        </div>
+        <div class="col-sm-2 order1">
+            Yes
+        </div>
+        <div class="col-sm-2 order2">
+        </div>
+        <div class="col-sm-2 order5">
+            14
+        </div>
+        <div class="col-sm-2">
+            <div class="btn-group pull-right">
+                <div class="btn btn-default editRow"><i style="font-size:24px" class="fa fa-edit"></i></div>
+                <div class="btn btn-danger removeRow"><i style="font-size:24px" class="fa fa-trash"></i></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <a href="https://database.geostat.ge/portal/ent/Documents/Instruqcia_2015_quarter.pdf" target="_blank">
+            ინსტრუქცია </>
+    </div>
+    <div>
+        <a id="downloadLink" href="_pdf/Quarterly_Instruction.pdf" target="_blank" type="application/octet-stream"
+            download="კითხვარის შევსების ინსტრუქცია">
+            <img src="https://onedrive.live.com/embed?resid=C1DBD1F9B42D4D22%21162013&authkey=%21ALRn8oVlqqpNjB0&width=512&height=512"
+                title="კითხვარის შევსების ინსტრუქცია (ჩამოტვირთეთ)" style="width: 40px">
+        </a>
+    </div>
+
+</body>
+
+</html>

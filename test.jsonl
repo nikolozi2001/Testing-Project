@@ -1,0 +1,15 @@
+,
+                                {
+                                    "name": "founderClearLogic",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "function isEmpty(str) {\r\n  return typeof str === \"string\" && !str.trim();\r\n}\r\n\r\nresult = false;\r\nlet numberSet = [];\r\n\r\nif (Array.isArray(data.partniorDataGrid)) {\r\n  data.partniorDataGrid.forEach((item) => {\r\n    let partnior = item[\"partnior\"] ? item[\"partnior\"].trim() : \"\";\r\n    let countryId = item[\"page37\"];\r\n    console.log(`partnior: ${partnior}, countryId: ${countryId}`);\r\n    if (partnior && !isEmpty(partnior) && countryId && countryId !== 1) {\r\n      numberSet.push(partnior.toString());\r\n    }\r\n  });\r\n} else {\r\n  console.error(\"data.partniorDataGrid is not an array or is undefined\");\r\n}\r\n\r\nconsole.log(numberSet, \"numberSet\");\r\n\r\nif (Array.isArray(data.page13)) {\r\n  data.page13.forEach((item) => {\r\n    let page31 = typeof item[\"page31\"] === \"string\" ? item[\"page31\"].trim() : \"\";\r\n    console.log(`page31: ${page31}`);\r\n    if (page31 && !isEmpty(page31) && !numberSet.includes(page31.toString())) {\r\n      console.log(`Setting result to true for page31: ${page31}`);\r\n      result = true;\r\n    }\r\n  });\r\n} else {\r\n  console.error(\"data.page13 is not an array or is undefined\");\r\n}\r\n\r\nconsole.log(result, \"result\");"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "founderClearAction",
+                                            "type": "customAction",
+                                            "customAction": "function isEmpty(str) {\r\n  return typeof str === \"string\" && !str.trim();\r\n}\r\n\r\nlet numberSet = [];\r\n\r\ndata.partniorDataGrid.forEach((item) => {\r\n  let partnior = item[\"partnior\"] ? item[\"partnior\"].trim() : \"\";\r\n  let countryId = item[\"page37\"];\r\n  console.log(`partnior: ${partnior}, countryId: ${countryId}`);\r\n  if (partnior && !isEmpty(partnior) && countryId && countryId !== 1) {\r\n    numberSet.push(partnior.toString());\r\n  }\r\n});\r\n\r\nconsole.log(numberSet, \"numberSet\");\r\n\r\ndata.page13.forEach((item) => {\r\n  let page31 = typeof item[\"page31\"] === \"string\" ? item[\"page31\"].trim() : \"\";\r\n  console.log(`page31: ${page31}`);\r\n  if (page31 && !isEmpty(page31) && !numberSet.includes(page31.toString())) {\r\n    console.log(`Clearing page31: ${page31}`);\r\n    item[\"page31\"] = \"\";\r\n  }\r\n});\r\n"
+                                        }
+                                    ]
+                                }

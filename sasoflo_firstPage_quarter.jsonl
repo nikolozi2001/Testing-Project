@@ -1,0 +1,2488 @@
+{
+    "type": "panel",
+    "title": "I გვერდი",
+    "components": [
+        {
+            "clearOnHide": false,
+            "label": "Columns",
+            "input": false,
+            "tableView": false,
+            "key": "header_column",
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "key": "page1Content4",
+                            "label": "Content",
+                            "input": false,
+                            "tag": "p",
+                            "attrs": [
+                                {
+                                    "value": "",
+                                    "attr": ""
+                                }
+                            ],
+                            "className": "",
+                            "content": "",
+                            "type": "htmlelement",
+                            "tags": [],
+                            "conditional": {
+                                "show": "",
+                                "when": null,
+                                "eq": ""
+                            },
+                            "properties": {},
+                            "hideLabel": true
+                        }
+                    ],
+                    "width": 6,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0
+                },
+                {
+                    "components": [
+                        {
+                            "autofocus": false,
+                            "input": true,
+                            "label": "<i class=\"fa fa-arrow-circle-left\" style=\"font-size:25px\"></i>",
+                            "tableView": false,
+                            "key": "header_back_button",
+                            "size": "md",
+                            "leftIcon": "",
+                            "rightIcon": "",
+                            "block": false,
+                            "action": "custom",
+                            "disableOnInvalid": false,
+                            "theme": "primary",
+                            "type": "button",
+                            "tags": [],
+                            "conditional": {
+                                "show": "",
+                                "when": null,
+                                "eq": ""
+                            },
+                            "properties": {},
+                            "custom": "const enterpriseId = window.location.href.split(\"/\")[window.location.href.split(\"/\").length - 2];\r\n\r\nif (enterpriseId) {\r\n  window.location.href = \"https://questionnaires.geostat.ge/enterprises/\" + enterpriseId;\r\n} else {\r\n  console.error(\"Enterprise ID not found in sessionStorage\");\r\n}\r\n",
+                            "lockKey": true
+                        }
+                    ],
+                    "width": 2,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0
+                },
+                {
+                    "components": [
+                        {
+                            "autofocus": false,
+                            "input": true,
+                            "label": "<img src=\"https://database.geostat.ge/portal/ent/PIC/info2.png\" title=\"ინფორმაციის ჩამონათვალი\" style=\"width: 25px;\">",
+                            "tableView": false,
+                            "key": "header_popup_button",
+                            "size": "md",
+                            "leftIcon": "",
+                            "rightIcon": "",
+                            "block": false,
+                            "action": "custom",
+                            "disableOnInvalid": false,
+                            "theme": "primary",
+                            "type": "button",
+                            "tags": [],
+                            "conditional": {
+                                "show": "",
+                                "when": null,
+                                "eq": ""
+                            },
+                            "properties": {},
+                            "custom": "var modal = document.createElement(\"div\");\r\nmodal.setAttribute(\"id\", \"customModal\");\r\nmodal.style.display = \"block\";\r\nmodal.style.position = \"fixed\";\r\nmodal.style.left = \"50%\";\r\nmodal.style.top = \"50%\";\r\nmodal.style.transform = \"translate(-50%, -50%)\";\r\nmodal.style.zIndex = \"1000\";\r\nmodal.style.padding = \"20px\";\r\nmodal.style.backgroundColor = \"#fff\";\r\nmodal.style.boxShadow = \"0px 4px 8px rgba(0,0,0,0.2)\";\r\n\r\nlet enterpriseSurveyId =\r\n  window.location.href.split(\"/\")[window.location.href.split(\"/\").length - 1];\r\n\r\nif (!window.enterpriseInfoMap) {\r\n  window.enterpriseInfoMap = new Map();\r\n}\r\n\r\nif (!window.enterpriseInfoMap.has(enterpriseSurveyId)) {\r\n  $.ajax({\r\n    url:\r\n      \"/api/lib/enterprise-survey-info?enterpriseSurveyId=\" +\r\n      enterpriseSurveyId,\r\n    type: \"GET\",\r\n    dataType: \"json\",\r\n    success: function (response) {\r\n      window.enterpriseInfoMap.set(enterpriseSurveyId, response);\r\n      displayModal(response);\r\n    },\r\n    error: function (error) {\r\n      console.error(\"Failed to fetch enterprise survey info:\", error);\r\n    },\r\n  });\r\n} else {\r\n  displayModal(window.enterpriseInfoMap.get(enterpriseSurveyId));\r\n}\r\n\r\nfunction displayModal(surveyData) {\r\n  const orgName = surveyData[\"orgName\"];\r\n  const sidCode = surveyData[\"sidCode\"];\r\n  const year = surveyData[\"year\"];\r\n  const quarter = surveyData[\"quarter\"];\r\n\r\n  const interviewerCode =\r\n    typeof data !== \"undefined\" ? data[\"page1icode\"] : \"N/A\";\r\n  const interviewerName =\r\n    typeof data !== \"undefined\" ? data[\"page1ifname\"] : \"N/A\";\r\n  const interviewerLastName =\r\n    typeof data !== \"undefined\" ? data[\"page1ilname\"] : \"N/A\";\r\n\r\n  var modalContent = document.createElement(\"div\");\r\n  modalContent.innerHTML = `\r\n    <p>დასახელება: ${orgName}</p>\r\n    <p>საიდენტიფიკაციო კოდი: ${sidCode}</p>\r\n    <p>წელი: ${year}</p>\r\n    <p>კვარტალი: ${quarter}</p>\r\n    <p>ინტერვიუერის მონაცემები: ${interviewerCode}</p>\r\n    <p>ინტერვიუერი: ${interviewerName} ${interviewerLastName}</p>\r\n  `;\r\n\r\n  var closeButton = document.createElement(\"button\");\r\n  closeButton.innerHTML = \"დახურვა\";\r\n  closeButton.onclick = function () {\r\n    document.body.removeChild(modal);\r\n  };\r\n\r\n  modal.appendChild(modalContent);\r\n  modal.appendChild(closeButton);\r\n\r\n  document.body.appendChild(modal);\r\n}\r\n\r\nreturn false;\r\n",
+                            "lockKey": true
+                        }
+                    ],
+                    "width": 2,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0
+                },
+                {
+                    "components": [
+                        {
+                            "autofocus": false,
+                            "input": true,
+                            "label": "<img src=\"https://database.geostat.ge/portal/ent/PIC/home.png\" title=\"კითხვარების ჩამონათვალი\" style=\"width: 25px;\"></a>",
+                            "tableView": false,
+                            "key": "header_home_button",
+                            "size": "md",
+                            "leftIcon": "",
+                            "rightIcon": "",
+                            "block": false,
+                            "action": "custom",
+                            "disableOnInvalid": false,
+                            "theme": "primary",
+                            "type": "button",
+                            "tags": [],
+                            "conditional": {
+                                "show": "",
+                                "when": null,
+                                "eq": ""
+                            },
+                            "properties": {},
+                            "custom": "window.location.href = 'https://questionnaires.geostat.ge/enterprises/';",
+                            "lockKey": true
+                        }
+                    ],
+                    "width": 2,
+                    "offset": 0,
+                    "push": 0,
+                    "pull": 0
+                }
+            ],
+            "type": "columns",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {},
+            "customClass": "header_column",
+            "lockKey": true
+        },
+        {
+            "autofocus": false,
+            "input": true,
+            "tableView": true,
+            "label": "Text Area",
+            "key": "Page1TextArea",
+            "placeholder": "",
+            "prefix": "",
+            "suffix": "",
+            "rows": 4,
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "persistent": true,
+            "hidden": false,
+            "wysiwyg": false,
+            "clearOnHide": true,
+            "spellcheck": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": ""
+            },
+            "type": "textarea",
+            "labelPosition": "top",
+            "inputFormat": "plain",
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {},
+            "hideLabel": true,
+            "lockKey": true
+        },
+        {
+            "key": "page1Content5",
+            "label": "Content",
+            "input": false,
+            "tag": "p",
+            "attrs": [
+                {
+                    "value": "",
+                    "attr": ""
+                }
+            ],
+            "className": "",
+            "content": "<br>",
+            "type": "htmlelement",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {}
+        },
+        {
+            "clearOnHide": false,
+            "input": false,
+            "key": "pageMainTable",
+            "numRows": 9,
+            "numCols": 2,
+            "rows": [
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "დასახელება:",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "Text",
+                                "key": "LongName",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "",
+                                    "customPrivate": false
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "disabled": true,
+                                "lockKey": true,
+                                "customDefaultValue": "let enterpriseSurveyId =\r\n    window.location.href.split(\"/\")[window.location.href.split(\"/\").length - 1];\r\n\r\nif (!window.enterpriseInfoMap) {\r\n    window.enterpriseInfoMap = new Map();\r\n}\r\n\r\nif (!window.enterpriseInfoMap.has(enterpriseSurveyId)) {\r\n    $.ajax({\r\n        url: \"/api/lib/enterprise-survey-info?enterpriseSurveyId=\" + enterpriseSurveyId,\r\n        type: \"GET\",\r\n        dataType: \"json\",\r\n        async: false,\r\n        success: function (response) {\r\n            window.enterpriseInfoMap.set(enterpriseSurveyId, response);\r\n        },\r\n    });\r\n}\r\n\r\nvalue = window.enterpriseInfoMap.get(enterpriseSurveyId)['orgName'];\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent2",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "სტატისტიკის კოდი:",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "Text",
+                                "key": "SID",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "",
+                                    "customPrivate": false
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "disabled": true,
+                                "lockKey": true,
+                                "customDefaultValue": "let enterpriseSurveyId =\r\n    window.location.href.split(\"/\")[window.location.href.split(\"/\").length - 1];\r\n\r\nif (!window.enterpriseInfoMap) {\r\n    window.enterpriseInfoMap = new Map();\r\n}\r\n\r\nif (!window.enterpriseInfoMap.has(enterpriseSurveyId)) {\r\n    $.ajax({\r\n        url: \"/api/lib/enterprise-survey-info?enterpriseSurveyId=\" + enterpriseSurveyId,\r\n        type: \"GET\",\r\n        dataType: \"json\",\r\n        async: false,\r\n        success: function (response) {\r\n            window.enterpriseInfoMap.set(enterpriseSurveyId, response);\r\n        },\r\n    });\r\n}\r\n\r\nvalue = window.enterpriseInfoMap.get(enterpriseSurveyId)['sidCode'];\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent3",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "საგადასახადო კოდი:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "Text",
+                                "key": "TaxID",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "",
+                                    "customPrivate": false
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "disabled": true,
+                                "lockKey": true,
+                                "customDefaultValue": "let enterpriseSurveyId =\r\n    window.location.href.split(\"/\")[window.location.href.split(\"/\").length - 1];\r\n\r\nif (!window.enterpriseInfoMap) {\r\n    window.enterpriseInfoMap = new Map();\r\n}\r\n\r\nif (!window.enterpriseInfoMap.has(enterpriseSurveyId)) {\r\n    $.ajax({\r\n        url: \"/api/lib/enterprise-survey-info?enterpriseSurveyId=\" + enterpriseSurveyId,\r\n        type: \"GET\",\r\n        dataType: \"json\",\r\n        async: false,\r\n        success: function (response) {\r\n            window.enterpriseInfoMap.set(enterpriseSurveyId, response);\r\n        },\r\n    });\r\n}\r\n\r\nvalue = window.enterpriseInfoMap.get(enterpriseSurveyId)['taxCode'];\r\n",
+                                "hideLabel": true
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent7",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "<br>",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent8",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "<br>",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Content",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "რესპოდენტის მონაცემები",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent4",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "რესპონდენტის სახელი და გვარი:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "რესპონდენტის სახელი და გვარი",
+                                "key": "f_l_name",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": true,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "var georgianRegex = /^[Ⴀ-ჿⴀ-⴯ ]+$/;\r\nif (input && !georgianRegex.test(input)) {\r\n  valid = 'გთხოვთ, შეიყვანოთ მხოლოდ ქართული ასოები.';\r\n} else {\r\n  valid = true;\r\n}",
+                                    "customPrivate": false,
+                                    "customMessage": ""
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "labelWidth": 30,
+                                "labelMargin": 3,
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "calculateValue": ""
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent5",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "რესპონდენტის ტელეფონი:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "მიუთითეთ რესპონდენტის ტელეფონი",
+                                "key": "respodent_phoneNumber",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": true,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "^(\\d+;\\s*)+$",
+                                    "custom": "",
+                                    "customPrivate": false,
+                                    "customMessage": "გთხოვთ შეავსოთ რესპოდენტის ტელეფონის ნომერი (ნომრის ბოლოს გამოიყენეთ სიმბოლო ; )"
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "pageMainTableContent6",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "რესპონდენტის ელ-ფოსტა:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "email",
+                                "label": "რესპონდენტის ელ-ფოსტა:",
+                                "key": "respodent_email",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "kickbox": {
+                                    "enabled": false
+                                },
+                                "type": "email",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "labelWidth": 30,
+                                "labelMargin": 3,
+                                "lockKey": true,
+                                "validate": {
+                                    "required": false
+                                },
+                                "hideLabel": true
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent2",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "რესპოდენტის დამოკიდებულება მეურნეობასთან",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "label": "რესპოდენტის დამოკიდებულება მეურნეობასთან",
+                                "key": "respodentis_damokidebuleba",
+                                "placeholder": "აირჩიეთ",
+                                "data": {
+                                    "values": [
+                                        {
+                                            "value": "1",
+                                            "label": "მეურნე ან მენეჯერი"
+                                        },
+                                        {
+                                            "value": "2",
+                                            "label": "მეურნის ოჯახის წევრი ან ნათესავი"
+                                        },
+                                        {
+                                            "value": "3",
+                                            "label": "მეურნეობაში სხვა მომუშავე"
+                                        }
+                                    ],
+                                    "json": "",
+                                    "url": "",
+                                    "resource": "",
+                                    "custom": ""
+                                },
+                                "dataSrc": "values",
+                                "valueProperty": "",
+                                "defaultValue": "",
+                                "refreshOn": "",
+                                "filter": "",
+                                "authenticate": false,
+                                "template": "<span>{{ item.label }}</span>",
+                                "multiple": false,
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": true,
+                                    "customMessage": "გთხოვთ შეავსოთ დამოკიდებულება მეურნეობასთან"
+                                },
+                                "type": "select",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "customClass": "noSearch"
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "header": [],
+            "caption": "",
+            "striped": false,
+            "bordered": false,
+            "hover": false,
+            "condensed": false,
+            "tableView": false,
+            "type": "table",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": "",
+                "eq": ""
+            },
+            "properties": {}
+        },
+        {
+            "key": "page1Content3",
+            "label": "Content",
+            "input": false,
+            "tag": "p",
+            "attrs": [
+                {
+                    "value": "",
+                    "attr": ""
+                }
+            ],
+            "className": "",
+            "content": "<br>",
+            "type": "htmlelement",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {}
+        },
+        {
+            "clearOnHide": false,
+            "input": false,
+            "key": "page1Table",
+            "numRows": 23,
+            "numCols": 2,
+            "rows": [
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent9",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "ინტერვიუერის მონაცემები",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent10",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ინტერვიუერის კოდი",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "Number",
+                                "key": "page1icode",
+                                "placeholder": "შეიყვანეთ ინტერვიუერის კოდი",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": null,
+                                    "max": null,
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": "",
+                                    "customMessage": "გთხოვთ შეავსოთ 'ინტერვიუერის კოდი'"
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "customError": "errors is not defined"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent11",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ინტერვიუერის სახელი",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "ინტერვიუერის სახელი",
+                                "key": "page1ifname",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "var georgianRegex = /^[Ⴀ-ჿⴀ-⴯]+$/;\r\nif (input && !georgianRegex.test(input)) {\r\n  valid = 'გთხოვთ, შეიყვანოთ მხოლოდ ქართული ასოები.';\r\n} else {\r\n  valid = true;\r\n}",
+                                    "customPrivate": false,
+                                    "customMessage": ""
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "calculateValue": "let code = data[\"page1icode\"];\r\n\r\nif (!code) {\r\n  return;\r\n}\r\n\r\nif (!window.interviewerInfoMap) {\r\n  window.interviewerInfoMap = new Map();\r\n}\r\n\r\nif (!window.interviewerInfoMap.has(code)) {\r\n  $.ajax({\r\n    url: \"/api/interviewer/get-by-id?id=\" + code,\r\n    type: \"GET\",\r\n    dataType: \"json\",\r\n    async: false,\r\n    success: function (response) {\r\n      if (response && response.firstName) {\r\n        window.interviewerInfoMap.set(code, response);\r\n      }\r\n    },\r\n    error: function (xhr, status, error) {\r\n      console.error(\"Error fetching interviewer data:\", status, error);\r\n    },\r\n  });\r\n}\r\n\r\nconst interviewerData = window.interviewerInfoMap.get(code);\r\nif (interviewerData && interviewerData.firstName) {\r\n  value = interviewerData.firstName;\r\n} else {\r\n  value = \"N/A\";\r\n}\r\n",
+                                "disabled": true,
+                                "customError": "გთხოვთ, შეიყვანოთ მხოლოდ ქართული ასოები."
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent12",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ინტერვიუერის გვარი",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "ინტერვიუერის გვარი",
+                                "key": "page1ilname",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "",
+                                    "customPrivate": false,
+                                    "customMessage": ""
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "disabled": true,
+                                "calculateValue": "let code = data[\"page1icode\"];\r\n\r\nif (!code) {\r\n  return;\r\n}\r\n\r\nif (!window.interviewerInfoMap) {\r\n  window.interviewerInfoMap = new Map();\r\n}\r\n\r\nif (!window.interviewerInfoMap.has(code)) {\r\n  $.ajax({\r\n    url: \"/api/interviewer/get-by-id?id=\" + code,\r\n    type: \"GET\",\r\n    dataType: \"json\",\r\n    async: false,\r\n    success: function (response) {\r\n      if (response && response.lastName) {\r\n        window.interviewerInfoMap.set(code, response);\r\n      }\r\n    },\r\n    error: function (xhr, status, error) {\r\n      console.error(\"Error fetching interviewer data:\", status, error);\r\n    },\r\n  });\r\n}\r\n\r\nconst interviewerData = window.interviewerInfoMap.get(code);\r\nif (interviewerData && interviewerData.lastName) {\r\n  value = interviewerData.lastName;\r\n} else {\r\n  value = \"N/A\";\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent13",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "ცვლილება მეურნეობაში",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent15",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "<i>(ცვლილების შემთხვევაში შეცვლილი რეკვიზიტები მიუთითეთ ბოლო გვერდზე შენიშვნებში )</>",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent14",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ცვლილება:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "label": "Select",
+                                "key": "page1changes",
+                                "placeholder": "აირჩიეთ",
+                                "data": {
+                                    "values": [
+                                        {
+                                            "value": "არაფერი",
+                                            "label": "არაფერი"
+                                        },
+                                        {
+                                            "value": "მხოლოდᲛეურნე",
+                                            "label": "მხოლოდ მეურნე"
+                                        },
+                                        {
+                                            "value": "მხოლოდᲛეურნისᲛისამართი",
+                                            "label": "მხოლოდ მეურნის მისამართი"
+                                        },
+                                        {
+                                            "value": "მეურნეცᲓაᲛისიᲛისამართიც",
+                                            "label": "მეურნეც და მისი მისამართიც"
+                                        }
+                                    ],
+                                    "json": "",
+                                    "url": "",
+                                    "resource": "",
+                                    "custom": ""
+                                },
+                                "dataSrc": "values",
+                                "valueProperty": "",
+                                "defaultValue": "",
+                                "refreshOn": "",
+                                "filter": "",
+                                "authenticate": false,
+                                "template": "<span>{{ item.label }}</span>",
+                                "multiple": false,
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": true,
+                                    "customMessage": "გთხოვთ შეავსოთ 'შეიცვალა'"
+                                },
+                                "type": "select",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "customClass": "noSearch"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent20",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "კითხვარის სტატუსი:",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "label": "Select",
+                                "key": "page1complete",
+                                "placeholder": "აირჩიეთ",
+                                "data": {
+                                    "values": [
+                                        {
+                                            "value": "1",
+                                            "label": "სრული"
+                                        },
+                                        {
+                                            "value": "2",
+                                            "label": "არასრული"
+                                        },
+                                        {
+                                            "value": "3",
+                                            "label": "რეაგირების გარეშე"
+                                        }
+                                    ],
+                                    "json": "",
+                                    "url": "",
+                                    "resource": "",
+                                    "custom": ""
+                                },
+                                "dataSrc": "values",
+                                "valueProperty": "",
+                                "defaultValue": "",
+                                "refreshOn": "",
+                                "filter": "",
+                                "authenticate": false,
+                                "template": "<span>{{ item.label }}</span>",
+                                "multiple": false,
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false
+                                },
+                                "type": "select",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "customClass": "noSearch"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent3",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "საწარმოს ხელმძღვანელის მონაცემები",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "false",
+                                    "when": "page1complete",
+                                    "eq": "1 or 2"
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Table2",
+                                "label": "საწარმოს ხელმძღვანელის სქესი",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "საწარმოს ხელმძღვანელის სქესი",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "radio",
+                                "label": "xelmdzgvanelis_sqesi",
+                                "key": "xelmdzgvanelis_sqesi",
+                                "values": [
+                                    {
+                                        "value": "1",
+                                        "label": "კაცი",
+                                        "shortcut": ""
+                                    },
+                                    {
+                                        "value": "2",
+                                        "label": "ქალი",
+                                        "shortcut": ""
+                                    }
+                                ],
+                                "defaultValue": "",
+                                "protected": false,
+                                "fieldSet": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": true,
+                                    "custom": "",
+                                    "customPrivate": false,
+                                    "customMessage": "გთხოვთ შეავსოთ სქესი"
+                                },
+                                "type": "radio",
+                                "labelPosition": "top",
+                                "optionsLabelPosition": "right",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Table3",
+                                "label": "საწარმოს ხელმძღვანელის ასაკი",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "საწარმოს ხელმძღვანელის ასაკი",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "საწარმოს ხელმძღვანელის ასაკი",
+                                "key": "xelmdzgvanelis_asaki",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": true,
+                                    "min": 15,
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": "",
+                                    "customMessage": "ასაკი მეტი ან ტოლი უნდა იყოს 15–ზე"
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent4",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "საწარმოს სარგებლობაში არსებული ნაკვეთები",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Table4",
+                                "label": "ნაკვეთების რაოდენობა",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "<img class=\"newinfopng\" src=\"https://database.geostat.ge/portal/ent/_images/infoicon.png\" title=\"მიწის ნაკვეთი განისაზღვრება, როგორც სასოფლო მეურნეობის მიწის იზოლირებული ნაწილი, რომელიც მიწათმფლობელობის ერთი ფორმის ქვეშ იმყოფება. მიეთითება მხოლოდ ის ნაკვეთები, რომელიც საწარმოს სარგებლობაშია (საკუთარი - იჯარით გაცემული + იჯარით აღებული).\"> ნაკვეთების რაოდენობა",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "ნაკვეთების რაოდენობა",
+                                "key": "nakvetebis_raodenoba",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": true,
+                                    "min": "",
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "true",
+                                    "multiple": "",
+                                    "custom": "",
+                                    "customMessage": "გთხოვთ შეავსოთ ნაკვეთების რაოდენობა"
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "description": "",
+                                "decimalLimit": null,
+                                "delimiter": false,
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "sawarmosmiwisfartobi",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "h5",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "საწარმოს მიწის ფართობი (მიუთითეთ ჰექტარებში, 0.0001 ჰა-მდე სიზუსტით)",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent5",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "<img class=\"newinfopng\" src=\"https://database.geostat.ge/portal/ent/_images/infoicon.png\" title=\"საწარმოს საკუთრებაში არსებული მიწის ფართობი იჯარით გაცემული ფართობის გარდა.\"> ა) საკუთარი",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "sakutari",
+                                "key": "sakutari",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": "",
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": ""
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "delimiter": false,
+                                "decimalLimit": 4,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent6",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ბ) იჯარით აღებული (გ+დ)",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "ბ) იჯარით აღებული (გ+დ)",
+                                "key": "ijarit_agebuli",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": "",
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": ""
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "disabled": true,
+                                "calculateValue": "let n1 = data[\"saxelmwifosgan\"];\r\nlet n2 = data[\"kerdzo_pirisgan\"];\r\n\r\nlet sum = 0;\r\n\r\nif (n1) {\r\n  sum += n1;\r\n}\r\n\r\nif (n2) {\r\n  sum += n2;\r\n}\r\n\r\nif (sum === 0) {\r\n  value = \"\";\r\n} else {\r\n  value = sum;\r\n}\r\n",
+                                "hideLabel": true,
+                                "decimalLimit": 4,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent7",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "მათ შორის:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent8",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book ms-5",
+                                "content": "გ) სახელმწიფოსგან",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "გ) სახელმწიფოსგან",
+                                "key": "saxelmwifosgan",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": "",
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": ""
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "delimiter": false,
+                                "decimalLimit": 4,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Table5",
+                                "label": "დ) კერძო პირისგან",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book ms-5",
+                                "content": "დ) კერძო პირისგან",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "დ) კერძო პირისგან",
+                                "key": "kerdzo_pirisgan",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": "",
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": ""
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "decimalLimit": 4,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1Table6",
+                                "label": "ე) მთლიანი ფართობი (ა+ბ)",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ე) მთლიანი ფართობი (ა+ბ)",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "number",
+                                "label": "ე) მთლიანი ფართობი (ა+ბ)",
+                                "key": "mtliani_fartobi",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "defaultValue": "",
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false,
+                                    "min": 0,
+                                    "max": "",
+                                    "step": "any",
+                                    "integer": "",
+                                    "multiple": "",
+                                    "custom": "",
+                                    "customMessage": "მთლიანი ფართობი მეტი უნდა იყოს 0–ზე"
+                                },
+                                "type": "number",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "disabled": true,
+                                "calculateValue": "let n1 = parseFloat(data[\"sakutari\"]) || 0;\r\nlet n2 = parseFloat(data[\"ijarit_agebuli\"]) || 0;\r\n\r\nlet sum = n1 + n2;\r\n\r\nif (sum === 0) {\r\n  value = \"\";\r\n} else {\r\n  value = sum;\r\n}\r\n",
+                                "hideLabel": true,
+                                "delimiter": false,
+                                "decimalLimit": 4,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent19",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "",
+                                "content": "<br>",
+                                "type": "htmlelement",
+                                "hideLabel": true,
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {}
+                            }
+                        ]
+                    },
+                    {
+                        "components": []
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent16",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "თანამშრომლობის ხარისხი:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "// if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n// }\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "label": "Select",
+                                "key": "page1quality",
+                                "placeholder": "აირჩიეთ",
+                                "data": {
+                                    "values": [
+                                        {
+                                            "value": "უმაღლესი",
+                                            "label": "უმაღლესი"
+                                        },
+                                        {
+                                            "value": "კარგი",
+                                            "label": "კარგი"
+                                        },
+                                        {
+                                            "value": "დაბალი",
+                                            "label": "დაბალი"
+                                        }
+                                    ],
+                                    "json": "",
+                                    "url": "",
+                                    "resource": "",
+                                    "custom": ""
+                                },
+                                "dataSrc": "values",
+                                "valueProperty": "",
+                                "defaultValue": "",
+                                "refreshOn": "",
+                                "filter": "",
+                                "authenticate": false,
+                                "template": "<span>{{ item.label }}</span>",
+                                "multiple": false,
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "required": false
+                                },
+                                "type": "select",
+                                "labelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "lockKey": true,
+                                "hideLabel": true,
+                                "customClass": "noSearch",
+                                "customConditional": "// if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n// }\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent17",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "ინტერვიუს ხანგრძლივობა:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "// if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n// }\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": true,
+                                "inputType": "text",
+                                "inputMask": "",
+                                "label": "Text",
+                                "key": "page1time",
+                                "placeholder": "",
+                                "prefix": "",
+                                "suffix": "",
+                                "multiple": false,
+                                "defaultValue": "",
+                                "protected": false,
+                                "unique": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "spellcheck": true,
+                                "validate": {
+                                    "required": false,
+                                    "minLength": "",
+                                    "maxLength": "",
+                                    "pattern": "",
+                                    "custom": "",
+                                    "customPrivate": false
+                                },
+                                "conditional": {
+                                    "show": "",
+                                    "when": null,
+                                    "eq": ""
+                                },
+                                "type": "textfield",
+                                "labelPosition": "top",
+                                "inputFormat": "plain",
+                                "tags": [],
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "customConditional": "// if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n// }\r\n"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "components": [
+                            {
+                                "key": "page1TableContent18",
+                                "label": "Content",
+                                "input": false,
+                                "tag": "p",
+                                "attrs": [
+                                    {
+                                        "value": "",
+                                        "attr": ""
+                                    }
+                                ],
+                                "className": "firago-book",
+                                "content": "გამოკითხვის ჩატარების თარიღი:",
+                                "type": "htmlelement",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "customClass": "ms-5",
+                                "hideLabel": true,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    },
+                    {
+                        "components": [
+                            {
+                                "autofocus": false,
+                                "input": true,
+                                "tableView": false,
+                                "label": "Day",
+                                "key": "page1DayTime",
+                                "fields": {
+                                    "day": {
+                                        "type": "number",
+                                        "placeholder": "რიცხვი",
+                                        "required": false,
+                                        "hide": false
+                                    },
+                                    "month": {
+                                        "type": "select",
+                                        "placeholder": "თვე",
+                                        "required": false,
+                                        "hide": false
+                                    },
+                                    "year": {
+                                        "type": "number",
+                                        "placeholder": "წელი",
+                                        "required": false,
+                                        "hide": false
+                                    }
+                                },
+                                "dayFirst": true,
+                                "protected": false,
+                                "persistent": true,
+                                "hidden": false,
+                                "clearOnHide": true,
+                                "validate": {
+                                    "custom": "",
+                                    "customMessage": "გთხოვთ შეავსოთ 'ინტერვიუს ჩატარების თარიღი'"
+                                },
+                                "type": "day",
+                                "labelPosition": "top",
+                                "inputsLabelPosition": "top",
+                                "tags": [],
+                                "conditional": {
+                                    "show": "",
+                                    "when": "",
+                                    "eq": ""
+                                },
+                                "properties": {},
+                                "hideLabel": true,
+                                "lockKey": true,
+                                "tooltip": "",
+                                "labelWidth": 30,
+                                "labelMargin": 3,
+                                "useLocaleSettings": false,
+                                "tabindex": "",
+                                "dataGridLabel": false,
+                                "customConditional": "if (data.page1complete === 2 || data.page1complete === 3){\r\n    show = false;\r\n}\r\n"
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "header": [],
+            "caption": "",
+            "striped": false,
+            "bordered": false,
+            "hover": false,
+            "condensed": false,
+            "tableView": false,
+            "type": "table",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {},
+            "lockKey": true
+        },
+        {
+            "key": "content3",
+            "label": "Content",
+            "input": false,
+            "tag": "p",
+            "attrs": [
+                {
+                    "value": "",
+                    "attr": ""
+                }
+            ],
+            "className": "",
+            "content": "<br>",
+            "type": "htmlelement",
+            "hideLabel": true,
+            "tags": [],
+            "conditional": {
+                "show": "",
+                "when": null,
+                "eq": ""
+            },
+            "properties": {}
+        }
+    ],
+    "input": false,
+    "key": "page1",
+    "clearOnHide": false,
+    "theme": "default",
+    "tableView": false,
+    "hideLabel": false,
+    "breadcrumb": "default",
+    "tags": [],
+    "conditional": {
+        "show": "",
+        "when": null,
+        "eq": ""
+    },
+    "properties": {}
+},

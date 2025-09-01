@@ -1,0 +1,61 @@
+<div class="row">
+    {%util.eachComponent(components, function(component) { %}
+    {% if (component.key === 'pageVPanelTableColumns3401' || component.key === 'pageVPanelTableColumns3400' ||
+    component.key === 'pageVPanelTable6' || component.key === 'pageVPanelTable7' ||
+    component.key === 'pageVPanelTableDay' || component.key === 'pageVPanelTableColumns2406' || component.key ===
+    'pageVPanelTable406' || component.key === 'pageVPanelTableColumns422' || component.key === 'pageVPanelTableSelect'
+    || component.key === 'pageVPanelTable422') { %}
+    <div class="col-sm-1">
+        {{ getView(component, row[component.key]) }}
+    </div>
+    {% } %}
+    {% }) %}
+    <div class="col-sm-2">
+        <div class="btn-group pull-right">
+            <div class="btn btn-default editRow"><i class="fa fa-edit" style="font-size:24px"></i></div>
+            <div class="btn btn-danger removeRow"><i class="fa fa-trash" style="font-size:24px"></i></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% set filteredComponents = [] %}
+    
+    {% util.eachComponent(components, function(component) { %}
+        {% if (component.key === 'pageVPanelTableColumns3401' || component.key === 'pageVPanelTableColumns3400' ||
+                component.key === 'pageVPanelTable6' || component.key === 'pageVPanelTable7' ||
+                component.key === 'pageVPanelTableDay' || component.key === 'pageVPanelTableColumns2406' ||
+                component.key === 'pageVPanelTable406' || component.key === 'pageVPanelTableColumns422' ||
+                component.key === 'pageVPanelTableSelect' || component.key === 'pageVPanelTable422') %}
+            {% do filteredComponents.append(component) %}
+        {% endif %}
+    {% }) %}
+    
+    {# Debugging output to check filtered components #}
+    <div>
+        <h4>Filtered Components:</h4>
+        <pre>{{ filteredComponents | json_encode }}</pre>
+    </div>
+
+    {# Sort the filtered components based on the value of pageVPanelTable7 #}
+    {% set sortedComponents = filteredComponents | sort(attribute='row[pageVPanelTable7]') %}
+
+    {# Debugging output to check sorted components #}
+    <div>
+        <h4>Sorted Components:</h4>
+        <pre>{{ sortedComponents | json_encode }}</pre>
+    </div>
+
+    {% util.eachComponent(sortedComponents, function(component) { %}
+        <div class="col-sm-1">
+            {{ getView(component, row[component.key]) }}
+        </div>
+    {% }) %}
+
+    <div class="col-sm-2">
+        <div class="btn-group pull-right">
+            <div class="btn btn-default editRow"><i class="fa fa-edit" style="font-size:24px"></i></div>
+            <div class="btn btn-danger removeRow"><i class="fa fa-trash" style="font-size:24px"></i></div>
+        </div>
+    </div>
+</div>
