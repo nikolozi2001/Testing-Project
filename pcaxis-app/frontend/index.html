@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GeoStat Divorce Age</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonstat/0.13.9/jsonstat.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+
+<body>
+    <h2>Average Age at Divorce (Georgia)</h2>
+    <div id="container1" style="width:100%; height:400px;"></div>
+
+    <label for="changeChart1">Chart type:</label>
+    <select id="changeChart1">
+        <option value="line">Line</option>
+        <option value="column">Column</option>
+        <option value="pie">Pie</option>
+    </select>
+
+    <script>
+        $(document).ready(function () {
+            var url = "http://localhost:3000/api/PXWeb/api/v1/ka/Database/Gender Statistics/Demography/Average age of women and men at the time of divorce.px";
+
+            var query = {
+                query: [
+                    { code: "Gender", selection: { filter: "all", values: [] } },
+                    { code: "Year", selection: { filter: "all", values: [] } }
+                ],
+                response: { format: "json-stat" }
+            };
+
+
+            function main(json) {
+                var ds = JSONstat(json).Dataset(0);
+
+                var years = ds.Dimension("Year").id;
+                var genders = ds.Dimension("Gender").category.label;
+                var values = ds.value;
+
+                var f_data = [];
+                var m_data = [];
+
+                years.forEach((year, i) => {
+                    var y = parseInt(year);
+                    f_data.push([Date.UTC(y, 0, 1), values[i * 2]]);
+                    m_data.push([Date.UTC(y, 0, 1), values[i * 2 + 1]]);
+                });
+
+                var options = {
+                    chart: { renderTo: 'container1', type: 'line' },
+                    credits: { enabled: false },
+                    title: { text: ds.label },
+                    xAxis: {
+                        type: 'datetime',
+                        dateTimeLabelFormats: { year: '%Y' }
+                    },
+                    yAxis: { title: { text: "Average Age" } },
+                    series: [
+                        { name: genders["1"], data: f_data },
+                        { name: genders["2"], data: m_data }
+                    ]
+                };
+
+                var chart = new Highcharts.Chart(options);
+
+                $("#changeChart1").on("change", function () {
+                    var newType = $(this).val();
+                    chart.series.forEach(s => s.update({ type: newType }));
+                });
+            }
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(query)
+            })
+                .then(res => res.json())
+                .then(main)
+                .catch(err => console.error("Fetch failed", err));
+        });
+    </script>
+</body>
+
+</html>
