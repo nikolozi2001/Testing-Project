@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divorce Age Chart</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #container1 { width: 100%; height: 400px; margin: 20px 0; }
+        #changeChart1 { margin: 10px 0; padding: 5px; }
+        .status { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Average Age at Divorce (Georgia)</h2>
+    <div class="status" id="status">Loading data...</div>
+    
+    <label for="changeChart1">Chart type:</label>
+    <select id="changeChart1">
+        <option value="line">Line</option>
+        <option value="column">Column</option>
+        <option value="pie">Pie</option>
+    </select>
+    
+    <div id="container1"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://unpkg.com/json-stat@0.6.1/jsonstat.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            const apiUrl = "http://localhost:3000/api/PXWeb/api/v1/ka/Database/Gender Statistics/Demography/Average age of women and men at the time of divorce.px";
+            const query = {"query": [], "response": {"format": "json-stat"}};
+            
+            // Sample data for demonstration
+            const sampleData = {
+                years: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+                femaleAges: [32.1, 32.3, 32.5, 32.7, 32.9, 33.1, 33.3, 33.5],
+                maleAges: [35.2, 35.4, 35.6, 35.8, 36.0, 36.2, 36.4, 36.6],
+                title: "Average age of women and men at the time of divorce (Sample Data)"
+            };
+
+            function createChart(data, isApiData = false) {
+                const f_data = [];
+                const m_data = [];
+
+                // Process the data for Highcharts
+                for (let i = 0; i < data.years.length; i++) {
+                    const year = data.years[i];
+                    const yearTimestamp = Date.UTC(year, 0, 1);
+                    f_data.push([yearTimestamp, data.femaleAges[i]]);
+                    m_data.push([yearTimestamp, data.maleAges[i]]);
+                }
+
+                const options = {
+                    chart: {
+                        renderTo: 'container1',
+                        type: 'line'
+                    },
+                    credits: { enabled: false },
+                    title: { text: data.title },
+                    xAxis: {
+                        type: 'datetime',
+                        dateTimeLabelFormats: { year: '%Y' }
+                    },
+                    yAxis: {
+                        title: { text: "Average Age at Divorce" }
+                    },
+                    series: [{
+                        name: "Female",
+                        data: f_data,
+                        color: '#FF69B4'
+                    }, {
+                        name: "Male",
+                        data: m_data,
+                        color: '#4682B4'
+                    }]
+                };
+
+                const chart = new Highcharts.Chart(options);
+
+                // Handle chart type changes
+                $("#changeChart1").on("change", function() {
+                    const chartType = $(this).val();
+                    if (chartType === "pie") {
+                        alert("Pie chart is not suitable for time series data.");
+                        $(this).val("line");
+                        return;
+                    }
+                    chart.series.forEach(s => s.update({ type: chartType }));
+                });
+                
+                // Update status
+                const statusEl = document.getElementById('status');
+                if (isApiData) {
+                    statusEl.innerHTML = '<span style="color: green;">✓ Successfully loaded data from API</span>';
+                } else {
+                    statusEl.innerHTML = '<span style="color: orange;">⚠ Using sample data (API not available)</span>';
+                }
+            }
+
+            function processJsonStatData(json) {
+                try {
+                    const ds = JSONstat(json).Dataset(0);
+                    if (!ds || !ds.Dimension) {
+                        throw new Error("Invalid JSONstat format");
+                    }
+
+                    const years = ds.Dimension("Year").id;
+                    const genders = ds.Dimension("Gender").id;
+                    const values = ds.value;
+
+                    const data = {
+                        years: years.map(y => parseInt(y)),
+                        femaleAges: [],
+                        maleAges: [],
+                        title: ds.label
+                    };
+
+                    for (let i = 0; i < years.length; i++) {
+                        const femaleIndex = i * genders.length;
+                        const maleIndex = i * genders.length + 1;
+                        data.femaleAges.push(values[femaleIndex]);
+                        data.maleAges.push(values[maleIndex]);
+                    }
+
+                    return data;
+                } catch (e) {
+                    console.error("Error processing JSONstat data:", e);
+                    return null;
+                }
+            }
+
+            function tryApiCall() {
+                console.log("Attempting to fetch data from API...");
+                
+                fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(query)
+                })
+                .then(response => {
+                    console.log("Response status:", response.status);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    console.log("Raw API response:", json);
+                    const processedData = processJsonStatData(json);
+                    if (processedData) {
+                        createChart(processedData, true);
+                    } else {
+                        throw new Error("Could not process API data");
+                    }
+                })
+                .catch(error => {
+                    console.error("API call failed:", error);
+                    console.log("Falling back to sample data");
+                    createChart(sampleData, false);
+                });
+            }
+
+            // Start the application
+            tryApiCall();
+        });
+    </script>
+</body>
+</html>

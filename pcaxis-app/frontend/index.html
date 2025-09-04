@@ -1,87 +1,134 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>GeoStat Divorce Age</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonstat/0.13.9/jsonstat.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divorce Age Chart</title>
+    <style>
+        #container1 {
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+        }
+        #changeChart1 {
+            margin: 10px;
+        }
+    </style>
 </head>
-
 <body>
-    <h2>Average Age at Divorce (Georgia)</h2>
-    <div id="container1" style="width:100%; height:400px;"></div>
-
-    <label for="changeChart1">Chart type:</label>
     <select id="changeChart1">
         <option value="line">Line</option>
         <option value="column">Column</option>
         <option value="pie">Pie</option>
     </select>
+    <div id="container1"></div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://unpkg.com/json-stat@0.6.1/jsonstat.min.js"></script>
     <script>
-        $(document).ready(function () {
-            var url = "http://localhost:3000/api/PXWeb/api/v1/ka/Database/Gender Statistics/Demography/Average age of women and men at the time of divorce.px";
-
-            var query = {
-                query: [
-                    { code: "Gender", selection: { filter: "all", values: [] } },
-                    { code: "Year", selection: { filter: "all", values: [] } }
-                ],
-                response: { format: "json-stat" }
-            };
-
+        $(document).ready(function() {
+            const url = "http://localhost:3000/api/PXWeb/api/v1/ka/Database/Gender Statistics/Demography/Average age of women and men at the time of divorce.px";
+            const query = {"query": [], "response": {"format": "json-stat"}};
 
             function main(json) {
-                var ds = JSONstat(json).Dataset(0);
+                const ds = JSONstat(json).Dataset(0);
+                if (!ds || !ds.Dimension) {
+                    console.error("Invalid or missing dataset", json);
+                    window.alert("Failed to load data from the API.");
+                    return;
+                }
 
-                var years = ds.Dimension("Year").id;
-                var genders = ds.Dimension("Gender").category.label;
-                var values = ds.value;
+                const years = ds.Dimension("Year").id;
+                const genders = ds.Dimension("Gender").id;
+                const f_data = [];
+                const m_data = [];
 
-                var f_data = [];
-                var m_data = [];
+                for (let i = 0; i < years.length; i++) {
+                    const femaleIndex = i * genders.length;
+                    const maleIndex = i * genders.length + 1;
+                    f_data.push([parseInt(years[i]), ds.value[femaleIndex]]);
+                    m_data.push([parseInt(years[i]), ds.value[maleIndex]]);
+                }
 
-                years.forEach((year, i) => {
-                    var y = parseInt(year);
-                    f_data.push([Date.UTC(y, 0, 1), values[i * 2]]);
-                    m_data.push([Date.UTC(y, 0, 1), values[i * 2 + 1]]);
-                });
-
-                var options = {
-                    chart: { renderTo: 'container1', type: 'line' },
-                    credits: { enabled: false },
-                    title: { text: ds.label },
+                const options = {
+                    chart: {
+                        renderTo: 'container1',
+                        type: 'line'
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ds.label
+                    },
                     xAxis: {
                         type: 'datetime',
-                        dateTimeLabelFormats: { year: '%Y' }
+                        dateTimeLabelFormats: {
+                            year: '%Y'
+                        }
                     },
-                    yAxis: { title: { text: "Average Age" } },
-                    series: [
-                        { name: genders["1"], data: f_data },
-                        { name: genders["2"], data: m_data }
-                    ]
+                    yAxis: {
+                        title: { text: "Average Age at Divorce" }
+                    },
+                    series: [{
+                        name: genders[0],
+                        data: f_data,
+                        color: '#FF69B4',
+                        pointStart: Date.UTC(parseInt(years[0]), 0, 1),
+                        pointInterval: 24 * 3600 * 1000 * 365
+                    }, {
+                        name: genders[1],
+                        data: m_data,
+                        color: '#4682B4',
+                        pointStart: Date.UTC(parseInt(years[0]), 0, 1),
+                        pointInterval: 24 * 3600 * 1000 * 365
+                    }]
                 };
 
-                var chart = new Highcharts.Chart(options);
+                const chart = new Highcharts.Chart(options);
 
-                $("#changeChart1").on("change", function () {
-                    var newType = $(this).val();
-                    chart.series.forEach(s => s.update({ type: newType }));
+                $("#changeChart1").on("change", function() {
+                    const chartType = $(this).val();
+                    if (chartType === "pie") {
+                        window.alert("Pie chart is not suitable for time series data.");
+                        return;
+                    }
+                    chart.series[0].update({ type: chartType });
+                    chart.series[1].update({ type: chartType });
                 });
             }
 
-            fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(query)
-            })
-                .then(res => res.json())
-                .then(main)
-                .catch(err => console.error("Fetch failed", err));
+            function POST(url, query, callback) {
+                console.log("Making POST request to:", url);
+                console.log("With query:", JSON.stringify(query, null, 2));
+                
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(query)
+                })
+                .then(resp => {
+                    console.log("Response status:", resp.status);
+                    console.log("Response content-type:", resp.headers.get("content-type"));
+                    
+                    if (!resp.ok) throw new Error(`HTTP error! Status: ${resp.status}`);
+                    return resp.json();
+                })
+                .then(data => {
+                    console.log("Successfully received data:", data);
+                    callback(data);
+                })
+                .catch(error => {
+                    console.error("Request failed:", error);
+                    window.alert("Failed to fetch data from the API: " + error.message);
+                });
+            }
+
+            POST(url, query, main);
         });
     </script>
 </body>
-
 </html>
