@@ -1,15 +1,376 @@
-,
-                                {
-                                    "name": "founderClearLogic",
-                                    "trigger": {
-                                        "type": "javascript",
-                                        "javascript": "function isEmpty(str) {\r\n  return typeof str === \"string\" && !str.trim();\r\n}\r\n\r\nresult = false;\r\nlet numberSet = [];\r\n\r\nif (Array.isArray(data.partniorDataGrid)) {\r\n  data.partniorDataGrid.forEach((item) => {\r\n    let partnior = item[\"partnior\"] ? item[\"partnior\"].trim() : \"\";\r\n    let countryId = item[\"page37\"];\r\n    console.log(`partnior: ${partnior}, countryId: ${countryId}`);\r\n    if (partnior && !isEmpty(partnior) && countryId && countryId !== 1) {\r\n      numberSet.push(partnior.toString());\r\n    }\r\n  });\r\n} else {\r\n  console.error(\"data.partniorDataGrid is not an array or is undefined\");\r\n}\r\n\r\nconsole.log(numberSet, \"numberSet\");\r\n\r\nif (Array.isArray(data.page13)) {\r\n  data.page13.forEach((item) => {\r\n    let page31 = typeof item[\"page31\"] === \"string\" ? item[\"page31\"].trim() : \"\";\r\n    console.log(`page31: ${page31}`);\r\n    if (page31 && !isEmpty(page31) && !numberSet.includes(page31.toString())) {\r\n      console.log(`Setting result to true for page31: ${page31}`);\r\n      result = true;\r\n    }\r\n  });\r\n} else {\r\n  console.error(\"data.page13 is not an array or is undefined\");\r\n}\r\n\r\nconsole.log(result, \"result\");"
+[
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "c93_page1PanelPanelTableContent17",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "firago-book",
+                                                "content": "93",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
                                     },
-                                    "actions": [
-                                        {
-                                            "name": "founderClearAction",
-                                            "type": "customAction",
-                                            "customAction": "function isEmpty(str) {\r\n  return typeof str === \"string\" && !str.trim();\r\n}\r\n\r\nlet numberSet = [];\r\n\r\ndata.partniorDataGrid.forEach((item) => {\r\n  let partnior = item[\"partnior\"] ? item[\"partnior\"].trim() : \"\";\r\n  let countryId = item[\"page37\"];\r\n  console.log(`partnior: ${partnior}, countryId: ${countryId}`);\r\n  if (partnior && !isEmpty(partnior) && countryId && countryId !== 1) {\r\n    numberSet.push(partnior.toString());\r\n  }\r\n});\r\n\r\nconsole.log(numberSet, \"numberSet\");\r\n\r\ndata.page13.forEach((item) => {\r\n  let page31 = typeof item[\"page31\"] === \"string\" ? item[\"page31\"].trim() : \"\";\r\n  console.log(`page31: ${page31}`);\r\n  if (page31 && !isEmpty(page31) && !numberSet.includes(page31.toString())) {\r\n    console.log(`Clearing page31: ${page31}`);\r\n    item[\"page31\"] = \"\";\r\n  }\r\n});\r\n"
-                                        }
-                                    ]
-                                }
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "c93_page1PanelPanelTableContent19",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "firago-book",
+                                                "content": "მრეწველობის, მშენებლობისა და ტრანსპორტის არაკვალიფიციური მუშები",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrq3",
+                                                "key": "c93_dsrq3",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk4",
+                                                "key": "c93_dsrk4",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk5",
+                                                "key": "c93_dsrk5",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk6",
+                                                "key": "c93_dsrk6",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk7",
+                                                "key": "c93_dsrk7",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk8",
+                                                "key": "c93_dsrk8",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_dsrk9",
+                                                "key": "c93_dsrk9",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c93_sdwaq10",
+                                                "key": "c93_sdwaq10",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true
+                                            }
+                                        ]
+                                    }
+                                ]
