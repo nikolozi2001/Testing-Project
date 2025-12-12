@@ -1,0 +1,384 @@
+[
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "c9_page1PanelPanelTableContent17",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "firago-book",
+                                                "content": "9",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "c9_page1PanelPanelTableContent19",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "firago-book",
+                                                "content": "არაკვალიფიციური მუშები",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrq3",
+                                                "key": "c9_dsrq3",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk4",
+                                                "key": "c9_dsrk4",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk5",
+                                                "key": "c9_dsrk5",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk6",
+                                                "key": "c9_dsrk6",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk7",
+                                                "key": "c9_dsrk7",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk8",
+                                                "key": "c9_dsrk8",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_dsrk9",
+                                                "key": "c9_dsrk9",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c9_sdwaq10",
+                                                "key": "c9_sdwaq10",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true
+                                            }
+                                        ]
+                                    }
+                                ],
