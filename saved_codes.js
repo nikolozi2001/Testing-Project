@@ -272,3 +272,36 @@ if (isValid) {
 } else {
   console.log("Validation error:", valid);
 }
+
+// --------------------------------------------------------------------------------------------------------------
+// autoincrement code for Number
+
+let usedNumbers = [];
+
+for (let i = 0; i < data.pageTestDataGrid.length; i++) {
+  const num = parseInt(
+    data.pageTestDataGrid[i].pageTestDataGridNumber,
+    10
+  );
+
+  if (!isNaN(num)) {
+    usedNumbers.push(num);
+  }
+}
+
+usedNumbers.sort((a, b) => a - b);
+
+value = 1;
+for (let i = 0; i < usedNumbers.length; i++) {
+  if (usedNumbers[i] === value) {
+    value++;
+  } else {
+    break;
+  }
+}
+
+// --------------------------------------------------------------------------------------------------------------
+// აუტო ინკრემენტი რიგის ნომრისთვის (რიგის გადანომრვა)
+for (let i = 0; i < data.pageTestDataGrid.length; i++) {
+  data.pageTestDataGrid[i].pageTestDataGridNumber = i + 1;
+}

@@ -9,68 +9,79 @@
 
 <body>
     <style>
-        #university tbody tr td.table-light {
+        #university thead tr td.table-light {
             color: red !important;
+            font-weight: bold !important;
+            background-color: #f8f9fa !important;
         }
 
-        .university-wliuri th {
+        .university-wliuri th,
+        .university-wliuri td {
             vertical-align: middle;
-            background-color: #0080be;
+            background-color: #0080be !important;
             color: #fff;
             font-size: 10px;
+            font-weight: bold;
         }
 
-        .university-wliuri td {
-            font-size: 10px;
+        .university-wliuri .table-active:nth-child(3) td:first-child,
+        .university_input_wliuri tr td:first-child {
+            width: 13%;
         }
 
-        .university-wliuri .table-active:nth-child(1) th:last-child {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(2),
+        .university_input_wliuri tr td:nth-child(2) {
+            width: 3%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:first-child,
-        .sawarmo_input_wliuri tr td:first-child {
-            width: 10%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(3),
+        .university_input_wliuri tr td:nth-child(3) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(2),
-        .sawarmo_input_wliuri tr td:nth-child(2) {
-            width: 10%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(4),
+        .university_input_wliuri tr td:nth-child(4) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(3),
-        .sawarmo_input_wliuri tr td:nth-child(3) {
-            width: 20%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(5),
+        .university_input_wliuri tr td:nth-child(5) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(2) th:nth-child(2),
-        .sawarmo_input_wliuri tr td:nth-child(4) {
-            width: 12%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(6),
+        .university_input_wliuri tr td:nth-child(6) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(4),
-        .sawarmo_input_wliuri tr td:nth-child(5) {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(7),
+        .university_input_wliuri tr td:nth-child(7) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(5),
-        .sawarmo_input_wliuri tr td:nth-child(6) {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(8),
+        .university_input_wliuri tr td:nth-child(8) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(6),
-        .sawarmo_input_wliuri tr td:nth-child(7) {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(9),
+        .university_input_wliuri tr td:nth-child(9) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(7),
-        .sawarmo_input_wliuri tr td:nth-child(8) {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(10),
+        .university_input_wliuri tr td:nth-child(10) {
+            width: 6%;
         }
 
-        .university-wliuri .table-active:nth-child(3) th:nth-child(8),
-        .sawarmo_input_wliuri tr td:nth-child(9) {
-            width: 8%;
+        .university-wliuri .table-active:nth-child(3) td:nth-child(11),
+        .university_input_wliuri tr td:nth-child(11) {
+            width: 6%;
+        }
+
+        .university-wliuri .table-active:nth-child(3) td:nth-child(12),
+        .university_input_wliuri tr td:nth-child(12) {
+            width: 6%;
         }
     </style>
 
@@ -81,46 +92,39 @@
         <table id="university" class="university-wliuri table table-bordered text-center">
             <thead>
                 <tr class="table-active">
-                    <th colspan="4">პარტნიორები</th>
-                    <th colspan="5" rowspan="2">
-                        პარტნიორთა წილი საწესდებო/სააქციო კაპიტალში(%)
-                    </th>
-                    <th rowspan="3">წაშლა</th>
+                    <th rowspan="2">ფაკულტეტის, პროგრამის დასახელება</th>
+                    <th rowspan="2">N</th>
+                    <th rowspan="2">პროგრამის კოდი (ივსება საქსტატში)</th>
+                    <th colspan="2">მიღებულია საანგარიშო წელს <br> (I კურსზე)</th>
+                    <th colspan="6">მათ შორის</th>
+                    <th rowspan="2">წაშლა</th>
                 </tr>
                 <tr class="table-active">
-                    <th colspan="3">
-                        პარტნიორი კომპანიების (ორგანიზაციულ-სამართლებრივი ფორმისა და გადასახადის გადამხდელის
-                        საიდენტიფიკაციო ნომრის (გგსნ) მითითებით) ან ფიზიკური პირების სრული დასახელება
-                    </th>
-                    <th rowspan="2">პარტნიორთა რეზიდენტობის ქვეყანა</th>
+                    <td>სულ</td>
+                    <td>მათ შორის ქალი</td>
+                    <td>ბაკალავრიატი, სულ</td>
+                    <td>მათ შორის ქალი</td>
+                    <td>მაგისტრატურა, დიპლომირებული მედიკოსის (ვეტერინარის) პროგრამა, რეზიდენტურა,
+                        სულ</td>
+                    <td>მათ შორის ქალი</td>
+                    <td>პროფესიული განათლების პროგრამები, სულ</td>
+                    <td>მათ შორის ქალი</td>
                 </tr>
                 <tr class="table-active">
-                    <th>საიდენტიფიკაციო კოდი</th>
-                    <th>ორგანიზაციულ-<br>სამართლებრივი ფორმა</th>
-                    <th>დასახელება</th>
-                    <th>წლის / Iკვ.დასაწყისში</th>
-                    <th>Iკვ. ბოლოს /<br> II კვ.დასაწყისში</th>
-                    <th>IIკვ. ბოლოს /<br> III კვ.დასაწყისში</th>
-                    <th>IIIკვ.ბოლოს / <br>IV კვ.დასაწყისში </th>
-                    <th>IV კვ. / წლის ბოლოს</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="table-light">ა</td>
-                    <td class="table-light">ბ</td>
-                    <td class="table-light">გ</td>
-                    <td class="table-light">დ</td>
                     <td class="table-light">1</td>
                     <td class="table-light">2</td>
                     <td class="table-light">3</td>
                     <td class="table-light">4</td>
                     <td class="table-light">5</td>
-                    <td class="table-light">
-
-                    </td>
+                    <td class="table-light">6</td>
+                    <td class="table-light">7</td>
+                    <td class="table-light">8</td>
+                    <td class="table-light">9</td>
+                    <td class="table-light">10</td>
+                    <td class="table-light">11</td>
+                    <td class="table-light"></td>
                 </tr>
-            </tbody>
+            </thead>
         </table>
     </div>
 
