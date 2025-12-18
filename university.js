@@ -1,8 +1,8 @@
-let grid = data.page1DataGridUniversity;
+let grid = data.page6DataGridUniversity;
 let sum = 0;
 
 grid.forEach((item) => {
-  const num = item["page1DataGridUniversity7"];
+  const num = item["page6DataGridUniversityNumber3"];
 
   if (num) {
     sum += parseFloat(num);
