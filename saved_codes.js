@@ -302,6 +302,6 @@ for (let i = 0; i < usedNumbers.length; i++) {
 
 // --------------------------------------------------------------------------------------------------------------
 // აუტო ინკრემენტი რიგის ნომრისთვის (რიგის გადანომრვა)
-for (let i = 0; i < data.pageTestDataGrid.length; i++) {
-  data.pageTestDataGrid[i].pageTestDataGridNumber = i + 1;
+for (let i = 0; i < data.university_person_input_wliuri.length; i++) {
+  data.university_person_input_wliuri[i].universityPersonInputWliuriAutoIncrement = i + 1;
 }
