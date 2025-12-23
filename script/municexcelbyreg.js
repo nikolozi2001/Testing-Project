@@ -134,60 +134,133 @@ const municipalitiesKa = [
 
 // Define region map with Georgian and English names
 const regionMap = {
-    guria: { en: "Guria", ka: "გურია" },
-    adjara: { en: "Adjara%20A.R", ka: "აჭარა%20ა.რ" },
-    imereti: { en: "Imereti", ka: "იმერეთი" },
-    "Samtskhe-Javakheri": { en: "Samtskhe-Javakheti", ka: "სამცხე-ჯავახეთი" },
-    Kakheti: { en: "Kakheti", ka: "კახეთი" },
-    "Mtskheta-Mtianeti": { en: "Mtskheta-Mtianeti", ka: "მცხეთა-მთიანეთი" },
-    kvemo_kartli: { en: "Kvemo%20Kartli", ka: "ქვემო%20ქართლი" },
-    Racha: { en: "Racha-Lechkhumi%20and%20Kvemo%20Svaneti", ka: "რაჭა-ლეჩხუმი%20და%20ქვემო%20სვანეთი" },
-    Samegrelo: { en: "Samegrelo-Zemo%20Svaneti", ka: "სამეგრელო-ზემო%20სვანეთი" },
-    shida_kartli: { en: "Shida%20Kartli", ka: "შიდა%20ქართლი" }
+  guria: { en: "Guria", ka: "გურია" },
+  adjara: { en: "Adjara%20A.R", ka: "აჭარა%20ა.რ" },
+  imereti: { en: "Imereti", ka: "იმერეთი" },
+  "Samtskhe-Javakheri": { en: "Samtskhe-Javakheti", ka: "სამცხე-ჯავახეთი" },
+  Kakheti: { en: "Kakheti", ka: "კახეთი" },
+  "Mtskheta-Mtianeti": { en: "Mtskheta-Mtianeti", ka: "მცხეთა-მთიანეთი" },
+  kvemo_kartli: { en: "Kvemo%20Kartli", ka: "ქვემო%20ქართლი" },
+  Racha: {
+    en: "Racha-Lechkhumi%20and%20Kvemo%20Svaneti",
+    ka: "რაჭა-ლეჩხუმი%20და%20ქვემო%20სვანეთი",
+  },
+  Samegrelo: { en: "Samegrelo-Zemo%20Svaneti", ka: "სამეგრელო-ზემო%20სვანეთი" },
+  shida_kartli: { en: "Shida%20Kartli", ka: "შიდა%20ქართლი" },
 };
 
 // Utility function to determine region key based on municipality
 function getRegionKey(municipal) {
-    if (["Lanchkhuti", "Ozurgeti", "Chokhatauri"].includes(municipal)) {
-        return "guria";
-    } else if (["Batumi", "Keda", "Kobuleti", "Khelvachauri", "Shuakhevi", "Khulo"].includes(municipal)) {
-        return "adjara";
-    } else if (["Khoni", "Tskaltubo", "Baghdati", "Chiatura", "Kutaisi", "Sachkhere", "Samtredia", "Terjola", "Tkibuli", "Vani", "Kharagauli", "Zestaponi"].includes(municipal)) {
-        return "imereti";
-    } else if (["Adigeni", "Aspindza", "Akhaltsikhe", "Akhalkalaki", "Borjomi", "Ninotsminda"].includes(municipal)) {
-        return "Samtskhe-Javakheri";
-    } else if (["Akhmeta", "Dedoplistskaro", "Gurjaani", "Lagodekhi", "Sagarejo", "Sighnaghi", "Telavi", "Kvareli"].includes(municipal)) {
-        return "Kakheti";
-    } else if (["Dusheti", "Mtskheta", "Tianeti", "Kazbegi"].includes(municipal)) {
-        return "Mtskheta-Mtianeti";
-    } else if (["Bolnisi", "Dmanisi", "Gardabani", "Marneuli", "Rustavi", "Tetritskaro", "Tsalka"].includes(municipal)) {
-        return "kvemo_kartli";
-    } else if (["Ambrolauri", "Tsageri", "Lentekhi", "Oni"].includes(municipal)) {
-        return "Racha";
-    } else if (["Abasha", "Chkhorotsku", "Martvili", "Mestia", "Poti", "Senaki", "Tsalenjikha", "Khobi", "Zugdidi"].includes(municipal)) {
-        return "Samegrelo";
-    } else if (["Gori", "Kaspi", "Kareli", "Khashuri"].includes(municipal)) {
-        return "shida_kartli";
-    }
-    return null;
+  if (["Lanchkhuti", "Ozurgeti", "Chokhatauri"].includes(municipal)) {
+    return "guria";
+  } else if (
+    [
+      "Batumi",
+      "Keda",
+      "Kobuleti",
+      "Khelvachauri",
+      "Shuakhevi",
+      "Khulo",
+    ].includes(municipal)
+  ) {
+    return "adjara";
+  } else if (
+    [
+      "Khoni",
+      "Tskaltubo",
+      "Baghdati",
+      "Chiatura",
+      "Kutaisi",
+      "Sachkhere",
+      "Samtredia",
+      "Terjola",
+      "Tkibuli",
+      "Vani",
+      "Kharagauli",
+      "Zestaponi",
+    ].includes(municipal)
+  ) {
+    return "imereti";
+  } else if (
+    [
+      "Adigeni",
+      "Aspindza",
+      "Akhaltsikhe",
+      "Akhalkalaki",
+      "Borjomi",
+      "Ninotsminda",
+    ].includes(municipal)
+  ) {
+    return "Samtskhe-Javakheri";
+  } else if (
+    [
+      "Akhmeta",
+      "Dedoplistskaro",
+      "Gurjaani",
+      "Lagodekhi",
+      "Sagarejo",
+      "Sighnaghi",
+      "Telavi",
+      "Kvareli",
+    ].includes(municipal)
+  ) {
+    return "Kakheti";
+  } else if (
+    ["Dusheti", "Mtskheta", "Tianeti", "Kazbegi"].includes(municipal)
+  ) {
+    return "Mtskheta-Mtianeti";
+  } else if (
+    [
+      "Bolnisi",
+      "Dmanisi",
+      "Gardabani",
+      "Marneuli",
+      "Rustavi",
+      "Tetritskaro",
+      "Tsalka",
+    ].includes(municipal)
+  ) {
+    return "kvemo_kartli";
+  } else if (["Ambrolauri", "Tsageri", "Lentekhi", "Oni"].includes(municipal)) {
+    return "Racha";
+  } else if (
+    [
+      "Abasha",
+      "Chkhorotsku",
+      "Martvili",
+      "Mestia",
+      "Poti",
+      "Senaki",
+      "Tsalenjikha",
+      "Khobi",
+      "Zugdidi",
+    ].includes(municipal)
+  ) {
+    return "Samegrelo";
+  } else if (["Gori", "Kaspi", "Kareli", "Khashuri"].includes(municipal)) {
+    return "shida_kartli";
+  }
+  return null;
 }
 
 const linkData = { forlinks: {} };
 
 // Populate linkData dynamically
 municipalitiesEn.forEach((municipality, index) => {
-    // const municipalityKey = municipality.name.toLowerCase(); // e.g., "batumi"
-    const municipalityKey = municipality.name.charAt(0).toUpperCase() + municipality.name.slice(1).toLowerCase();
+  // const municipalityKey = municipality.name.toLowerCase(); // e.g., "batumi"
+  const municipalityKey =
+    municipality.name.charAt(0).toUpperCase() +
+    municipality.name.slice(1).toLowerCase();
 
-    const kaMunicipalityName = municipalitiesKa[index].name; // Corresponding name in Georgian
-    const regionKey = getRegionKey(municipalityKey);
-    
-    if (regionKey && regionMap[regionKey]) {
-        linkData.forlinks[municipalityKey] = {
-            ka: `/regions/municipal/მოსახლეობის%20აღწერა%20წინასწარი/მოსახლეობა%20სქესის%20მიხედვით/აჭარა%20ა.რ/${regionMap[regionKey].ka}/${kaMunicipalityName}ს%20მუნიციპალიტეტი.xlsx`,
-            en: `/regions/municipal/ENG/Population%20census%20pre/number%20of%20population%20by%20sex/Adjara%20A.R/${regionMap[regionKey].en}/${municipality.name}.xlsx`,
-        };
-    }
+  const kaMunicipalityName = municipalitiesKa[index].name; // Corresponding name in Georgian
+  const regionKey = getRegionKey(municipalityKey);
+
+  if (regionKey && regionMap[regionKey]) {
+    linkData.forlinks[municipalityKey] = {
+      ka: `/regions/municipal/განათლება/დირექტორები/${regionMap[regionKey].ka}/${kaMunicipalityName}ს%20მუნიციპალიტეტი.xlsx`,
+      en: `/regions/municipal/ENG/Education/Directors/${regionMap[regionKey].en}/${municipality.name}%20Municipality.xlsx`,
+    };
+  }
 });
 
 console.log(linkData);
