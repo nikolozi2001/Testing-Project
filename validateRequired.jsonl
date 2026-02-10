@@ -1,0 +1,21 @@
+"logic": [
+                                            {
+                                                "name": "required",
+                                                "trigger": {
+                                                    "type": "javascript",
+                                                    "javascript": "result = false;\r\n\r\nlet check1 = data[\"key1\"];\r\nlet check2 = data[\"key2\"];\r\n\r\nif (check1 || check2 ) {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}"
+                                                },
+                                                "actions": [
+                                                    {
+                                                        "name": "requiredAction",
+                                                        "type": "property",
+                                                        "property": {
+                                                            "label": "Required",
+                                                            "value": "validate.required",
+                                                            "type": "boolean"
+                                                        },
+                                                        "state": false
+                                                    }
+                                                ]
+                                            }
+                                        ],
