@@ -1,0 +1,224 @@
+[
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "p1mainNumber0",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "",
+                                                "content": "",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "key": "p1mainContent0",
+                                                "label": "Content",
+                                                "input": false,
+                                                "tag": "p",
+                                                "attrs": [
+                                                    {
+                                                        "value": "",
+                                                        "attr": ""
+                                                    }
+                                                ],
+                                                "className": "",
+                                                "content": "სულ, 2021 წელს (1+2+3+4+5+6+7+8+9+0)",
+                                                "type": "htmlelement",
+                                                "hideLabel": true,
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {}
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c0_dsrq3",
+                                                "key": "c0_dsrq3",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true,
+                                                "calculateValue": ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c0_dsrk4",
+                                                "key": "c0_dsrk4",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true,
+                                                "calculateValue": ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c0_dwaq5",
+                                                "key": "c0_dwaq5",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true,
+                                                "calculateValue": ""
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "components": [
+                                            {
+                                                "autofocus": false,
+                                                "input": true,
+                                                "tableView": true,
+                                                "inputType": "number",
+                                                "label": "c0_dwaq6",
+                                                "key": "c0_dwaq6",
+                                                "placeholder": "",
+                                                "prefix": "",
+                                                "suffix": "",
+                                                "defaultValue": "",
+                                                "protected": false,
+                                                "persistent": true,
+                                                "hidden": false,
+                                                "clearOnHide": true,
+                                                "validate": {
+                                                    "required": false,
+                                                    "min": "",
+                                                    "max": "",
+                                                    "step": "any",
+                                                    "integer": "",
+                                                    "multiple": "",
+                                                    "custom": ""
+                                                },
+                                                "type": "number",
+                                                "labelPosition": "top",
+                                                "tags": [],
+                                                "conditional": {
+                                                    "show": "",
+                                                    "when": null,
+                                                    "eq": ""
+                                                },
+                                                "properties": {},
+                                                "hideLabel": true,
+                                                "lockKey": true,
+                                                "disabled": true,
+                                                "calculateValue": ""
+                                            }
+                                        ]
+                                    }
+                                ],
