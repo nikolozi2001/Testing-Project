@@ -1,14 +1,11 @@
-var formview = sessionStorage.getItem("formview");
+var viewmode = sessionStorage.getItem("viewmode");
 var show = false;
 
-console.log(formview);
-
-if (formview === "true") {
+if (viewmode === "true") {
   show = false;
 } else {
   show = true;
 }
-
 
 // valid = true; // ყველა row ვალიდური იქნება ამამ ეტაპზე
 
