@@ -1,0 +1,69 @@
+<div class="info-row">
+    <span class="info-number">1. პირდაპირი ფულადი ხელფასი</span>
+
+    <div class="info-tooltip">
+        <img src="https://database.geostat.ge/portal/ent/_images/newinfo.png">
+        <span class="tooltip-text">იგულისხმება დარიცხული ხელფასი შესრულებული სამუშაოსათვის (ნამუშევარი დროისათვის),
+            საწარმოში არსებული შრომის ანაზღაურების ფორმებისა და სისტემების მიხედვით და ა.შ.
+        </span>
+    </div>
+</div>
+
+<style>
+    .info-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: FiraGO-Bold;
+        font-feature-settings: "case" on;
+    }
+
+    .info-number {
+        /* font-family: FiraGO-Bold; */
+        font-feature-settings: "case" on;
+    }
+
+    .info-tooltip {
+        margin-left: auto;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        background: #e9f2ff;
+        color: #1976d2;
+        border-radius: 50%;
+        font-size: 12px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .info-tooltip:hover {
+        background: #1976d2;
+        color: white;
+    }
+
+    .tooltip-text {
+        width: 300px;
+        height: auto;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        bottom: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #2c3e50;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: normal;
+        transition: 0.2s;
+    }
+
+    .info-tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
