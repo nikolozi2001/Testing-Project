@@ -1,0 +1,15 @@
+<div class="row" id="rowContainer">
+    {% util.eachComponent(components, function(component) { %}
+    {% if (component.key === 'p1t1n10' || component.key === 'p1t1n11' || component.key === 'p1t1n12' || component.key === 'p1t1n13' || component.key === 'p1t1n14') { %}
+        <div class="{% if (component.key === 'p1t1n10') { %}col-sm-2 order1{% } if (component.key === 'p1t1n11') { %}col-sm-2 order2{% } if (component.key === 'p1t1n12') { %}col-sm-2 order3{% } if (component.key === 'p1t1n13') { %}col-sm-2 order4{% } if (component.key === 'p1t1n14') { %}col-sm-2 order5{% } %}">
+            {{ getView(component, row[component.key]) }}
+        </div>
+    {% } %}
+    {% }) %}
+    <div class="col-sm-2 order6">
+        <div class="btn-group pull-right">
+            <div class="btn btn-default editRow"><i class="fa fa-edit" style="font-size:24px"></i></div>
+            <div class="btn btn-danger removeRow"><i class="fa fa-trash" style="font-size:24px"></i></div>
+        </div>
+    </div>
+</div>
