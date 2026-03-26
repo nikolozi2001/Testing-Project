@@ -1,8 +1,8 @@
 // მნიშვნელობების წამოღება და გარდაქმნა ციფრებად
-const r3 = parseFloat(data["c14_dsrq3"]) || 0;
-const r4 = parseFloat(data["c14_dsrk4"]) || 0;
-const r5 = parseFloat(data["c14_dwaq5"]) || 0;
-const r6 = parseFloat(data["c14_dwaq6"]) || 0;
+const r3 = parseFloat(row["c14_dsrq3"]) || 0;
+const r4 = parseFloat(row["c14_dsrk4"]) || 0;
+const r5 = parseFloat(row["c14_dwaq5"]) || 0;
+const r6 = parseFloat(row["c14_dwaq6"]) || 0;
 
 if (r3 < r4) {
   valid = "სვეტი 3 უნდა იყოს მეტი ან ტოლი სვეტი 4-ზე";
