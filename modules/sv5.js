@@ -1,11 +1,14 @@
 const r3 = Number(row["c14_dsrq3"]) || 0;
 const r4_raw = row["c14_dsrk4"];
+const r6_raw = row["c14_dwaq6"];
 const r4 = Number(r4_raw) || 0;
 const r5 = Number(row["c14_dwaq5"]) || 0;
 const r6 = Number(row["c14_dwaq6"]) || 0;
 
 if (r4_raw === undefined || r4_raw === null || r4_raw === "") {
   valid = "გთხოვთ შეავსოთ სვტ.4 (თუ არ გყავთ ქალი მიუთითეთ 0)";
+} else if (r6_raw === undefined || r6_raw === null || r6_raw === "") {
+  valid = "გთხოვთ შეავსოთ სვტ.6 (თუ არ გაქვთ თანხა მიუთითეთ 0)";
 } else if (r3 < r4) {
   valid = "სვეტი 3 უნდა იყოს მეტი ან ტოლი სვეტი 4-ზე";
 } else if (r5 < r6) {

@@ -1,25 +1,22 @@
-const r4_raw = row["c14_dsrk4"];
-const r6_raw = row["c14_dwaq6"];
+const r3 = parseFloat(row["c133_dsrq3"]) || 0;
+const r4 = parseFloat(row["c133_dsrk4"]) || 0;
+const r5 = parseFloat(row["c133_dwaq5"]) || 0;
+const r6 = parseFloat(row["c133_dwaq6"]) || 0;
 
-const r3 = row["c14_dsrq3"] || 0;
-const r4 = row["c14_dsrk4"] || 0;
-const r5 = row["c14_dwaq5"] || 0;
-const r6 = row["c14_dwaq6"] || 0;
+const c13 = parseFloat(row["c13_dsrk4"]) || 0;
+const c133 = parseFloat(row["c133_dsrk4"]) || 0;
 
-if (r4_raw === undefined || r4_raw === null || r4_raw === "") {
-  valid = "გთხოვთ შეავსოთ სვტ.4 (თუ არ გყავთ ქალი მიუთითეთ 0)";
-} else if (r6_raw === undefined || r6_raw === null || r6_raw === "") {
-  valid = "გთხოვთ შეავსოთ სვტ.6 (თუ არ გაქვთ თანხა მიუთითეთ 0)";
+if (c13 < c133) {
+  valid = "სტრიქონი 133 ნაკლები ან ტოლი უნდა იყოს სტრიქონი 13-ზე";
 } else if (r3 < r4) {
   valid = "სვეტი 4 უნდა იყოს ნაკლები ან ტოლი სვეტი 3-ზე";
 } else if (r5 < r6) {
   valid = "სვეტი 5 უნდა იყოს მეტი ან ტოლი სვეტი 6-ზე";
-} else if (r4 > 0 && r6 === 0) {
-  valid = "რადგან სვეტი 4 მეტია 0-ზე, სვეტი 6 აუცილებლად მეტი უნდა იყოს 0-ზე";
 } else if (r3 === 0 && r4 === 0 && (r5 !== 0 || r6 !== 0)) {
   valid = "რადგან სვეტი 3 და 4 არის 0, სვეტი 5 და 6-იც აუცილებლად უნდა იყოს 0";
 } else if (r5 === 0 && r6 === 0 && (r3 !== 0 || r4 !== 0)) {
-  valid = "გთხოვთ შეავსოთ სვეტი 6";
+  valid =
+    "რადგან სვეტი 3 და 4 მეტია 0-ზე, სვეტი 5 და 6-იც აუცილებლად მეტი უნდა იყოს 0-ზე";
 } else if (r3 === r4 && r5 !== r6) {
   valid =
     "რადგან სვეტი 3 უდრის სვეტ 4-ს, სვეტი 5 აუცილებლად უნდა უდრიდეს სვეტ 6-ს";
