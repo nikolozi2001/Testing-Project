@@ -1,18 +1,17 @@
-// 1. საჭირო ცვლადების განსაზღვრა
 var id = window.location.href.split("/").pop();
-var fieldKey = "compensationOfEmployedPersonnelFemale";
+var fieldKey = "averageNumberOfEmployeesAll";
 var rowIndex = instance.rowIndex;
 
-// გლობალური ობიექტის ინიციალიზაცია (თუ არ არსებობს)
 window.workSurvCache = window.workSurvCache || {
   data: {},
-  loading: {}
+  loading: {},
 };
 
-// 2. ფუნქცია მონაცემების წამოსაღებად
-var fetchData = function(surveyId) {
-  // თუ უკვე იტვირთება ან უკვე გვაქვს მონაცემები, აღარ გავაგზავნოთ
-  if (window.workSurvCache.loading[surveyId] || window.workSurvCache.data[surveyId]) {
+var fetchData = function (surveyId, componentInstance) {
+  if (
+    window.workSurvCache.loading[surveyId] ||
+    window.workSurvCache.data[surveyId]
+  ) {
     return;
   }
 
@@ -22,14 +21,18 @@ var fetchData = function(surveyId) {
     url: "/api/enterprise/prev-work-survey-data?enterpriseSurveyId=" + surveyId,
     method: "GET",
     headers: {
-      "Accept": "application/json",
-      "Authorization": localStorage.getItem("accessToken"),
+      Accept: "application/json",
+      Authorization: localStorage.getItem("accessToken"),
     },
     success: function (res) {
       window.workSurvCache.data[surveyId] = res;
       window.workSurvCache.loading[surveyId] = false;
-      // ვატყობინებთ ფორმას, რომ მონაცემები მოვიდა და საჭიროა გადათვლა
-      instance.emit('change'); 
+
+      setTimeout(function () {
+        if (componentInstance) {
+          componentInstance.updateValue();
+        }
+      }, 100);
     },
     error: function () {
       window.workSurvCache.data[surveyId] = [];
@@ -38,18 +41,18 @@ var fetchData = function(surveyId) {
   });
 };
 
-// 3. ლოგიკა მნიშვნელობის დასაბრუნებლად
-if (id) {
+if (id && id.length > 5) {
   var cachedData = window.workSurvCache.data[id];
 
   if (cachedData) {
-    // თუ მონაცემები უკვე გვაქვს ქეშში
     var surveyRow = cachedData[rowIndex];
-    value = (surveyRow && surveyRow[fieldKey] != null) ? surveyRow[fieldKey] : 0;
+    value =
+      surveyRow && typeof surveyRow[fieldKey] !== "undefined"
+        ? surveyRow[fieldKey]
+        : 0;
   } else {
-    // თუ მონაცემები ჯერ არ გვაქვს, ვიწყებთ ჩატვირთვას
-    fetchData(id);
-    value = 0; // დროებითი მნიშვნელობა ჩატვირთვამდე
+    fetchData(id, instance);
+    value = 0;
   }
 } else {
   value = 0;

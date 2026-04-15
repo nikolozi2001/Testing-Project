@@ -1,49 +1,57 @@
 var id = window.location.href.split("/").pop();
-var fieldKey = "compensationOfEmployedPersonnelFemale";
+var fieldKey = instance.component.key;
+
+// 🔧 CONFIG (მხოლოდ ეს შეცვალე საჭიროების მიხედვით)
+var UNIQUE_KEY = "sidCode"; // ან "id", "uuid" და ა.შ.
 
 window.workSurvData = window.workSurvData || {};
-window.workSurvDataPromise = window.workSurvDataPromise || {};
+window._fetchStarted = window._fetchStarted || {};
 
-function getWorkSurveyData(id) {
-  if (window.workSurvData[id]) {
-    return Promise.resolve(window.workSurvData[id]);
-  }
+value = 0;
 
-  if (window.workSurvDataPromise[id]) {
-    return window.workSurvDataPromise[id];
-  }
+// --- FETCH ერთხელ ---
+if (id && !window._fetchStarted[id]) {
+  window._fetchStarted[id] = true;
 
-  window.workSurvDataPromise[id] = fetch("/api/enterprise/prev-work-survey-data?enterpriseSurveyId=" + id, {
-    method: "GET",
+  fetch("/api/enterprise/prev-work-survey-data?enterpriseSurveyId=" + id, {
     headers: {
-      "Accept": "application/json",
-      "Authorization": localStorage.getItem("accessToken"),
+      Authorization: localStorage.getItem("accessToken"),
     }
   })
     .then(res => res.json())
     .then(data => {
-      window.workSurvData[id] = data;
-      return data;
+      console.log("DATA LOADED:", data);
+
+      // 🔥 გადავაქციოთ map-ად (O(1) lookup)
+      var map = {};
+      data.forEach(item => {
+        if (item[UNIQUE_KEY] != null) {
+          map[item[UNIQUE_KEY]] = item;
+        }
+      });
+
+      window.workSurvData[id] = map;
+
+      instance.redraw();
     })
-    .catch(() => {
-      window.workSurvData[id] = [];
-      return [];
+    .catch(err => {
+      console.error("ERROR:", err);
+      window.workSurvData[id] = {};
     });
-
-  return window.workSurvDataPromise[id];
 }
 
-value = 0;
+// --- GET CURRENT ROW ---
+var currentRow = instance.row || instance.data;
 
-if (id && typeof instance.rowIndex !== "undefined") {
-  getWorkSurveyData(id).then(data => {
-    var rowIndex = instance.rowIndex;
-    var surveyRow = data[rowIndex];
+// --- GET MAP ---
+var map = window.workSurvData[id];
 
-    instance.setValue(
-      surveyRow && surveyRow[fieldKey] != null
-        ? surveyRow[fieldKey]
-        : 0
-    );
-  });
-}
+// --- MATCH ---
+var matchedRow = currentRow && map
+  ? map[currentRow[UNIQUE_KEY]]
+  : null;
+
+// --- VALUE ---
+value = matchedRow && matchedRow[fieldKey] != null
+  ? matchedRow[fieldKey]
+  : 0;
