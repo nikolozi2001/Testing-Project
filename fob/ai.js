@@ -1,41 +1,35 @@
-async function checkSurveyValidity() {
-  const pathParts = window.location.pathname.split("/").filter((p) => p !== "");
-  const enterpriseSurveyId = pathParts[pathParts.length - 1];
+var id = window.location.href.split("/").pop();
+window.requiredSurv = window.requiredSurv || { data: {} };
 
-  const key = `surveyPageShow_${enterpriseSurveyId}`;
-
-  if (!window.enterprisePageShowMap) {
-    window.enterprisePageShowMap = new Map();
-  }
-
-  if (!window.enterprisePageShowMap.has(key)) {
-    try {
-      const response = await fetch(
-        `/api/enterprise/get-survey-page-show-param/${enterpriseSurveyId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) throw new Error("Failed to fetch");
-
-      const data = await response.json();
-      window.enterprisePageShowMap.set(key, data);
-    } catch (err) {
-      console.error("Error fetching survey data:", err);
-      instance.setValue(false);
-      return;
-    }
-  }
-
-  const value = String(window.enterprisePageShowMap.get(key));
-  const isValid = value !== "2";
-
-  instance.setValue(isValid);
+if (id && id.length > 5 && !window.requiredSurv.data[id]) {
+  $.ajax({
+    url: "/api/enterprise/get-survey-page-show-param/" + id,
+    method: "GET",
+    async: false,
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("accessToken"),
+    },
+    success: function (res) {
+      window.requiredSurv.data[id] = res;
+    },
+    error: function () {
+      window.requiredSurv.data[id] = "error";
+    },
+  });
 }
 
-checkSurveyValidity();
+var cachedData = window.requiredSurv.data[id];
+var status = String(cachedData?.pageShowParam || cachedData);
+var grid = data.page2EditGrid_collapsed || [];
+
+var hasTransport = grid.some(function(row) {
+    var transport = row.page2EditGridTable?.shipmentTransportType?.value || row.shipmentTransportType;
+    return !!transport;
+});
+
+result = (status === "3" && hasTransport === false);
+
+console.log("Status:", status);
+console.log("Has Transport:", hasTransport);
+console.log("Result (Is Required?):", result);
