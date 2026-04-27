@@ -22,14 +22,21 @@ if (id && id.length > 5 && !window.requiredSurv.data[id]) {
 var cachedData = window.requiredSurv.data[id];
 var status = String(cachedData?.pageShowParam || cachedData);
 var grid = data.page2EditGrid_collapsed || [];
+const note = data['page4']
 
 var hasTransport = grid.some(function(row) {
     var transport = row.page2EditGridTable?.shipmentTransportType?.value || row.shipmentTransportType;
     return !!transport;
 });
 
-result = (status === "3" && hasTransport === false);
+var hasNote = note && note.trim() !== "";
+console.log("Has Note:", hasNote);
+
+
+result = (status === "3" && hasTransport === false && !hasNote);
+
 
 console.log("Status:", status);
 console.log("Has Transport:", hasTransport);
+console.log("Note:", note);
 console.log("Result (Is Required?):", result);
