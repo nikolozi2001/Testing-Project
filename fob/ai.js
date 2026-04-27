@@ -33,7 +33,7 @@ var hasNote = note && note.trim() !== "";
 console.log("Has Note:", hasNote);
 
 
-result = (status === "3" && hasTransport === false && !hasNote);
+result = ( (status === "3" || status === "2") && !hasTransport && !hasNote );
 
 
 console.log("Status:", status);
