@@ -1,0 +1,21 @@
+"logic": [
+                                        {
+                                            "name": "disCheck",
+                                            "trigger": {
+                                                "type": "javascript",
+                                                "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
+                                            },
+                                            "actions": [
+                                                {
+                                                    "name": "disable",
+                                                    "type": "property",
+                                                    "property": {
+                                                        "label": "Disabled",
+                                                        "value": "disabled",
+                                                        "type": "boolean"
+                                                    },
+                                                    "state": true
+                                                }
+                                            ]
+                                        }
+                                    ]
