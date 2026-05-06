@@ -43,7 +43,7 @@
             "label": "Form View Init",
             "tags": [],
             "properties": {},
-            "customDefaultValue": "const formView = sessionStorage.getItem('formview');\nif (formView === 'true') {\n  setTimeout(function() {\n\n    function disableComponent(comp) {\n      if (comp.type !== 'button') {\n        comp.component.disabled = true;\n        comp.disabled = true;\n      }\n    }\n\n    // ყველა კომპონენტი (table-ის გარდა)\n    instance.root.everyComponent(function(comp) {\n      disableComponent(comp);\n    });\n\n    // table-ების rows -> cells -> components\n    instance.root.everyComponent(function(comp) {\n      if (comp.type === 'table' && comp.rows) {\n        comp.rows.forEach(function(row) {\n          row.forEach(function(cell) {\n            if (cell.components) {\n              cell.components.forEach(function(c) {\n                disableComponent(c);\n              });\n            }\n          });\n        });\n      }\n    });\n\n  }, 0);\n}\nvalue = formView || '';"
+            "customDefaultValue": "const formView = sessionStorage.getItem('formview');\nif (formView === 'true') {\n  setTimeout(function() {\n\n    const skipTypes = [\n      'button', 'panel', 'columns', 'column', 'table',\n      'well', 'tabs', 'fieldset', 'datagrid', 'editgrid',\n      'container', 'form'\n    ];\n\n    const excludeKeys = ['printButton', 'header_home_button_5'];\n\n    function disableComponent(comp) {\n      const type = comp.component ? comp.component.type : comp.type;\n      const key  = comp.component ? comp.component.key  : comp.key;\n      if (!skipTypes.includes(type) && !excludeKeys.includes(key)) {\n        comp.component.disabled = true;\n        comp.disabled = true;\n      }\n    }\n\n    // ყველა კომპონენტი\n    instance.root.everyComponent(function(comp) {\n      disableComponent(comp);\n    });\n\n    // table-ების rows -> cells -> components\n    instance.root.everyComponent(function(comp) {\n      if (comp.type === 'table' && comp.rows) {\n        comp.rows.forEach(function(row) {\n          row.forEach(function(cell) {\n            if (cell.components) {\n              cell.components.forEach(function(c) {\n                disableComponent(c);\n              });\n            }\n          });\n        });\n      }\n    });\n\n  }, 0);\n}\nvalue = formView || '';"
         },
         {
             "type": "panel",
@@ -14958,26 +14958,26 @@
                     "customConditional": "var authority = localStorage.getItem(\"authority\");\r\nshow = false;\r\n\r\nif (authority !== \"ENTERPRISE\") {\r\n  show = true;\r\n} else {\r\n  show = false;\r\n}\r\n",
                     "lockKey": true,
                     "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                        {
+                            "name": "disCheck",
+                            "trigger": {
+                                "type": "javascript",
+                                "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
+                            },
+                            "actions": [
+                                {
+                                    "name": "disable",
+                                    "type": "property",
+                                    "property": {
+                                        "label": "Disabled",
+                                        "value": "disabled",
+                                        "type": "boolean"
+                                    },
+                                    "state": true
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "clearOnHide": false,
