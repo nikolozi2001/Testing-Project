@@ -178,28 +178,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -295,28 +274,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -412,28 +370,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -529,28 +466,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -646,28 +562,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -757,28 +652,7 @@
                                             "when": null,
                                             "eq": ""
                                         },
-                                        "properties": {},
-                                        "logic": [
-                                            {
-                                                "name": "disCheck",
-                                                "trigger": {
-                                                    "type": "javascript",
-                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                },
-                                                "actions": [
-                                                    {
-                                                        "name": "disable",
-                                                        "type": "property",
-                                                        "property": {
-                                                            "label": "Disabled",
-                                                            "value": "disabled",
-                                                            "type": "boolean"
-                                                        },
-                                                        "state": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        "properties": {}
                                     }
                                 ]
                             },
@@ -1533,28 +1407,7 @@
                                                     "when": null,
                                                     "eq": ""
                                                 },
-                                                "properties": {},
-                                                "logic": [
-                                                    {
-                                                        "name": "disCheck",
-                                                        "trigger": {
-                                                            "type": "javascript",
-                                                            "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                        },
-                                                        "actions": [
-                                                            {
-                                                                "name": "disable",
-                                                                "type": "property",
-                                                                "property": {
-                                                                    "label": "Disabled",
-                                                                    "value": "disabled",
-                                                                    "type": "boolean"
-                                                                },
-                                                                "state": true
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
+                                                "properties": {}
                                             },
                                             {
                                                 "autofocus": false,
@@ -2032,28 +1885,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2080,28 +1912,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             }
@@ -2130,28 +1941,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2196,28 +1986,7 @@
                                                         "lockKey": true,
                                                         "hideLabel": true,
                                                         "disabled": true,
-                                                        "calculateValue": "var id = window.location.href.split(\"/\").pop();\r\nvar fieldKey = \"compensationOfEmployedPersonnel\";\r\nvar rowIndex = instance.rowIndex;\r\n\r\nwindow.workSurvCache = window.workSurvCache || {\r\n  data: {},\r\n  loading: {},\r\n};\r\n\r\nvar fetchData = function (surveyId, componentInstance) {\r\n  if (\r\n    window.workSurvCache.loading[surveyId] ||\r\n    window.workSurvCache.data[surveyId]\r\n  ) {\r\n    return;\r\n  }\r\n\r\n  window.workSurvCache.loading[surveyId] = true;\r\n\r\n  $.ajax({\r\n    url: \"/api/enterprise/prev-work-survey-data?enterpriseSurveyId=\" + surveyId,\r\n    method: \"GET\",\r\n    headers: {\r\n      Accept: \"application/json\",\r\n      Authorization: localStorage.getItem(\"accessToken\"),\r\n    },\r\n    success: function (res) {\r\n      window.workSurvCache.data[surveyId] = res;\r\n      window.workSurvCache.loading[surveyId] = false;\r\n\r\n      setTimeout(function () {\r\n        if (componentInstance) {\r\n          componentInstance.updateValue();\r\n        }\r\n      }, 100);\r\n    },\r\n    error: function () {\r\n      window.workSurvCache.data[surveyId] = [];\r\n      window.workSurvCache.loading[surveyId] = false;\r\n    },\r\n  });\r\n};\r\n\r\nif (id && id.length > 5) {\r\n  var cachedData = window.workSurvCache.data[id];\r\n\r\n  if (cachedData) {\r\n    var surveyRow = cachedData[rowIndex];\r\n    value =\r\n      surveyRow && typeof surveyRow[fieldKey] !== \"undefined\"\r\n        ? surveyRow[fieldKey]\r\n        : 0;\r\n  } else {\r\n    fetchData(id, instance);\r\n    value = 0;\r\n  }\r\n} else {\r\n  value = 0;\r\n}\r\n",
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "calculateValue": "var id = window.location.href.split(\"/\").pop();\r\nvar fieldKey = \"compensationOfEmployedPersonnel\";\r\nvar rowIndex = instance.rowIndex;\r\n\r\nwindow.workSurvCache = window.workSurvCache || {\r\n  data: {},\r\n  loading: {},\r\n};\r\n\r\nvar fetchData = function (surveyId, componentInstance) {\r\n  if (\r\n    window.workSurvCache.loading[surveyId] ||\r\n    window.workSurvCache.data[surveyId]\r\n  ) {\r\n    return;\r\n  }\r\n\r\n  window.workSurvCache.loading[surveyId] = true;\r\n\r\n  $.ajax({\r\n    url: \"/api/enterprise/prev-work-survey-data?enterpriseSurveyId=\" + surveyId,\r\n    method: \"GET\",\r\n    headers: {\r\n      Accept: \"application/json\",\r\n      Authorization: localStorage.getItem(\"accessToken\"),\r\n    },\r\n    success: function (res) {\r\n      window.workSurvCache.data[surveyId] = res;\r\n      window.workSurvCache.loading[surveyId] = false;\r\n\r\n      setTimeout(function () {\r\n        if (componentInstance) {\r\n          componentInstance.updateValue();\r\n        }\r\n      }, 100);\r\n    },\r\n    error: function () {\r\n      window.workSurvCache.data[surveyId] = [];\r\n      window.workSurvCache.loading[surveyId] = false;\r\n    },\r\n  });\r\n};\r\n\r\nif (id && id.length > 5) {\r\n  var cachedData = window.workSurvCache.data[id];\r\n\r\n  if (cachedData) {\r\n    var surveyRow = cachedData[rowIndex];\r\n    value =\r\n      surveyRow && typeof surveyRow[fieldKey] !== \"undefined\"\r\n        ? surveyRow[fieldKey]\r\n        : 0;\r\n  } else {\r\n    fetchData(id, instance);\r\n    value = 0;\r\n  }\r\n} else {\r\n  value = 0;\r\n}\r\n"
                                                     }
                                                 ]
                                             }
@@ -2246,28 +2015,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2294,28 +2042,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -2358,28 +2085,7 @@
                                                         "disabled": true,
                                                         "calculateValue": "let sum = 0;\r\nfor (let i = 11; i <= 14; i += 1) {\r\n  let preValue = parseFloat(row[`p1t1n${i}`]);\r\n  if (isNaN(preValue)) {\r\n    preValue = 0;\r\n  }\r\n  sum += preValue;\r\n}\r\n\r\nsum = sum.toFixed(2);\r\n\r\nvalue = sum === 0 ? \"\" : sum;\r\n",
                                                         "hideLabel": true,
-                                                        "tooltip": "",
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "tooltip": ""
                                                     }
                                                 ]
                                             }
@@ -2408,28 +2114,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2456,28 +2141,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -2519,28 +2183,7 @@
                                                         "properties": {},
                                                         "lockKey": true,
                                                         "hideLabel": true,
-                                                        "tooltip": "",
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "tooltip": ""
                                                     }
                                                 ]
                                             }
@@ -2569,28 +2212,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2617,28 +2239,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -2679,28 +2280,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -2729,28 +2309,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2777,28 +2336,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -2839,28 +2377,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -2889,28 +2406,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -2937,28 +2433,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -2999,28 +2474,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3049,28 +2503,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3097,28 +2530,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3159,28 +2571,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3209,28 +2600,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3257,28 +2627,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3319,28 +2668,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3369,28 +2697,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3417,28 +2724,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3479,28 +2765,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3529,28 +2794,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3577,28 +2821,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3639,28 +2862,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3689,28 +2891,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3737,28 +2918,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3799,28 +2959,7 @@
                                                         },
                                                         "properties": {},
                                                         "lockKey": true,
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             }
@@ -3849,28 +2988,7 @@
                                                             "when": null,
                                                             "eq": ""
                                                         },
-                                                        "properties": {},
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "properties": {}
                                                     }
                                                 ]
                                             },
@@ -3897,28 +3015,7 @@
                                                             "eq": ""
                                                         },
                                                         "properties": {},
-                                                        "hideLabel": true,
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "hideLabel": true
                                                     }
                                                 ]
                                             },
@@ -3961,28 +3058,7 @@
                                                         "lockKey": true,
                                                         "hideLabel": true,
                                                         "disabled": true,
-                                                        "calculateValue": "let sum = 0;\r\n\r\nconst fields = [\r\n  \"p1t1n10\",\r\n  \"p1t1n15\",\r\n  \"p1t1n16\",\r\n  \"p1t1n17\",\r\n  \"p1t1n18\",\r\n  \"p1t1n19\",\r\n];\r\n\r\nfields.forEach((key) => {\r\n  let preValue = parseFloat(row[key]);\r\n\r\n  if (isNaN(preValue)) {\r\n    preValue = 0;\r\n  }\r\n\r\n  sum += preValue;\r\n});\r\n\r\nsum = sum.toFixed(2);\r\n\r\nvalue = sum === \"0.00\" ? \"\" : sum;\r\n",
-                                                        "logic": [
-                                                            {
-                                                                "name": "disCheck",
-                                                                "trigger": {
-                                                                    "type": "javascript",
-                                                                    "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
-                                                                },
-                                                                "actions": [
-                                                                    {
-                                                                        "name": "disable",
-                                                                        "type": "property",
-                                                                        "property": {
-                                                                            "label": "Disabled",
-                                                                            "value": "disabled",
-                                                                            "type": "boolean"
-                                                                        },
-                                                                        "state": true
-                                                                    }
-                                                                ]
-                                                            }
-                                                        ]
+                                                        "calculateValue": "let sum = 0;\r\n\r\nconst fields = [\r\n  \"p1t1n10\",\r\n  \"p1t1n15\",\r\n  \"p1t1n16\",\r\n  \"p1t1n17\",\r\n  \"p1t1n18\",\r\n  \"p1t1n19\",\r\n];\r\n\r\nfields.forEach((key) => {\r\n  let preValue = parseFloat(row[key]);\r\n\r\n  if (isNaN(preValue)) {\r\n    preValue = 0;\r\n  }\r\n\r\n  sum += preValue;\r\n});\r\n\r\nsum = sum.toFixed(2);\r\n\r\nvalue = sum === \"0.00\" ? \"\" : sum;\r\n"
                                                     }
                                                 ]
                                             }
