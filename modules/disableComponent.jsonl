@@ -1,0 +1,9 @@
+{
+            "type": "hidden",
+            "key": "formViewInit",
+            "input": true,
+            "label": "Form View Init",
+            "tags": [],
+            "properties": {},
+            "customDefaultValue": "const formView = sessionStorage.getItem('formview');\nif (formView === 'true') {\n  setTimeout(function() {\n    instance.root.everyComponent(function(component) {\n      if (component.type !== 'button') {\n        component.disabled = true;\n      }\n    });\n  }, 0);\n}\nvalue = formView || '';"
+        },
