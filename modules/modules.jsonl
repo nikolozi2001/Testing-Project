@@ -14508,7 +14508,28 @@
                     "hideLabel": true,
                     "addAnother": "დამატება",
                     "saveRow": "შენხვა/აკეცვა",
-                    "removeRow": "დახურვა"
+                    "removeRow": "დახურვა",
+                    "logic": [
+                        {
+                            "name": "disCheck",
+                            "trigger": {
+                                "type": "javascript",
+                                "javascript": "result = false;\r\n\r\nconst formView = sessionStorage.getItem(\"formview\");\r\n\r\nif (formView === \"true\") {\r\n  result = true;\r\n} else {\r\n  result = false;\r\n}\r\n\r\n"
+                            },
+                            "actions": [
+                                {
+                                    "name": "editGridAction",
+                                    "type": "property",
+                                    "property": {
+                                        "label": "Container Custom Class",
+                                        "value": "customClass",
+                                        "type": "string"
+                                    },
+                                    "text": "hidden_button disable_editgrid"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "clearOnHide": false,
