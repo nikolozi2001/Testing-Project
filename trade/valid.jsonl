@@ -1,0 +1,21 @@
+"logic": [
+  {
+    "name": "disCheck",
+    "trigger": {
+      "type": "javascript",
+      "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nfor (let i = 0; i < data.page2SaqonlisRemonti.length; i++) {\n  const country = data.page2SaqonlisRemonti[i].page45;\n  const currency = data.page2SaqonlisRemonti[i].page7;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    result = true;\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}"
+    },
+    "actions": [
+      {
+        "name": "disable",
+        "type": "property",
+        "property": {
+          "label": "Disabled",
+          "value": "disabled",
+          "type": "boolean"
+        },
+        "state": true
+      }
+    ]
+  }
+]

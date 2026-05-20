@@ -1368,8 +1368,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2SaqonlisRemonti.length; i++) {\n  const country = data.page2SaqonlisRemonti[i][\"page45\"].value;\n  const currency = data.page2SaqonlisRemonti[i][\"page7\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -1407,7 +1406,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": ""
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2SaqonlisRemonti) {\n  for (let i = 0; i < data.page2SaqonlisRemonti.length; i++) {\n    var country = data.page2SaqonlisRemonti[i].page45 && typeof data.page2SaqonlisRemonti[i].page45 === \"object\" ? data.page2SaqonlisRemonti[i].page45.value : data.page2SaqonlisRemonti[i].page45;\n    var currency = data.page2SaqonlisRemonti[i].page7 && typeof data.page2SaqonlisRemonti[i].page7 === \"object\" ? data.page2SaqonlisRemonti[i].page7.value : data.page2SaqonlisRemonti[i].page7;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
                             },
                             "type": "number",
                             "inDataGrid": true,
@@ -1419,7 +1418,28 @@
                                 "eq": ""
                             },
                             "properties": {},
-                            "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა."
+                            "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2SaqonlisRemonti) {\n  for (let i = 0; i < data.page2SaqonlisRemonti.length; i++) {\n    var country = data.page2SaqonlisRemonti[i].page45 && typeof data.page2SaqonlisRemonti[i].page45 === \"object\" ? data.page2SaqonlisRemonti[i].page45.value : data.page2SaqonlisRemonti[i].page45;\n    var currency = data.page2SaqonlisRemonti[i].page7 && typeof data.page2SaqonlisRemonti[i].page7 === \"object\" ? data.page2SaqonlisRemonti[i].page7.value : data.page2SaqonlisRemonti[i].page7;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -1541,8 +1561,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2SazgvaoMoms.length; i++) {\n  const service = data.page2SazgvaoMoms[i][\"sazgvao_momsaxurebis_saxe\"];\n  const country = data.page2SazgvaoMoms[i][\"page46\"].value;\n  const currency = data.page2SazgvaoMoms[i][\"page13\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -1689,7 +1708,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2SazgvaoMoms) {\n  for (let i = 0; i < data.page2SazgvaoMoms.length; i++) {\n    var service = data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe && typeof data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe === \"object\" ? data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe.value : data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe;\n    var country = data.page2SazgvaoMoms[i].page46 && typeof data.page2SazgvaoMoms[i].page46 === \"object\" ? data.page2SazgvaoMoms[i].page46.value : data.page2SazgvaoMoms[i].page46;\n    var currency = data.page2SazgvaoMoms[i].page13 && typeof data.page2SazgvaoMoms[i].page13 === \"object\" ? data.page2SazgvaoMoms[i].page13.value : data.page2SazgvaoMoms[i].page13;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -1704,7 +1723,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2SazgvaoMoms) {\n  for (let i = 0; i < data.page2SazgvaoMoms.length; i++) {\n    var service = data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe && typeof data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe === \"object\" ? data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe.value : data.page2SazgvaoMoms[i].sazgvao_momsaxurebis_saxe;\n    var country = data.page2SazgvaoMoms[i].page46 && typeof data.page2SazgvaoMoms[i].page46 === \"object\" ? data.page2SazgvaoMoms[i].page46.value : data.page2SazgvaoMoms[i].page46;\n    var currency = data.page2SazgvaoMoms[i].page13 && typeof data.page2SazgvaoMoms[i].page13 === \"object\" ? data.page2SazgvaoMoms[i].page13.value : data.page2SazgvaoMoms[i].page13;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -1827,8 +1867,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2SahaeroMoms.length; i++) {\n  const service = data.page2SahaeroMoms[i][\"sahaero_saxe\"];\n  const country = data.page2SahaeroMoms[i][\"page47\"].value;\n  const currency = data.page2SahaeroMoms[i][\"page19\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -1976,7 +2015,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2SahaeroMoms) {\n  for (let i = 0; i < data.page2SahaeroMoms.length; i++) {\n    var service = data.page2SahaeroMoms[i].sahaero_saxe && typeof data.page2SahaeroMoms[i].sahaero_saxe === \"object\" ? data.page2SahaeroMoms[i].sahaero_saxe.value : data.page2SahaeroMoms[i].sahaero_saxe;\n    var country = data.page2SahaeroMoms[i].page47 && typeof data.page2SahaeroMoms[i].page47 === \"object\" ? data.page2SahaeroMoms[i].page47.value : data.page2SahaeroMoms[i].page47;\n    var currency = data.page2SahaeroMoms[i].page19 && typeof data.page2SahaeroMoms[i].page19 === \"object\" ? data.page2SahaeroMoms[i].page19.value : data.page2SahaeroMoms[i].page19;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -1990,7 +2029,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2SahaeroMoms) {\n  for (let i = 0; i < data.page2SahaeroMoms.length; i++) {\n    var service = data.page2SahaeroMoms[i].sahaero_saxe && typeof data.page2SahaeroMoms[i].sahaero_saxe === \"object\" ? data.page2SahaeroMoms[i].sahaero_saxe.value : data.page2SahaeroMoms[i].sahaero_saxe;\n    var country = data.page2SahaeroMoms[i].page47 && typeof data.page2SahaeroMoms[i].page47 === \"object\" ? data.page2SahaeroMoms[i].page47.value : data.page2SahaeroMoms[i].page47;\n    var currency = data.page2SahaeroMoms[i].page19 && typeof data.page2SahaeroMoms[i].page19 === \"object\" ? data.page2SahaeroMoms[i].page19.value : data.page2SahaeroMoms[i].page19;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -2478,8 +2538,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2Sarkinigzo.length; i++) {\n  const service = data.page2Sarkinigzo[i][\"sarkinigzo_mSaxe\"];\n  const country = data.page2Sarkinigzo[i][\"page49\"].value;\n  const currency = data.page2Sarkinigzo[i][\"page31\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -2572,7 +2631,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2Sarkinigzo) {\n  for (let i = 0; i < data.page2Sarkinigzo.length; i++) {\n    var service = data.page2Sarkinigzo[i].sarkinigzo_mSaxe && typeof data.page2Sarkinigzo[i].sarkinigzo_mSaxe === \"object\" ? data.page2Sarkinigzo[i].sarkinigzo_mSaxe.value : data.page2Sarkinigzo[i].sarkinigzo_mSaxe;\n    var country = data.page2Sarkinigzo[i].page49 && typeof data.page2Sarkinigzo[i].page49 === \"object\" ? data.page2Sarkinigzo[i].page49.value : data.page2Sarkinigzo[i].page49;\n    var currency = data.page2Sarkinigzo[i].page31 && typeof data.page2Sarkinigzo[i].page31 === \"object\" ? data.page2Sarkinigzo[i].page31.value : data.page2Sarkinigzo[i].page31;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -2587,7 +2646,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2Sarkinigzo) {\n  for (let i = 0; i < data.page2Sarkinigzo.length; i++) {\n    var service = data.page2Sarkinigzo[i].sarkinigzo_mSaxe && typeof data.page2Sarkinigzo[i].sarkinigzo_mSaxe === \"object\" ? data.page2Sarkinigzo[i].sarkinigzo_mSaxe.value : data.page2Sarkinigzo[i].sarkinigzo_mSaxe;\n    var country = data.page2Sarkinigzo[i].page49 && typeof data.page2Sarkinigzo[i].page49 === \"object\" ? data.page2Sarkinigzo[i].page49.value : data.page2Sarkinigzo[i].page49;\n    var currency = data.page2Sarkinigzo[i].page31 && typeof data.page2Sarkinigzo[i].page31 === \"object\" ? data.page2Sarkinigzo[i].page31.value : data.page2Sarkinigzo[i].page31;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -2814,8 +2894,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2DanarcheniSaxeobebi.length; i++) {\n  const service = data.page2DanarcheniSaxeobebi[i][\"danarcheni_saxeobebi_saxe\"];\n  const country = data.page2DanarcheniSaxeobebi[i][\"page50\"].value;\n  const currency = data.page2DanarcheniSaxeobebi[i][\"page37\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -2853,7 +2932,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": ""
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2DanarcheniSaxeobebi) {\n  for (let i = 0; i < data.page2DanarcheniSaxeobebi.length; i++) {\n    var service = data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe && typeof data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe === \"object\" ? data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe.value : data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe;\n    var country = data.page2DanarcheniSaxeobebi[i].page50 && typeof data.page2DanarcheniSaxeobebi[i].page50 === \"object\" ? data.page2DanarcheniSaxeobebi[i].page50.value : data.page2DanarcheniSaxeobebi[i].page50;\n    var currency = data.page2DanarcheniSaxeobebi[i].page37 && typeof data.page2DanarcheniSaxeobebi[i].page37 === \"object\" ? data.page2DanarcheniSaxeobebi[i].page37.value : data.page2DanarcheniSaxeobebi[i].page37;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
                             },
                             "type": "number",
                             "inDataGrid": true,
@@ -2866,7 +2945,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2DanarcheniSaxeobebi) {\n  for (let i = 0; i < data.page2DanarcheniSaxeobebi.length; i++) {\n    var service = data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe && typeof data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe === \"object\" ? data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe.value : data.page2DanarcheniSaxeobebi[i].danarcheni_saxeobebi_saxe;\n    var country = data.page2DanarcheniSaxeobebi[i].page50 && typeof data.page2DanarcheniSaxeobebi[i].page50 === \"object\" ? data.page2DanarcheniSaxeobebi[i].page50.value : data.page2DanarcheniSaxeobebi[i].page50;\n    var currency = data.page2DanarcheniSaxeobebi[i].page37 && typeof data.page2DanarcheniSaxeobebi[i].page37 === \"object\" ? data.page2DanarcheniSaxeobebi[i].page37.value : data.page2DanarcheniSaxeobebi[i].page37;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -3054,8 +3154,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2SafostoSakuriero.length; i++) {\n  const country = data.page2SafostoSakuriero[i][\"page51\"].value;\n  const currency = data.page2SafostoSakuriero[i][\"page43\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -3093,7 +3192,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2SafostoSakuriero) {\n  for (let i = 0; i < data.page2SafostoSakuriero.length; i++) {\n    var country = data.page2SafostoSakuriero[i].page51 && typeof data.page2SafostoSakuriero[i].page51 === \"object\" ? data.page2SafostoSakuriero[i].page51.value : data.page2SafostoSakuriero[i].page51;\n    var currency = data.page2SafostoSakuriero[i].page43 && typeof data.page2SafostoSakuriero[i].page43 === \"object\" ? data.page2SafostoSakuriero[i].page43.value : data.page2SafostoSakuriero[i].page43;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -3107,7 +3206,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2SafostoSakuriero) {\n  for (let i = 0; i < data.page2SafostoSakuriero.length; i++) {\n    var country = data.page2SafostoSakuriero[i].page51 && typeof data.page2SafostoSakuriero[i].page51 === \"object\" ? data.page2SafostoSakuriero[i].page51.value : data.page2SafostoSakuriero[i].page51;\n    var currency = data.page2SafostoSakuriero[i].page43 && typeof data.page2SafostoSakuriero[i].page43 === \"object\" ? data.page2SafostoSakuriero[i].page43.value : data.page2SafostoSakuriero[i].page43;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -3224,8 +3344,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2Mogzauroba.length; i++) {\n  const service = data.page2Mogzauroba[i][\"mogzauroba_saxe\"];\n  const country = data.page2Mogzauroba[i][\"page54\"].value;\n  const currency = data.page2Mogzauroba[i][\"page55\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -3373,7 +3492,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2Mogzauroba) {\n  for (let i = 0; i < data.page2Mogzauroba.length; i++) {\n    var service = data.page2Mogzauroba[i].mogzauroba_saxe && typeof data.page2Mogzauroba[i].mogzauroba_saxe === \"object\" ? data.page2Mogzauroba[i].mogzauroba_saxe.value : data.page2Mogzauroba[i].mogzauroba_saxe;\n    var country = data.page2Mogzauroba[i].page54 && typeof data.page2Mogzauroba[i].page54 === \"object\" ? data.page2Mogzauroba[i].page54.value : data.page2Mogzauroba[i].page54;\n    var currency = data.page2Mogzauroba[i].page55 && typeof data.page2Mogzauroba[i].page55 === \"object\" ? data.page2Mogzauroba[i].page55.value : data.page2Mogzauroba[i].page55;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -3387,7 +3506,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2Mogzauroba) {\n  for (let i = 0; i < data.page2Mogzauroba.length; i++) {\n    var service = data.page2Mogzauroba[i].mogzauroba_saxe && typeof data.page2Mogzauroba[i].mogzauroba_saxe === \"object\" ? data.page2Mogzauroba[i].mogzauroba_saxe.value : data.page2Mogzauroba[i].mogzauroba_saxe;\n    var country = data.page2Mogzauroba[i].page54 && typeof data.page2Mogzauroba[i].page54 === \"object\" ? data.page2Mogzauroba[i].page54.value : data.page2Mogzauroba[i].page54;\n    var currency = data.page2Mogzauroba[i].page55 && typeof data.page2Mogzauroba[i].page55 === \"object\" ? data.page2Mogzauroba[i].page55.value : data.page2Mogzauroba[i].page55;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -3619,8 +3759,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2msheneblobaSazgvargaret.length; i++) {\n  const service = data.page2msheneblobaSazgvargaret[i][\"mshenebloba_mSaxe\"];\n  const country = data.page2msheneblobaSazgvargaret[i][\"page60\"].value;\n  const currency = data.page2msheneblobaSazgvargaret[i][\"page61\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -3658,7 +3797,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2msheneblobaSazgvargaret) {\n  for (let i = 0; i < data.page2msheneblobaSazgvargaret.length; i++) {\n    var service = data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe && typeof data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe === \"object\" ? data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe.value : data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe;\n    var country = data.page2msheneblobaSazgvargaret[i].page60 && typeof data.page2msheneblobaSazgvargaret[i].page60 === \"object\" ? data.page2msheneblobaSazgvargaret[i].page60.value : data.page2msheneblobaSazgvargaret[i].page60;\n    var currency = data.page2msheneblobaSazgvargaret[i].page61 && typeof data.page2msheneblobaSazgvargaret[i].page61 === \"object\" ? data.page2msheneblobaSazgvargaret[i].page61.value : data.page2msheneblobaSazgvargaret[i].page61;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -3673,7 +3812,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2msheneblobaSazgvargaret) {\n  for (let i = 0; i < data.page2msheneblobaSazgvargaret.length; i++) {\n    var service = data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe && typeof data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe === \"object\" ? data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe.value : data.page2msheneblobaSazgvargaret[i].mshenebloba_mSaxe;\n    var country = data.page2msheneblobaSazgvargaret[i].page60 && typeof data.page2msheneblobaSazgvargaret[i].page60 === \"object\" ? data.page2msheneblobaSazgvargaret[i].page60.value : data.page2msheneblobaSazgvargaret[i].page60;\n    var currency = data.page2msheneblobaSazgvargaret[i].page61 && typeof data.page2msheneblobaSazgvargaret[i].page61 === \"object\" ? data.page2msheneblobaSazgvargaret[i].page61.value : data.page2msheneblobaSazgvargaret[i].page61;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -3861,8 +4021,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2msheneblobaArarezidenti.length; i++) {\n  const country = data.page2msheneblobaArarezidenti[i][\"page66\"].value;\n  const currency = data.page2msheneblobaArarezidenti[i][\"page67\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -3899,7 +4058,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2msheneblobaArarezidenti) {\n  for (let i = 0; i < data.page2msheneblobaArarezidenti.length; i++) {\n    var country = data.page2msheneblobaArarezidenti[i].page66 && typeof data.page2msheneblobaArarezidenti[i].page66 === \"object\" ? data.page2msheneblobaArarezidenti[i].page66.value : data.page2msheneblobaArarezidenti[i].page66;\n    var currency = data.page2msheneblobaArarezidenti[i].page67 && typeof data.page2msheneblobaArarezidenti[i].page67 === \"object\" ? data.page2msheneblobaArarezidenti[i].page67.value : data.page2msheneblobaArarezidenti[i].page67;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -3913,7 +4072,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2msheneblobaArarezidenti) {\n  for (let i = 0; i < data.page2msheneblobaArarezidenti.length; i++) {\n    var country = data.page2msheneblobaArarezidenti[i].page66 && typeof data.page2msheneblobaArarezidenti[i].page66 === \"object\" ? data.page2msheneblobaArarezidenti[i].page66.value : data.page2msheneblobaArarezidenti[i].page66;\n    var currency = data.page2msheneblobaArarezidenti[i].page67 && typeof data.page2msheneblobaArarezidenti[i].page67 === \"object\" ? data.page2msheneblobaArarezidenti[i].page67.value : data.page2msheneblobaArarezidenti[i].page67;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -4101,8 +4281,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2finansuriMoms.length; i++) {\n  const country = data.page2finansuriMoms[i][\"page72\"].value;\n  const currency = data.page2finansuriMoms[i][\"page73\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -4139,7 +4318,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2finansuriMoms) {\n  for (let i = 0; i < data.page2finansuriMoms.length; i++) {\n    var country = data.page2finansuriMoms[i].page72 && typeof data.page2finansuriMoms[i].page72 === \"object\" ? data.page2finansuriMoms[i].page72.value : data.page2finansuriMoms[i].page72;\n    var currency = data.page2finansuriMoms[i].page73 && typeof data.page2finansuriMoms[i].page73 === \"object\" ? data.page2finansuriMoms[i].page73.value : data.page2finansuriMoms[i].page73;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -4153,7 +4332,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2finansuriMoms) {\n  for (let i = 0; i < data.page2finansuriMoms.length; i++) {\n    var country = data.page2finansuriMoms[i].page72 && typeof data.page2finansuriMoms[i].page72 === \"object\" ? data.page2finansuriMoms[i].page72.value : data.page2finansuriMoms[i].page72;\n    var currency = data.page2finansuriMoms[i].page73 && typeof data.page2finansuriMoms[i].page73 === \"object\" ? data.page2finansuriMoms[i].page73.value : data.page2finansuriMoms[i].page73;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -4381,8 +4581,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2InteleqtualuriSakutreba.length; i++) {\n  const service = data.page2InteleqtualuriSakutreba[i][\"page2InteleqtualuriSakutreba_saxe\"];\n  const country = data.page2InteleqtualuriSakutreba[i][\"page78\"].value;\n  const currency = data.page2InteleqtualuriSakutreba[i][\"page79\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -4420,7 +4619,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2InteleqtualuriSakutreba) {\n  for (let i = 0; i < data.page2InteleqtualuriSakutreba.length; i++) {\n    var service = data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe && typeof data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe === \"object\" ? data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe.value : data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe;\n    var country = data.page2InteleqtualuriSakutreba[i].page78 && typeof data.page2InteleqtualuriSakutreba[i].page78 === \"object\" ? data.page2InteleqtualuriSakutreba[i].page78.value : data.page2InteleqtualuriSakutreba[i].page78;\n    var currency = data.page2InteleqtualuriSakutreba[i].page79 && typeof data.page2InteleqtualuriSakutreba[i].page79 === \"object\" ? data.page2InteleqtualuriSakutreba[i].page79.value : data.page2InteleqtualuriSakutreba[i].page79;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -4434,7 +4633,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2InteleqtualuriSakutreba) {\n  for (let i = 0; i < data.page2InteleqtualuriSakutreba.length; i++) {\n    var service = data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe && typeof data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe === \"object\" ? data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe.value : data.page2InteleqtualuriSakutreba[i].page2InteleqtualuriSakutreba_saxe;\n    var country = data.page2InteleqtualuriSakutreba[i].page78 && typeof data.page2InteleqtualuriSakutreba[i].page78 === \"object\" ? data.page2InteleqtualuriSakutreba[i].page78.value : data.page2InteleqtualuriSakutreba[i].page78;\n    var currency = data.page2InteleqtualuriSakutreba[i].page79 && typeof data.page2InteleqtualuriSakutreba[i].page79 === \"object\" ? data.page2InteleqtualuriSakutreba[i].page79.value : data.page2InteleqtualuriSakutreba[i].page79;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -4667,8 +4887,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2sat_komp_sai_moms.length; i++) {\n  const service = data.page2sat_komp_sai_moms[i][\"page2sat_komp_sai_moms_saxe\"];\n  const country = data.page2sat_komp_sai_moms[i][\"page84\"].value;\n  const currency = data.page2sat_komp_sai_moms[i][\"page85\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -4706,7 +4925,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2sat_komp_sai_moms) {\n  for (let i = 0; i < data.page2sat_komp_sai_moms.length; i++) {\n    var service = data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe && typeof data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe === \"object\" ? data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe.value : data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe;\n    var country = data.page2sat_komp_sai_moms[i].page84 && typeof data.page2sat_komp_sai_moms[i].page84 === \"object\" ? data.page2sat_komp_sai_moms[i].page84.value : data.page2sat_komp_sai_moms[i].page84;\n    var currency = data.page2sat_komp_sai_moms[i].page85 && typeof data.page2sat_komp_sai_moms[i].page85 === \"object\" ? data.page2sat_komp_sai_moms[i].page85.value : data.page2sat_komp_sai_moms[i].page85;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -4721,7 +4940,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2sat_komp_sai_moms) {\n  for (let i = 0; i < data.page2sat_komp_sai_moms.length; i++) {\n    var service = data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe && typeof data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe === \"object\" ? data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe.value : data.page2sat_komp_sai_moms[i].page2sat_komp_sai_moms_saxe;\n    var country = data.page2sat_komp_sai_moms[i].page84 && typeof data.page2sat_komp_sai_moms[i].page84 === \"object\" ? data.page2sat_komp_sai_moms[i].page84.value : data.page2sat_komp_sai_moms[i].page84;\n    var currency = data.page2sat_komp_sai_moms[i].page85 && typeof data.page2sat_komp_sai_moms[i].page85 === \"object\" ? data.page2sat_komp_sai_moms[i].page85.value : data.page2sat_komp_sai_moms[i].page85;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -4949,8 +5189,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2personaluri_kulturuli_rekreaciuli_moms.length; i++) {\n  const service = data.page2personaluri_kulturuli_rekreaciuli_moms[i][\"page2personaluri_kulturuli_rekreaciuli_moms_saxe\"];\n  const country = data.page2personaluri_kulturuli_rekreaciuli_moms[i][\"page90\"].value;\n  const currency = data.page2personaluri_kulturuli_rekreaciuli_moms[i][\"page91\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -4988,7 +5227,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2personaluri_kulturuli_rekreaciuli_moms) {\n  for (let i = 0; i < data.page2personaluri_kulturuli_rekreaciuli_moms.length; i++) {\n    var service = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe;\n    var country = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90 && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90 === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90;\n    var currency = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91 && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91 === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -5002,7 +5241,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2personaluri_kulturuli_rekreaciuli_moms) {\n  for (let i = 0; i < data.page2personaluri_kulturuli_rekreaciuli_moms.length; i++) {\n    var service = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page2personaluri_kulturuli_rekreaciuli_moms_saxe;\n    var country = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90 && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90 === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page90;\n    var currency = data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91 && typeof data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91 === \"object\" ? data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91.value : data.page2personaluri_kulturuli_rekreaciuli_moms[i].page91;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -5233,8 +5493,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page2sxva_saqmiani_moms.length; i++) {\n  const service = data.page2sxva_saqmiani_moms[i][\"page2sxva_saqmiani_moms_saxe\"];\n  const country = data.page2sxva_saqmiani_moms[i][\"page96\"].value;\n  const currency = data.page2sxva_saqmiani_moms[i][\"page97\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -5272,7 +5531,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page2sxva_saqmiani_moms) {\n  for (let i = 0; i < data.page2sxva_saqmiani_moms.length; i++) {\n    var service = data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe && typeof data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe === \"object\" ? data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe.value : data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe;\n    var country = data.page2sxva_saqmiani_moms[i].page96 && typeof data.page2sxva_saqmiani_moms[i].page96 === \"object\" ? data.page2sxva_saqmiani_moms[i].page96.value : data.page2sxva_saqmiani_moms[i].page96;\n    var currency = data.page2sxva_saqmiani_moms[i].page97 && typeof data.page2sxva_saqmiani_moms[i].page97 === \"object\" ? data.page2sxva_saqmiani_moms[i].page97.value : data.page2sxva_saqmiani_moms[i].page97;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -5286,7 +5545,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page2sxva_saqmiani_moms) {\n  for (let i = 0; i < data.page2sxva_saqmiani_moms.length; i++) {\n    var service = data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe && typeof data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe === \"object\" ? data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe.value : data.page2sxva_saqmiani_moms[i].page2sxva_saqmiani_moms_saxe;\n    var country = data.page2sxva_saqmiani_moms[i].page96 && typeof data.page2sxva_saqmiani_moms[i].page96 === \"object\" ? data.page2sxva_saqmiani_moms[i].page96.value : data.page2sxva_saqmiani_moms[i].page96;\n    var currency = data.page2sxva_saqmiani_moms[i].page97 && typeof data.page2sxva_saqmiani_moms[i].page97 === \"object\" ? data.page2sxva_saqmiani_moms[i].page97.value : data.page2sxva_saqmiani_moms[i].page97;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -5591,8 +5871,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3SaqonlisRemonti2.length; i++) {\n  const country = data.page3SaqonlisRemonti2[i][\"page57\"].value;\n  const currency = data.page3SaqonlisRemonti2[i][\"page15\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -5630,7 +5909,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3SaqonlisRemonti2) {\n  for (let i = 0; i < data.page3SaqonlisRemonti2.length; i++) {\n    var country = data.page3SaqonlisRemonti2[i].page57 && typeof data.page3SaqonlisRemonti2[i].page57 === \"object\" ? data.page3SaqonlisRemonti2[i].page57.value : data.page3SaqonlisRemonti2[i].page57;\n    var currency = data.page3SaqonlisRemonti2[i].page15 && typeof data.page3SaqonlisRemonti2[i].page15 === \"object\" ? data.page3SaqonlisRemonti2[i].page15.value : data.page3SaqonlisRemonti2[i].page15;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -5644,7 +5923,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3SaqonlisRemonti2) {\n  for (let i = 0; i < data.page3SaqonlisRemonti2.length; i++) {\n    var country = data.page3SaqonlisRemonti2[i].page57 && typeof data.page3SaqonlisRemonti2[i].page57 === \"object\" ? data.page3SaqonlisRemonti2[i].page57.value : data.page3SaqonlisRemonti2[i].page57;\n    var currency = data.page3SaqonlisRemonti2[i].page15 && typeof data.page3SaqonlisRemonti2[i].page15 === \"object\" ? data.page3SaqonlisRemonti2[i].page15.value : data.page3SaqonlisRemonti2[i].page15;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -5883,8 +6183,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3SazgvaoMoms2.length; i++) {\n  const service = data.page3SazgvaoMoms2[i][\"page3SazgvaoMoms2_saxe\"];\n  const country = data.page3SazgvaoMoms2[i][\"page63\"].value;\n  const currency = data.page3SazgvaoMoms2[i][\"page27\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -5922,7 +6221,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3SazgvaoMoms2) {\n  for (let i = 0; i < data.page3SazgvaoMoms2.length; i++) {\n    var service = data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe && typeof data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe === \"object\" ? data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe.value : data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe;\n    var country = data.page3SazgvaoMoms2[i].page63 && typeof data.page3SazgvaoMoms2[i].page63 === \"object\" ? data.page3SazgvaoMoms2[i].page63.value : data.page3SazgvaoMoms2[i].page63;\n    var currency = data.page3SazgvaoMoms2[i].page27 && typeof data.page3SazgvaoMoms2[i].page27 === \"object\" ? data.page3SazgvaoMoms2[i].page27.value : data.page3SazgvaoMoms2[i].page27;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -5936,7 +6235,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3SazgvaoMoms2) {\n  for (let i = 0; i < data.page3SazgvaoMoms2.length; i++) {\n    var service = data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe && typeof data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe === \"object\" ? data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe.value : data.page3SazgvaoMoms2[i].page3SazgvaoMoms2_saxe;\n    var country = data.page3SazgvaoMoms2[i].page63 && typeof data.page3SazgvaoMoms2[i].page63 === \"object\" ? data.page3SazgvaoMoms2[i].page63.value : data.page3SazgvaoMoms2[i].page63;\n    var currency = data.page3SazgvaoMoms2[i].page27 && typeof data.page3SazgvaoMoms2[i].page27 === \"object\" ? data.page3SazgvaoMoms2[i].page27.value : data.page3SazgvaoMoms2[i].page27;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -6175,8 +6495,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3SahaeroMoms2.length; i++) {\n  const service = data.page3SahaeroMoms2[i][\"page3SahaeroMoms2_saxe\"];\n  const country = data.page3SahaeroMoms2[i][\"page69\"].value;\n  const currency = data.page3SahaeroMoms2[i][\"page39\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -6214,7 +6533,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3SahaeroMoms2) {\n  for (let i = 0; i < data.page3SahaeroMoms2.length; i++) {\n    var service = data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe && typeof data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe === \"object\" ? data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe.value : data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe;\n    var country = data.page3SahaeroMoms2[i].page69 && typeof data.page3SahaeroMoms2[i].page69 === \"object\" ? data.page3SahaeroMoms2[i].page69.value : data.page3SahaeroMoms2[i].page69;\n    var currency = data.page3SahaeroMoms2[i].page39 && typeof data.page3SahaeroMoms2[i].page39 === \"object\" ? data.page3SahaeroMoms2[i].page39.value : data.page3SahaeroMoms2[i].page39;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -6228,7 +6547,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3SahaeroMoms2) {\n  for (let i = 0; i < data.page3SahaeroMoms2.length; i++) {\n    var service = data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe && typeof data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe === \"object\" ? data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe.value : data.page3SahaeroMoms2[i].page3SahaeroMoms2_saxe;\n    var country = data.page3SahaeroMoms2[i].page69 && typeof data.page3SahaeroMoms2[i].page69 === \"object\" ? data.page3SahaeroMoms2[i].page69.value : data.page3SahaeroMoms2[i].page69;\n    var currency = data.page3SahaeroMoms2[i].page39 && typeof data.page3SahaeroMoms2[i].page39 === \"object\" ? data.page3SahaeroMoms2[i].page39.value : data.page3SahaeroMoms2[i].page39;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -6476,8 +6816,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3Saavtomobilo2.length; i++) {\n  const service = data.page3Saavtomobilo2[i][\"page3Saavtomobilo2_saxe\"];\n  const country = data.page3Saavtomobilo2[i][\"page87\"].value;\n  const currency = data.page3Saavtomobilo2[i][\"page93\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -6515,7 +6854,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3Saavtomobilo2) {\n  for (let i = 0; i < data.page3Saavtomobilo2.length; i++) {\n    var service = data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe && typeof data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe === \"object\" ? data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe.value : data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe;\n    var country = data.page3Saavtomobilo2[i].page87 && typeof data.page3Saavtomobilo2[i].page87 === \"object\" ? data.page3Saavtomobilo2[i].page87.value : data.page3Saavtomobilo2[i].page87;\n    var currency = data.page3Saavtomobilo2[i].page93 && typeof data.page3Saavtomobilo2[i].page93 === \"object\" ? data.page3Saavtomobilo2[i].page93.value : data.page3Saavtomobilo2[i].page93;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -6530,7 +6869,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3Saavtomobilo2) {\n  for (let i = 0; i < data.page3Saavtomobilo2.length; i++) {\n    var service = data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe && typeof data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe === \"object\" ? data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe.value : data.page3Saavtomobilo2[i].page3Saavtomobilo2_saxe;\n    var country = data.page3Saavtomobilo2[i].page87 && typeof data.page3Saavtomobilo2[i].page87 === \"object\" ? data.page3Saavtomobilo2[i].page87.value : data.page3Saavtomobilo2[i].page87;\n    var currency = data.page3Saavtomobilo2[i].page93 && typeof data.page3Saavtomobilo2[i].page93 === \"object\" ? data.page3Saavtomobilo2[i].page93.value : data.page3Saavtomobilo2[i].page93;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -6761,8 +7121,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3Sarkinigzo2.length; i++) {\n  const service = data.page3Sarkinigzo2[i][\"page3Sarkinigzo2_saxe\"];\n  const country = data.page3Sarkinigzo2[i][\"page102\"].value;\n  const currency = data.page3Sarkinigzo2[i][\"page103\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -6800,7 +7159,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3Sarkinigzo2) {\n  for (let i = 0; i < data.page3Sarkinigzo2.length; i++) {\n    var service = data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe && typeof data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe === \"object\" ? data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe.value : data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe;\n    var country = data.page3Sarkinigzo2[i].page102 && typeof data.page3Sarkinigzo2[i].page102 === \"object\" ? data.page3Sarkinigzo2[i].page102.value : data.page3Sarkinigzo2[i].page102;\n    var currency = data.page3Sarkinigzo2[i].page103 && typeof data.page3Sarkinigzo2[i].page103 === \"object\" ? data.page3Sarkinigzo2[i].page103.value : data.page3Sarkinigzo2[i].page103;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -6814,7 +7173,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3Sarkinigzo2) {\n  for (let i = 0; i < data.page3Sarkinigzo2.length; i++) {\n    var service = data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe && typeof data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe === \"object\" ? data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe.value : data.page3Sarkinigzo2[i].page3Sarkinigzo2_saxe;\n    var country = data.page3Sarkinigzo2[i].page102 && typeof data.page3Sarkinigzo2[i].page102 === \"object\" ? data.page3Sarkinigzo2[i].page102.value : data.page3Sarkinigzo2[i].page102;\n    var currency = data.page3Sarkinigzo2[i].page103 && typeof data.page3Sarkinigzo2[i].page103 === \"object\" ? data.page3Sarkinigzo2[i].page103.value : data.page3Sarkinigzo2[i].page103;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -7045,8 +7425,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3DanarcheniSaxeobebi2.length; i++) {\n  const service = data.page3DanarcheniSaxeobebi2[i][\"page3DanarcheniSaxeobebi2_saxe\"];\n  const country = data.page3DanarcheniSaxeobebi2[i][\"page107\"].value;\n  const currency = data.page3DanarcheniSaxeobebi2[i][\"page108\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -7083,7 +7462,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3DanarcheniSaxeobebi2) {\n  for (let i = 0; i < data.page3DanarcheniSaxeobebi2.length; i++) {\n    var service = data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe && typeof data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe.value : data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe;\n    var country = data.page3DanarcheniSaxeobebi2[i].page107 && typeof data.page3DanarcheniSaxeobebi2[i].page107 === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page107.value : data.page3DanarcheniSaxeobebi2[i].page107;\n    var currency = data.page3DanarcheniSaxeobebi2[i].page108 && typeof data.page3DanarcheniSaxeobebi2[i].page108 === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page108.value : data.page3DanarcheniSaxeobebi2[i].page108;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -7097,7 +7476,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3DanarcheniSaxeobebi2) {\n  for (let i = 0; i < data.page3DanarcheniSaxeobebi2.length; i++) {\n    var service = data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe && typeof data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe.value : data.page3DanarcheniSaxeobebi2[i].page3DanarcheniSaxeobebi2_saxe;\n    var country = data.page3DanarcheniSaxeobebi2[i].page107 && typeof data.page3DanarcheniSaxeobebi2[i].page107 === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page107.value : data.page3DanarcheniSaxeobebi2[i].page107;\n    var currency = data.page3DanarcheniSaxeobebi2[i].page108 && typeof data.page3DanarcheniSaxeobebi2[i].page108 === \"object\" ? data.page3DanarcheniSaxeobebi2[i].page108.value : data.page3DanarcheniSaxeobebi2[i].page108;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -7285,8 +7685,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3sxva_damxmare_satr_moms.length; i++) {\n  const country = data.page3sxva_damxmare_satr_moms[i][\"page157\"].value;\n  const currency = data.page3sxva_damxmare_satr_moms[i][\"page158\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -7323,7 +7722,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3sxva_damxmare_satr_moms) {\n  for (let i = 0; i < data.page3sxva_damxmare_satr_moms.length; i++) {\n    var country = data.page3sxva_damxmare_satr_moms[i].page157 && typeof data.page3sxva_damxmare_satr_moms[i].page157 === \"object\" ? data.page3sxva_damxmare_satr_moms[i].page157.value : data.page3sxva_damxmare_satr_moms[i].page157;\n    var currency = data.page3sxva_damxmare_satr_moms[i].page158 && typeof data.page3sxva_damxmare_satr_moms[i].page158 === \"object\" ? data.page3sxva_damxmare_satr_moms[i].page158.value : data.page3sxva_damxmare_satr_moms[i].page158;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -7337,7 +7736,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3sxva_damxmare_satr_moms) {\n  for (let i = 0; i < data.page3sxva_damxmare_satr_moms.length; i++) {\n    var country = data.page3sxva_damxmare_satr_moms[i].page157 && typeof data.page3sxva_damxmare_satr_moms[i].page157 === \"object\" ? data.page3sxva_damxmare_satr_moms[i].page157.value : data.page3sxva_damxmare_satr_moms[i].page157;\n    var currency = data.page3sxva_damxmare_satr_moms[i].page158 && typeof data.page3sxva_damxmare_satr_moms[i].page158 === \"object\" ? data.page3sxva_damxmare_satr_moms[i].page158.value : data.page3sxva_damxmare_satr_moms[i].page158;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -7525,8 +7945,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3SafostoSakuriero2.length; i++) {\n  const country = data.page3SafostoSakuriero2[i][\"page112\"].value;\n  const currency = data.page3SafostoSakuriero2[i][\"page113\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -7563,7 +7982,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": ""
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3SafostoSakuriero2) {\n  for (let i = 0; i < data.page3SafostoSakuriero2.length; i++) {\n    var country = data.page3SafostoSakuriero2[i].page112 && typeof data.page3SafostoSakuriero2[i].page112 === \"object\" ? data.page3SafostoSakuriero2[i].page112.value : data.page3SafostoSakuriero2[i].page112;\n    var currency = data.page3SafostoSakuriero2[i].page113 && typeof data.page3SafostoSakuriero2[i].page113 === \"object\" ? data.page3SafostoSakuriero2[i].page113.value : data.page3SafostoSakuriero2[i].page113;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
                             },
                             "type": "number",
                             "inDataGrid": true,
@@ -7576,7 +7995,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3SafostoSakuriero2) {\n  for (let i = 0; i < data.page3SafostoSakuriero2.length; i++) {\n    var country = data.page3SafostoSakuriero2[i].page112 && typeof data.page3SafostoSakuriero2[i].page112 === \"object\" ? data.page3SafostoSakuriero2[i].page112.value : data.page3SafostoSakuriero2[i].page112;\n    var currency = data.page3SafostoSakuriero2[i].page113 && typeof data.page3SafostoSakuriero2[i].page113 === \"object\" ? data.page3SafostoSakuriero2[i].page113.value : data.page3SafostoSakuriero2[i].page113;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -7804,8 +8244,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3Mogzauroba2.length; i++) {\n  const service = data.page3Mogzauroba2[i][\"page3Mogzauroba2_saxe\"];\n  const country = data.page3Mogzauroba2[i][\"page117\"].value;\n  const currency = data.page3Mogzauroba2[i][\"page118\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -7843,7 +8282,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3Mogzauroba2) {\n  for (let i = 0; i < data.page3Mogzauroba2.length; i++) {\n    var service = data.page3Mogzauroba2[i].page3Mogzauroba2_saxe && typeof data.page3Mogzauroba2[i].page3Mogzauroba2_saxe === \"object\" ? data.page3Mogzauroba2[i].page3Mogzauroba2_saxe.value : data.page3Mogzauroba2[i].page3Mogzauroba2_saxe;\n    var country = data.page3Mogzauroba2[i].page117 && typeof data.page3Mogzauroba2[i].page117 === \"object\" ? data.page3Mogzauroba2[i].page117.value : data.page3Mogzauroba2[i].page117;\n    var currency = data.page3Mogzauroba2[i].page118 && typeof data.page3Mogzauroba2[i].page118 === \"object\" ? data.page3Mogzauroba2[i].page118.value : data.page3Mogzauroba2[i].page118;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -7858,7 +8297,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3Mogzauroba2) {\n  for (let i = 0; i < data.page3Mogzauroba2.length; i++) {\n    var service = data.page3Mogzauroba2[i].page3Mogzauroba2_saxe && typeof data.page3Mogzauroba2[i].page3Mogzauroba2_saxe === \"object\" ? data.page3Mogzauroba2[i].page3Mogzauroba2_saxe.value : data.page3Mogzauroba2[i].page3Mogzauroba2_saxe;\n    var country = data.page3Mogzauroba2[i].page117 && typeof data.page3Mogzauroba2[i].page117 === \"object\" ? data.page3Mogzauroba2[i].page117.value : data.page3Mogzauroba2[i].page117;\n    var currency = data.page3Mogzauroba2[i].page118 && typeof data.page3Mogzauroba2[i].page118 === \"object\" ? data.page3Mogzauroba2[i].page118.value : data.page3Mogzauroba2[i].page118;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -8090,8 +8550,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3msheneblobaSaqartveloshi.length; i++) {\n  const service = data.page3msheneblobaSaqartveloshi[i][\"page3msheneblobaSaqartveloshi_saxe\"];\n  const country = data.page3msheneblobaSaqartveloshi[i][\"page122\"].value;\n  const currency = data.page3msheneblobaSaqartveloshi[i][\"page123\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -8129,7 +8588,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3msheneblobaSaqartveloshi) {\n  for (let i = 0; i < data.page3msheneblobaSaqartveloshi.length; i++) {\n    var service = data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe && typeof data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe.value : data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe;\n    var country = data.page3msheneblobaSaqartveloshi[i].page122 && typeof data.page3msheneblobaSaqartveloshi[i].page122 === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page122.value : data.page3msheneblobaSaqartveloshi[i].page122;\n    var currency = data.page3msheneblobaSaqartveloshi[i].page123 && typeof data.page3msheneblobaSaqartveloshi[i].page123 === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page123.value : data.page3msheneblobaSaqartveloshi[i].page123;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -8144,7 +8603,28 @@
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
                             "customClass": "dataGrid_tanxa",
-                            "lockKey": true
+                            "lockKey": true,
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3msheneblobaSaqartveloshi) {\n  for (let i = 0; i < data.page3msheneblobaSaqartveloshi.length; i++) {\n    var service = data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe && typeof data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe.value : data.page3msheneblobaSaqartveloshi[i].page3msheneblobaSaqartveloshi_saxe;\n    var country = data.page3msheneblobaSaqartveloshi[i].page122 && typeof data.page3msheneblobaSaqartveloshi[i].page122 === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page122.value : data.page3msheneblobaSaqartveloshi[i].page122;\n    var currency = data.page3msheneblobaSaqartveloshi[i].page123 && typeof data.page3msheneblobaSaqartveloshi[i].page123 === \"object\" ? data.page3msheneblobaSaqartveloshi[i].page123.value : data.page3msheneblobaSaqartveloshi[i].page123;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -8614,8 +9094,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3finansuriMoms2.length; i++) {\n  const country = data.page3finansuriMoms2[i][\"page132\"].value;\n  const currency = data.page3finansuriMoms2[i][\"page133\"].value;\n  const combination = `${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -8652,7 +9131,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3finansuriMoms2) {\n  for (let i = 0; i < data.page3finansuriMoms2.length; i++) {\n    var country = data.page3finansuriMoms2[i].page132 && typeof data.page3finansuriMoms2[i].page132 === \"object\" ? data.page3finansuriMoms2[i].page132.value : data.page3finansuriMoms2[i].page132;\n    var currency = data.page3finansuriMoms2[i].page133 && typeof data.page3finansuriMoms2[i].page133 === \"object\" ? data.page3finansuriMoms2[i].page133.value : data.page3finansuriMoms2[i].page133;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -8666,7 +9145,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3finansuriMoms2) {\n  for (let i = 0; i < data.page3finansuriMoms2.length; i++) {\n    var country = data.page3finansuriMoms2[i].page132 && typeof data.page3finansuriMoms2[i].page132 === \"object\" ? data.page3finansuriMoms2[i].page132.value : data.page3finansuriMoms2[i].page132;\n    var currency = data.page3finansuriMoms2[i].page133 && typeof data.page3finansuriMoms2[i].page133 === \"object\" ? data.page3finansuriMoms2[i].page133.value : data.page3finansuriMoms2[i].page133;\n    var combination = `${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -8901,8 +9401,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3InteleqtualuriSakutreba2.length; i++) {\n  const service = data.page3InteleqtualuriSakutreba2[i][\"page3InteleqtualuriSakutreba2_saxe\"];\n  const country = data.page3InteleqtualuriSakutreba2[i][\"page137\"].value;\n  const currency = data.page3InteleqtualuriSakutreba2[i][\"page138\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -8939,7 +9438,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3InteleqtualuriSakutreba2) {\n  for (let i = 0; i < data.page3InteleqtualuriSakutreba2.length; i++) {\n    var service = data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe && typeof data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe.value : data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe;\n    var country = data.page3InteleqtualuriSakutreba2[i].page137 && typeof data.page3InteleqtualuriSakutreba2[i].page137 === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page137.value : data.page3InteleqtualuriSakutreba2[i].page137;\n    var currency = data.page3InteleqtualuriSakutreba2[i].page138 && typeof data.page3InteleqtualuriSakutreba2[i].page138 === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page138.value : data.page3InteleqtualuriSakutreba2[i].page138;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -8953,7 +9452,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3InteleqtualuriSakutreba2) {\n  for (let i = 0; i < data.page3InteleqtualuriSakutreba2.length; i++) {\n    var service = data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe && typeof data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe.value : data.page3InteleqtualuriSakutreba2[i].page3InteleqtualuriSakutreba2_saxe;\n    var country = data.page3InteleqtualuriSakutreba2[i].page137 && typeof data.page3InteleqtualuriSakutreba2[i].page137 === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page137.value : data.page3InteleqtualuriSakutreba2[i].page137;\n    var currency = data.page3InteleqtualuriSakutreba2[i].page138 && typeof data.page3InteleqtualuriSakutreba2[i].page138 === \"object\" ? data.page3InteleqtualuriSakutreba2[i].page138.value : data.page3InteleqtualuriSakutreba2[i].page138;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -9184,8 +9704,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3sat_komp_sai_moms2.length; i++) {\n  const service = data.page3sat_komp_sai_moms2[i][\"page3sat_komp_sai_moms2_saxe\"];\n  const country = data.page3sat_komp_sai_moms2[i][\"page142\"].value;\n  const currency = data.page3sat_komp_sai_moms2[i][\"page143\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -9222,7 +9741,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3sat_komp_sai_moms2) {\n  for (let i = 0; i < data.page3sat_komp_sai_moms2.length; i++) {\n    var service = data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe && typeof data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe === \"object\" ? data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe.value : data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe;\n    var country = data.page3sat_komp_sai_moms2[i].page142 && typeof data.page3sat_komp_sai_moms2[i].page142 === \"object\" ? data.page3sat_komp_sai_moms2[i].page142.value : data.page3sat_komp_sai_moms2[i].page142;\n    var currency = data.page3sat_komp_sai_moms2[i].page143 && typeof data.page3sat_komp_sai_moms2[i].page143 === \"object\" ? data.page3sat_komp_sai_moms2[i].page143.value : data.page3sat_komp_sai_moms2[i].page143;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -9236,7 +9755,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3sat_komp_sai_moms2) {\n  for (let i = 0; i < data.page3sat_komp_sai_moms2.length; i++) {\n    var service = data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe && typeof data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe === \"object\" ? data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe.value : data.page3sat_komp_sai_moms2[i].page3sat_komp_sai_moms2_saxe;\n    var country = data.page3sat_komp_sai_moms2[i].page142 && typeof data.page3sat_komp_sai_moms2[i].page142 === \"object\" ? data.page3sat_komp_sai_moms2[i].page142.value : data.page3sat_komp_sai_moms2[i].page142;\n    var currency = data.page3sat_komp_sai_moms2[i].page143 && typeof data.page3sat_komp_sai_moms2[i].page143 === \"object\" ? data.page3sat_komp_sai_moms2[i].page143.value : data.page3sat_komp_sai_moms2[i].page143;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -9460,8 +10000,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3personaluri_kulturuli_rekreaciuli_moms2.length; i++) {\n  const service = data.page3personaluri_kulturuli_rekreaciuli_moms2[i][\"page3personaluri_kulturuli_rekreaciuli_moms2_saxe\"];\n  const country = data.page3personaluri_kulturuli_rekreaciuli_moms2[i][\"page147\"].value;\n  const currency = data.page3personaluri_kulturuli_rekreaciuli_moms2[i][\"page148\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -9498,7 +10037,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3personaluri_kulturuli_rekreaciuli_moms2) {\n  for (let i = 0; i < data.page3personaluri_kulturuli_rekreaciuli_moms2.length; i++) {\n    var service = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe;\n    var country = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147 && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147 === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147;\n    var currency = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148 && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148 === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -9512,7 +10051,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3personaluri_kulturuli_rekreaciuli_moms2) {\n  for (let i = 0; i < data.page3personaluri_kulturuli_rekreaciuli_moms2.length; i++) {\n    var service = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page3personaluri_kulturuli_rekreaciuli_moms2_saxe;\n    var country = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147 && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147 === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page147;\n    var currency = data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148 && typeof data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148 === \"object\" ? data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148.value : data.page3personaluri_kulturuli_rekreaciuli_moms2[i].page148;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
@@ -9744,8 +10304,7 @@
                             "hidden": false,
                             "clearOnHide": true,
                             "validate": {
-                                "required": false,
-                                "custom": "let uniqueCombinations = new Set();\n\nfor (let i = 0; i < data.page3sxva_saqmiani_moms2.length; i++) {\n  const service = data.page3sxva_saqmiani_moms2[i][\"page3sxva_saqmiani_moms2_saxe\"];\n  const country = data.page3sxva_saqmiani_moms2[i][\"page152\"].value;\n  const currency = data.page3sxva_saqmiani_moms2[i][\"page153\"].value;\n  const combination = `${service}_${country}_${currency}`;\n\n  if (uniqueCombinations.has(combination)) {\n    valid =\n      \"რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !\";\n    break;\n  } else {\n    uniqueCombinations.add(combination);\n  }\n}\n"
+                                "required": false
                             },
                             "type": "select",
                             "inDataGrid": true,
@@ -9782,7 +10341,7 @@
                                 "step": "any",
                                 "integer": "",
                                 "multiple": "",
-                                "custom": "",
+                                "custom": "let uniqueCombinations = new Set();\nvalid = true;\n\nif (data && data.page3sxva_saqmiani_moms2) {\n  for (let i = 0; i < data.page3sxva_saqmiani_moms2.length; i++) {\n    var service = data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe && typeof data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe === \"object\" ? data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe.value : data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe;\n    var country = data.page3sxva_saqmiani_moms2[i].page152 && typeof data.page3sxva_saqmiani_moms2[i].page152 === \"object\" ? data.page3sxva_saqmiani_moms2[i].page152.value : data.page3sxva_saqmiani_moms2[i].page152;\n    var currency = data.page3sxva_saqmiani_moms2[i].page153 && typeof data.page3sxva_saqmiani_moms2[i].page153 === \"object\" ? data.page3sxva_saqmiani_moms2[i].page153.value : data.page3sxva_saqmiani_moms2[i].page153;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      valid = 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !';\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}",
                                 "customMessage": "რიცხვი უნდა იყოს დადებითი"
                             },
                             "type": "number",
@@ -9796,7 +10355,28 @@
                             },
                             "properties": {},
                             "tooltip": "უნდა აისახოს საანგარიშო პერიოდში გაწეული მომსახურების ღირებულება და არა მომსახურებისათვის ფაქტიურად მიღებული თანხა.",
-                            "customClass": "dataGrid_tanxa"
+                            "customClass": "dataGrid_tanxa",
+                            "logic": [
+                                {
+                                    "name": "disCheck",
+                                    "trigger": {
+                                        "type": "javascript",
+                                        "javascript": "let uniqueCombinations = new Set();\nresult = false;\n\nif (data && data.page3sxva_saqmiani_moms2) {\n  for (let i = 0; i < data.page3sxva_saqmiani_moms2.length; i++) {\n    var service = data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe && typeof data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe === \"object\" ? data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe.value : data.page3sxva_saqmiani_moms2[i].page3sxva_saqmiani_moms2_saxe;\n    var country = data.page3sxva_saqmiani_moms2[i].page152 && typeof data.page3sxva_saqmiani_moms2[i].page152 === \"object\" ? data.page3sxva_saqmiani_moms2[i].page152.value : data.page3sxva_saqmiani_moms2[i].page152;\n    var currency = data.page3sxva_saqmiani_moms2[i].page153 && typeof data.page3sxva_saqmiani_moms2[i].page153 === \"object\" ? data.page3sxva_saqmiani_moms2[i].page153.value : data.page3sxva_saqmiani_moms2[i].page153;\n    var combination = `${service}_${country}_${currency}`;\n    if (uniqueCombinations.has(combination)) {\n      result = true;\n      break;\n    } else {\n      uniqueCombinations.add(combination);\n    }\n  }\n}"
+                                    },
+                                    "actions": [
+                                        {
+                                            "name": "disable",
+                                            "type": "property",
+                                            "property": {
+                                                "label": "Disabled",
+                                                "value": "disabled",
+                                                "type": "boolean"
+                                            },
+                                            "state": true
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "tableView": true,
