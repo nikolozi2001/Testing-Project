@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -)"
+      "Bash(python -)",
+      "Bash(py --version)",
+      "Bash(del \"C:\\\\Users\\\\nqachibaia\\\\Desktop\\\\Testing-Project\\\\fix_alerts.py\")"
     ]
   }
 }
