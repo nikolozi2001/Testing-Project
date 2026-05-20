@@ -1436,6 +1436,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -1741,6 +1746,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -2047,6 +2057,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -2664,6 +2679,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -2963,6 +2983,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -3224,6 +3249,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -3524,6 +3554,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -3830,6 +3865,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -4090,6 +4130,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -4350,6 +4395,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -4651,6 +4701,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -4958,6 +5013,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -5259,6 +5319,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -5563,6 +5628,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -5941,6 +6011,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -6253,6 +6328,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -6565,6 +6645,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -6887,6 +6972,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -7191,6 +7281,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -7494,6 +7589,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -7754,6 +7854,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -8013,6 +8118,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -8315,6 +8425,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -8621,6 +8736,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -9163,6 +9283,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -9470,6 +9595,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -9773,6 +9903,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -10069,6 +10204,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }
@@ -10373,6 +10513,11 @@
                                                 "type": "boolean"
                                             },
                                             "state": true
+                                        },
+                                        {
+                                            "name": "showMsg",
+                                            "type": "mergeComponentSchema",
+                                            "schemaDefinition": "schema = { description: 'რომელიმე მომსახურება კონკრეტული ქვეყნიდან და კონკრეტულ ვალუტაში, მხოლოდ ერთხელ უნდა შეივსოს მთლიანი თანხის მითითებით !' }"
                                         }
                                     ]
                                 }

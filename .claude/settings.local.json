@@ -6,7 +6,8 @@
       "Bash(del \"C:\\\\Users\\\\nqachibaia\\\\Desktop\\\\Testing-Project\\\\fix_alerts.py\")",
       "Bash(python debug.py)",
       "Bash(python transform_logic.py)",
-      "Bash(python verify.py)"
+      "Bash(python verify.py)",
+      "Bash(python add_description_action.py)"
     ]
   }
 }
