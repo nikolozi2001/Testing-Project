@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>საქსტატი - 107 წლის იუბილე</title>
+    <style>
+        /* ძირითადი კონტეინერის სტილები (Retina-Ready 600x500 მასშტაბი) */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .banner-container {
+            width: 600px;
+            height: 500px;
+            background-color: #0A2540; /* Official Blue დომინანტი */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+
+        /* მათემატიკური ბადე და ნელი Parallax Drift */
+        .math-grid {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            animation: drift 20s linear infinite;
+            z-index: 1;
+        }
+
+        .math-symbols {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.07);
+            font-size: 18px;
+            font-weight: bold;
+            pointer-events: none;
+            user-select: none;
+            animation: driftSymbols 25s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -30px) rotate(1deg); }
+        }
+
+        @keyframes driftSymbols {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(15px, -25px); }
+        }
+
+        /* უსაფრთხოების ზონები და ბრენდინგი (Margins) */
+        .brand-header {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeInHeader 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* სტილიზებული ვექტორული საქსტატის ლოგო */
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #e31b23 30%, #ff4d5a 100%); /* Corporate Red აქცენტი */
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(227, 27, 35, 0.3);
+        }
+
+        .logo-text {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .brand-name {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        /* მთავარი ვიზუალური ბირთვი (Primary Focus) */
+        .content-area {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .anniversary-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* კორპორატიული წითელი აქცენტი საიუბილეო ციფრზე */
+        .counter-num {
+            color: #e31b23;
+            text-shadow: 0 0 20px rgba(227, 27, 35, 0.2);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .anniversary-label {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* ისტორიული პერიოდი (Secondary Focus) */
+        .history-years {
+            font-size: 18px;
+            font-weight: 500;
+            color: #a0aec0; /* Neutral Grey */
+            margin-top: 10px;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInHistory 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.5s forwards;
+        }
+
+        /* სლოგანი (Tertiary / CTA) */
+        .slogan {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            opacity: 0;
+            position: absolute;
+            bottom: -60px;
+            width: 85%;
+            line-height: 1.5;
+            text-align: center;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* ანიმაციის ფაზები კოდისთვის */
+        @keyframes fadeInHeader {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInHistory {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* კულმინაციისა და ფინალის მართვის კლასები (ინტეგრირებული JS-ით) */
+        .content-area.shift-up .anniversary-title {
+            transform: translateY(-40px) scale(0.95);
+        }
+
+        .content-area.shift-up .slogan {
+            opacity: 1;
+            bottom: -25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner-container">
+        <div class="math-grid"></div>
+        <div class="math-symbols" id="symbols"></div>
+
+        <div class="brand-header">
+            <div class="logo-icon">
+                <span class="logo-text">ს</span>
+            </div>
+            <div class="brand-name">საქსტატი</div>
+        </div>
+
+        <div class="content-area" id="contentArea">
+            <h1 class="anniversary-title">
+                <span class="counter-num" id="anniversaryCounter">0</span>
+                <span class="anniversary-label">წელი</span>
+            </h1>
+            <div class="history-years">
+                ოფიციალური სტატისტიკა <span id="yearStart">1919</span> – <span id="yearEnd">1919</span>
+            </div>
+            <div class="slogan" id="slogan">
+                „სწორი მონაცემები სწორი გადაწყვეტილებებისთვის!“
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // მათემატიკური სიმბოლოების შემთხვევითი გენერაცია ფონისთვის
+        const symbolsData = ['∑', 'μ', 'σ', 'π', '%', 'x²', 'Δ', '+', '-', '=', '√', '∫', 'N'];
+        const symbolsContainer = document.getElementById('symbols');
+        
+        for (let i = 0; i < 15; i++) {
+            const sym = document.createElement('div');
+            sym.innerText = symbolsData[Math.floor(Math.random() * symbolsData.length)];
+            sym.style.position = 'absolute';
+            sym.style.left = Math.random() * 90 + 5 + '%';
+            sym.style.top = Math.random() * 80 + 10 + '%';
+            sym.style.fontSize = Math.random() * 12 + 14 + 'px';
+            sym.style.transform = `rotate(${Math.random() * 360}deg)`;
+            symbolsContainer.appendChild(sym);
+        }
+
+        // ანიმაციის სცენარის მართვა (Timeline)
+        const anniversaryCounter = document.getElementById('anniversaryCounter');
+        const yearEnd = document.getElementById('yearEnd');
+        const contentArea = document.getElementById('contentArea');
+
+        function easeOutExpo(x) {
+            return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+        }
+
+        function runCounters() {
+            // ეტაპი 1 & 2: Counter ანიმაციის ინიციალიზაცია (1.5 - 4.0 წმ)
+            const duration = 2500; // 2.5 წამი
+            const startTimestamp = performance.now();
+
+            function updateCounters(now) {
+                const elapsed = now - startTimestamp;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = easeOutExpo(progress);
+
+                // საიუბილეო თარიღის ზრდა (107-მდე)
+                const currentAnniversary = Math.floor(easeProgress * 107);
+                anniversaryCounter.innerText = currentAnniversary;
+
+                // წლების ზრდა (2026-მდე)
+                const currentYear = Math.floor(1919 + (easeProgress * (2026 - 1919)));
+                yearEnd.innerText = currentYear;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounters);
+                } else {
+                    // ეტაპი 3: ფინალური ლოქ-აპი (4.0 - 6.0 წმ)
+                    setTimeout(() => {
+                        contentArea.classList.add('shift-up');
+                    }, 500);
+
+                    // ეტაპი 4 + Seamless Loop (სტატიკური პაუზა 3 წამი და რესეტი)
+                    setTimeout(() => {
+                        resetAnimation();
+                    }, 6500); // 3 წამი სტატიკა + 3.5 წამი წინა ფაზები
+                }
+            }
+            requestAnimationFrame(updateCounters);
+        }
+
+        function resetAnimation() {
+            // გლუვი გადასვლა საწყის მდგომარეობაზე
+            contentArea.style.opacity = '0';
+            setTimeout(() => {
+                contentArea.classList.remove('shift-up');
+                anniversaryCounter.innerText = '0';
+                yearEnd.innerText = '1919';
+                contentArea.style.opacity = '1';
+                // თავიდან გაშვება
+                setTimeout(runCounters, 500);
+            }, 800);
+        }
+
+        // ბანერის პირველადი გაშვება (ინტრო ფაზა)
+        setTimeout(runCounters, 1000);
+    </script>
+</body>
+</html>
