@@ -14,6 +14,10 @@ console.log("==========================================================");
 
 const enterpriseSurveyId = window.location.pathname.split("/").pop();
 
+// ქეშის გასაღები — თითო კითხვარსა და კვარტალზე ცალკე,
+// რომ ერთი კითხვარის შედეგი მეორეს არ დაანახოს.
+const CACHE_KEY = `p7t3n4_q${mainQuarter}_${enterpriseSurveyId}`;
+
 console.log("🌍 URL:", window.location.href);
 console.log("🆔 enterpriseSurveyId:", enterpriseSurveyId);
 
@@ -109,6 +113,7 @@ Promise.all([
     console.log("Quarter 4:", quarterData[4]);
 
     let totalProfit = 0;
+    let quartersCount = 0;
 
     const profits = {};
     const rates = {};
@@ -122,6 +127,8 @@ Promise.all([
       console.log("API Item:", item);
 
       if (item) {
+        quartersCount += 1;
+
         profits[q] = Number(item.profit) || 0;
 
         const currencyId = item.currency?.id;
@@ -152,10 +159,13 @@ Promise.all([
     console.log("Rates:", rates);
     console.log("Total Profit:", totalProfit);
 
-    const dividedVal = (p215 - totalProfit) / 4;
+    const divisor = quartersCount || 1;
 
+    const dividedVal = (p215 - totalProfit) / divisor;
+
+    console.log("Quarters Count (divisor):", divisor);
     console.log("Sub Value:", p215 - totalProfit);
-    console.log("Divided By 4:", dividedVal);
+    console.log("Divided By", divisor + ":", dividedVal);
 
     const amount = profits[mainQuarter] + dividedVal;
 
@@ -177,15 +187,44 @@ Promise.all([
     console.log("USD:", usd);
     console.log("Result:", result);
 
-    value = Number(result.toFixed(2));
+    const finalValue = Number(result.toFixed(2));
+
+    // 1. ვინახავთ localStorage-ში — ამას სინქრონულად წაიკითხავს
+    //    ფაილის ბოლოში მდებარე კოდი შემდეგ გადათვლაზე.
+    localStorage.setItem(CACHE_KEY, finalValue);
+
+    // 2. ვცდილობთ დაუყოვნებლივ ჩვენებას instance.setValue-ით
+    //    (guard-ით, რომ არ ჩავვარდეთ უსასრულო ციკლში).
+    try {
+      if (
+        typeof instance !== "undefined" &&
+        instance &&
+        typeof instance.setValue === "function"
+      ) {
+        const current = Number(instance.getValue ? instance.getValue() : NaN);
+        if (current !== finalValue) {
+          instance.setValue(finalValue);
+        }
+      }
+    } catch (e) {
+      console.warn("⚠️ instance.setValue ვერ შესრულდა:", e);
+    }
 
     console.log("================================================");
-    console.log("✅ FORMIO VALUE:", value);
+    console.log("✅ FORMIO VALUE:", finalValue);
     console.log("================================================");
   })
   .catch((err) => {
     console.error("❌ ERROR");
     console.error(err);
-
-    value = "";
   });
+
+// =======================================================
+// სინქრონული value — Form.io-ს ეს წაიკითხავს ყოველ გადათვლაზე.
+// fetch-ის დასრულებამდე localStorage ცარიელია → value უცვლელი რჩება;
+// შედეგის ჩაწერის შემდეგ (მომდევნო გადათვლაზე) აქ ჩაისმება რიცხვი.
+// =======================================================
+const cachedValue = localStorage.getItem(CACHE_KEY);
+if (cachedValue !== null && cachedValue !== "") {
+  value = Number(cachedValue);
+}
