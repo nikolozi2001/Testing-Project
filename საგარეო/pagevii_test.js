@@ -14,9 +14,27 @@ console.log("==========================================================");
 
 const enterpriseSurveyId = window.location.pathname.split("/").pop();
 
-// ქეშის გასაღები — თითო კითხვარსა და კვარტალზე ცალკე,
-// რომ ერთი კითხვარის შედეგი მეორეს არ დაანახოს.
-const CACHE_KEY = `p7t3n4_q${mainQuarter}_${enterpriseSurveyId}`;
+// =======================================================
+// სტრ. 215-ის ვალუტა (page2Table5Select).
+// ორ დანიშნულებას ასრულებს:
+//   1. Form.io-სთვის dependency — ამ ველზე მითითება ნიშნავს,
+//      რომ ვალუტის შეცვლისას გადათვლა თავიდან გაეშვება;
+//   2. currencyId-ის წყარო kursis fallback-ისთვის, როცა
+//      API-ს კვარტალში currency = null მოდის.
+// ⚠️ optional chaining აუცილებელია — ძველი კოდის `.value`
+//    პირდაპირი წაკითხვა იწვევდა "Cannot read properties of
+//    undefined (reading 'value')" შეცდომას.
+// =======================================================
+const p215Currency = data.page2Table5Select;
+const p215CurrencyId = p215Currency?.value ?? null;
+
+console.log("🏦 p215 Currency (page2Table5Select):", p215Currency);
+console.log("🏦 p215 Currency Id:", p215CurrencyId);
+
+// ქეშის გასაღები — თითო კითხვარზე, კვარტალსა და ვალუტაზე ცალკე.
+// ვალუტა გასაღებშია, რომ მისი შეცვლის შემდეგ ძველი (არასწორი)
+// შედეგი აღარ ჩაისვას ველში.
+const CACHE_KEY = `p7t3n4_q${mainQuarter}_${enterpriseSurveyId}_c${p215CurrencyId}`;
 
 console.log("🌍 URL:", window.location.href);
 console.log("🆔 enterpriseSurveyId:", enterpriseSurveyId);
@@ -25,8 +43,45 @@ const currencyUrl = `/api/lib/enterprise-survey-year-currency-map?enterpriseSurv
 
 const quarterUrl = `/api/enterprise/foreign-economic-activity-quarter-data?enterpriseSurveyId=${enterpriseSurveyId}`;
 
+// წელი გვჭირდება კურსის fallback-ისთვის (trade-currency-by-quarter).
+const infoUrl = `/api/lib/enterprise-survey-info?enterpriseSurveyId=${enterpriseSurveyId}`;
+
 console.log("💱 Currency URL:", currencyUrl);
 console.log("📊 Quarter URL:", quarterUrl);
+console.log("ℹ️ Info URL:", infoUrl);
+
+const authHeaders = {
+  Accept: "application/json",
+  Authorization: localStorage.getItem("accessToken"),
+};
+
+// კურსის fallback — როცა currency-map-ში შესაბამისი ჩანაწერი არ მოიძებნა.
+function fetchRateFallback(currencyId, year, quarter) {
+  const url = `/api/lib/trade-currency-by-quarter?currencyId=${currencyId}&year=${year}&quarter=${quarter}`;
+
+  console.log("🔎 Fallback Rate URL:", url);
+
+  return fetch(url, { headers: authHeaders })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((res) => {
+      const price = Number(res?.price);
+
+      if (!price) {
+        console.warn("⚠️ Fallback-მაც ვერ დააბრუნა კურსი:", url, res);
+        return null;
+      }
+
+      console.log(
+        `✅ Fallback Rate: ${price} (${res.currencyCode} — ${res.currencyName})`,
+      );
+
+      return price;
+    })
+    .catch((e) => {
+      console.warn("⚠️ Fallback მოთხოვნა ჩავარდა:", url, e);
+      return null;
+    });
+}
 
 const p215 = Number(data.page2Table5Number) || 0;
 
@@ -74,21 +129,18 @@ console.log(periodEndSums);
 console.log("================================================");
 
 Promise.all([
-  fetch(currencyUrl, {
-    headers: {
-      Accept: "application/json",
-      Authorization: localStorage.getItem("accessToken"),
-    },
-  }).then((r) => r.json()),
+  fetch(currencyUrl, { headers: authHeaders }).then((r) => r.json()),
 
-  fetch(quarterUrl, {
-    headers: {
-      Accept: "application/json",
-      Authorization: localStorage.getItem("accessToken"),
-    },
-  }).then((r) => r.json()),
+  fetch(quarterUrl, { headers: authHeaders }).then((r) => r.json()),
+
+  fetch(infoUrl, { headers: authHeaders })
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null),
 ])
-  .then(([currencies, quarterData]) => {
+  .then(([currencies, quarterData, surveyInfo]) => {
+    const year = surveyInfo?.year;
+
+    console.log("📅 Year:", year);
     console.log("================================================");
     console.log("💱 CURRENCIES");
     console.log(currencies);
@@ -118,6 +170,9 @@ Promise.all([
     const profits = {};
     const rates = {};
 
+    // კურსის fallback-მოთხოვნები, რომლებსაც უნდა დავუცადოთ.
+    const pendingRates = [];
+
     [1, 2, 3, 4].forEach((q) => {
       console.log("--------------------------------------------");
       console.log("Processing Quarter:", q);
@@ -131,17 +186,49 @@ Promise.all([
 
         profits[q] = Number(item.profit) || 0;
 
-        const currencyId = item.currency?.id;
+        // ვალუტა API-დან; თუ null-ია — გადავდივართ ფორმაში
+        // არჩეულ ვალუტაზე (page2Table5Select).
+        const apiCurrencyId = item.currency?.id;
+        const currencyId = apiCurrencyId ?? p215CurrencyId;
 
-        console.log("Currency Id:", currencyId);
+        console.log(
+          "Currency Id:",
+          currencyId,
+          apiCurrencyId ? "(API)" : "(page2Table5Select)",
+        );
 
         const key = q + "-" + currencyId;
 
         console.log("Currency Key:", key);
 
-        rates[q] = Number(currencies[key]) || 1;
+        const mappedRate = Number(currencies[key]);
 
-        console.log("Rate:", rates[q]);
+        if (mappedRate) {
+          rates[q] = mappedRate;
+
+          console.log("Rate (map):", rates[q]);
+        } else {
+          // Map-ში ვერ მოიძებნა — ვცდით trade-currency-by-quarter-ს.
+          rates[q] = 1;
+
+          if (isEmpty(currencyId) || isEmpty(year)) {
+            console.warn(
+              `⚠️ Rate ვერ მოიძებნა და fallback შეუძლებელია (currencyId=${currencyId}, year=${year}) → Rate = 1`,
+            );
+          } else {
+            console.warn(`⚠️ Rate ვერ მოიძებნა map-ში (${key}) → fallback...`);
+
+            pendingRates.push(
+              fetchRateFallback(currencyId, year, q).then((price) => {
+                if (price) {
+                  rates[q] = price;
+                } else {
+                  console.warn(`⚠️ Quarter ${q}: Rate რჩება 1`);
+                }
+              }),
+            );
+          }
+        }
       } else {
         console.warn("⚠️ Quarter not returned from API:", q);
 
@@ -154,65 +241,68 @@ Promise.all([
       console.log("Profit:", profits[q]);
     });
 
-    console.log("================================================");
-    console.log("Profits:", profits);
-    console.log("Rates:", rates);
-    console.log("Total Profit:", totalProfit);
+    // ვუცდით ყველა fallback-ს, სანამ საბოლოო გამოთვლას გავაკეთებთ.
+    return Promise.all(pendingRates).then(() => {
+      console.log("================================================");
+      console.log("Profits:", profits);
+      console.log("Rates:", rates);
+      console.log("Total Profit:", totalProfit);
 
-    const divisor = quartersCount || 1;
+      const divisor = quartersCount || 1;
 
-    const dividedVal = (p215 - totalProfit) / divisor;
+      const dividedVal = (p215 - totalProfit) / divisor;
 
-    console.log("Quarters Count (divisor):", divisor);
-    console.log("Sub Value:", p215 - totalProfit);
-    console.log("Divided By", divisor + ":", dividedVal);
+      console.log("Quarters Count (divisor):", divisor);
+      console.log("Sub Value:", p215 - totalProfit);
+      console.log("Divided By", divisor + ":", dividedVal);
 
-    const amount = profits[mainQuarter] + dividedVal;
+      const amount = profits[mainQuarter] + dividedVal;
 
-    const rate = rates[mainQuarter];
+      const rate = rates[mainQuarter];
 
-    const usd = amount * rate;
+      const usd = amount * rate;
 
-    const share = periodEndSums[mainQuarter] || 0;
+      const share = periodEndSums[mainQuarter] || 0;
 
-    const result = usd * (share / 100);
+      const result = usd * (share / 100);
 
-    console.log("================================================");
-    console.log("🎯 FINAL CALCULATION");
-    console.log("Quarter:", mainQuarter);
-    console.log("Profit:", profits[mainQuarter]);
-    console.log("Rate:", rate);
-    console.log("Share:", share);
-    console.log("Amount:", amount);
-    console.log("USD:", usd);
-    console.log("Result:", result);
+      console.log("================================================");
+      console.log("🎯 FINAL CALCULATION");
+      console.log("Quarter:", mainQuarter);
+      console.log("Profit:", profits[mainQuarter]);
+      console.log("Rate:", rate);
+      console.log("Share:", share);
+      console.log("Amount:", amount);
+      console.log("USD:", usd);
+      console.log("Result:", result);
 
-    const finalValue = Number(result.toFixed(2));
+      const finalValue = Number(result.toFixed(2));
 
-    // 1. ვინახავთ localStorage-ში — ამას სინქრონულად წაიკითხავს
-    //    ფაილის ბოლოში მდებარე კოდი შემდეგ გადათვლაზე.
-    localStorage.setItem(CACHE_KEY, finalValue);
+      // 1. ვინახავთ localStorage-ში — ამას სინქრონულად წაიკითხავს
+      //    ფაილის ბოლოში მდებარე კოდი შემდეგ გადათვლაზე.
+      localStorage.setItem(CACHE_KEY, finalValue);
 
-    // 2. ვცდილობთ დაუყოვნებლივ ჩვენებას instance.setValue-ით
-    //    (guard-ით, რომ არ ჩავვარდეთ უსასრულო ციკლში).
-    try {
-      if (
-        typeof instance !== "undefined" &&
-        instance &&
-        typeof instance.setValue === "function"
-      ) {
-        const current = Number(instance.getValue ? instance.getValue() : NaN);
-        if (current !== finalValue) {
-          instance.setValue(finalValue);
+      // 2. ვცდილობთ დაუყოვნებლივ ჩვენებას instance.setValue-ით
+      //    (guard-ით, რომ არ ჩავვარდეთ უსასრულო ციკლში).
+      try {
+        if (
+          typeof instance !== "undefined" &&
+          instance &&
+          typeof instance.setValue === "function"
+        ) {
+          const current = Number(instance.getValue ? instance.getValue() : NaN);
+          if (current !== finalValue) {
+            instance.setValue(finalValue);
+          }
         }
+      } catch (e) {
+        console.warn("⚠️ instance.setValue ვერ შესრულდა:", e);
       }
-    } catch (e) {
-      console.warn("⚠️ instance.setValue ვერ შესრულდა:", e);
-    }
 
-    console.log("================================================");
-    console.log("✅ FORMIO VALUE:", finalValue);
-    console.log("================================================");
+      console.log("================================================");
+      console.log("✅ FORMIO VALUE:", finalValue);
+      console.log("================================================");
+    });
   })
   .catch((err) => {
     console.error("❌ ERROR");
